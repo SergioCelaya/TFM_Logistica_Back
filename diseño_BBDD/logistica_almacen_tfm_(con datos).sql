@@ -33,8 +33,18 @@ CREATE TABLE `almacenes` (
   PRIMARY KEY (`idalmacen`),
   UNIQUE KEY `idalmacen_UNIQUE` (`idalmacen`),
   UNIQUE KEY `nombre_almacen_UNIQUE` (`nombre_almacen`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `almacenes`
+--
+
+LOCK TABLES `almacenes` WRITE;
+/*!40000 ALTER TABLE `almacenes` DISABLE KEYS */;
+INSERT INTO `almacenes` VALUES (1,'Almacen1','40.7128','-74.0060',1),(2,'Almacen2','34.0522','-118.2437',1),(3,'Almacen3','51.5074','-0.1278',1),(4,'Almacen4','35.6895','139.6917',1),(5,'Almacen5','41.8781','-87.6298',1);
+/*!40000 ALTER TABLE `almacenes` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `empleados`
@@ -61,8 +71,18 @@ CREATE TABLE `empleados` (
   KEY `id_almacen` (`idalmacen`),
   CONSTRAINT `id_almacen` FOREIGN KEY (`idalmacen`) REFERENCES `almacenes` (`idalmacen`),
   CONSTRAINT `puesto` FOREIGN KEY (`puesto`) REFERENCES `puestos_trabajo` (`idpuesto_trabajo`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `empleados`
+--
+
+LOCK TABLES `empleados` WRITE;
+/*!40000 ALTER TABLE `empleados` DISABLE KEYS */;
+INSERT INTO `empleados` VALUES (1,'empleado1@example.com','pwd1','Nombre1','Apellido1',1,1,'E001',1,'2023-01-01 00:00:00'),(2,'empleado2@example.com','pwd2','Nombre2','Apellido2',2,2,'E002',1,'2023-01-02 00:00:00'),(3,'empleado3@example.com','pwd3','Nombre3','Apellido3',3,3,'E003',1,'2023-01-03 00:00:00'),(4,'empleado4@example.com','pwd4','Nombre4','Apellido4',1,4,'E004',1,'2023-01-04 00:00:00'),(5,'empleado5@example.com','pwd5','Nombre5','Apellido5',2,5,'E005',1,'2023-01-05 00:00:00');
+/*!40000 ALTER TABLE `empleados` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `estados_pedidos`
@@ -81,8 +101,18 @@ CREATE TABLE `estados_pedidos` (
   KEY `idpedido` (`idpedido`),
   CONSTRAINT `idestado` FOREIGN KEY (`idestado`) REFERENCES `tipo_estados` (`idestado`),
   CONSTRAINT `idpedido` FOREIGN KEY (`idpedido`) REFERENCES `pedidos` (`idPedido`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `estados_pedidos`
+--
+
+LOCK TABLES `estados_pedidos` WRITE;
+/*!40000 ALTER TABLE `estados_pedidos` DISABLE KEYS */;
+INSERT INTO `estados_pedidos` VALUES (1,1,1,'2023-01-02 11:55:00'),(2,2,1,'2023-01-05 11:40:10'),(3,1,2,'2023-01-03 13:30:03'),(4,2,2,'2023-01-08 22:20:00'),(5,1,3,'2023-01-04 01:00:30');
+/*!40000 ALTER TABLE `estados_pedidos` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `incidencias`
@@ -102,8 +132,18 @@ CREATE TABLE `incidencias` (
   UNIQUE KEY `idincidencia_UNIQUE` (`idincidencia`),
   KEY `tipo_incidencia` (`tipo_incidencia`),
   CONSTRAINT `tipo_incidencia` FOREIGN KEY (`tipo_incidencia`) REFERENCES `tipo_incidencia` (`idtipo_incidencia`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `incidencias`
+--
+
+LOCK TABLES `incidencias` WRITE;
+/*!40000 ALTER TABLE `incidencias` DISABLE KEYS */;
+INSERT INTO `incidencias` VALUES (1,'Incidencia1','Descripción incidencia 1',1,1,0),(2,'Incidencia2','Descripción incidencia 2',2,2,0),(3,'Incidencia3','Descripción incidencia 3',3,3,0),(4,'Incidencia4','Descripción incidencia 4',4,4,0),(5,'Incidencia5','Descripción incidencia 5',5,5,0);
+/*!40000 ALTER TABLE `incidencias` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `pedidos`
@@ -135,8 +175,18 @@ CREATE TABLE `pedidos` (
   CONSTRAINT `estado` FOREIGN KEY (`estado`) REFERENCES `tipo_estados` (`idestado`),
   CONSTRAINT `usuario_asignado` FOREIGN KEY (`usuario_asignado`) REFERENCES `empleados` (`idempleado`),
   CONSTRAINT `usuario_responsable` FOREIGN KEY (`usuario_responsable`) REFERENCES `empleados` (`idempleado`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `pedidos`
+--
+
+LOCK TABLES `pedidos` WRITE;
+/*!40000 ALTER TABLE `pedidos` DISABLE KEYS */;
+INSERT INTO `pedidos` VALUES (1,'P001','2023-01-01 12:00:00',1,2,'2023-01-10 12:00:00',1,2,1),(2,'P002','2023-01-02 12:00:00',2,3,'2023-01-12 12:00:00',2,3,2),(3,'P003','2023-01-03 12:00:00',3,1,'2023-01-15 12:00:00',3,1,3),(4,'P004','2023-01-04 12:00:00',4,5,'2023-01-20 12:00:00',4,5,4),(5,'P005','2023-01-05 12:00:00',5,4,'2023-01-25 12:00:00',5,4,5);
+/*!40000 ALTER TABLE `pedidos` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `puestos_trabajo`
@@ -151,8 +201,18 @@ CREATE TABLE `puestos_trabajo` (
   PRIMARY KEY (`idpuesto_trabajo`),
   UNIQUE KEY `idpuesto_trabajo_UNIQUE` (`idpuesto_trabajo`),
   UNIQUE KEY `descripcion_UNIQUE` (`descripcion`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `puestos_trabajo`
+--
+
+LOCK TABLES `puestos_trabajo` WRITE;
+/*!40000 ALTER TABLE `puestos_trabajo` DISABLE KEYS */;
+INSERT INTO `puestos_trabajo` VALUES (1,'Puesto1'),(2,'Puesto2'),(3,'Puesto3'),(4,'Puesto4'),(5,'Puesto5');
+/*!40000 ALTER TABLE `puestos_trabajo` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `tipo_estados`
@@ -167,8 +227,18 @@ CREATE TABLE `tipo_estados` (
   PRIMARY KEY (`idestado`),
   UNIQUE KEY `idestados_UNIQUE` (`idestado`),
   UNIQUE KEY `descripcion_UNIQUE` (`descripcion`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tipo_estados`
+--
+
+LOCK TABLES `tipo_estados` WRITE;
+/*!40000 ALTER TABLE `tipo_estados` DISABLE KEYS */;
+INSERT INTO `tipo_estados` VALUES (1,'Estado1'),(2,'Estado2'),(3,'Estado3'),(4,'Estado4'),(5,'Estado5');
+/*!40000 ALTER TABLE `tipo_estados` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `tipo_incidencia`
@@ -183,8 +253,18 @@ CREATE TABLE `tipo_incidencia` (
   PRIMARY KEY (`idtipo_incidencia`),
   UNIQUE KEY `idtipo_incidencia_UNIQUE` (`idtipo_incidencia`),
   UNIQUE KEY `descripcion_UNIQUE` (`descripcion`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tipo_incidencia`
+--
+
+LOCK TABLES `tipo_incidencia` WRITE;
+/*!40000 ALTER TABLE `tipo_incidencia` DISABLE KEYS */;
+INSERT INTO `tipo_incidencia` VALUES (1,'Incidencia1'),(2,'Incidencia2'),(3,'Incidencia3'),(4,'Incidencia4'),(5,'Incidencia5');
+/*!40000 ALTER TABLE `tipo_incidencia` ENABLE KEYS */;
+UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -195,4 +275,4 @@ CREATE TABLE `tipo_incidencia` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-11-22 11:51:16
+-- Dump completed on 2023-11-22 11:57:57
