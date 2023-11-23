@@ -1,8 +1,6 @@
-CREATE DATABASE  IF NOT EXISTS `logistica_almacen_tfm` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `logistica_almacen_tfm`;
 -- MySQL dump 10.13  Distrib 8.0.34, for Win64 (x86_64)
 --
--- Host: 127.0.0.1    Database: logistica_almacen_tfm
+-- Host: localhost    Database: logistica_almacen_tfm
 -- ------------------------------------------------------
 -- Server version	8.0.34
 
@@ -33,7 +31,7 @@ CREATE TABLE `almacenes` (
   PRIMARY KEY (`idalmacen`),
   UNIQUE KEY `idalmacen_UNIQUE` (`idalmacen`),
   UNIQUE KEY `nombre_almacen_UNIQUE` (`nombre_almacen`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -46,7 +44,7 @@ DROP TABLE IF EXISTS `empleados`;
 CREATE TABLE `empleados` (
   `idempleado` int NOT NULL AUTO_INCREMENT,
   `email` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `pwd` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `pwd` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `nombre` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `apellidos` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `puesto` int NOT NULL,
@@ -61,7 +59,7 @@ CREATE TABLE `empleados` (
   KEY `id_almacen` (`idalmacen`),
   CONSTRAINT `id_almacen` FOREIGN KEY (`idalmacen`) REFERENCES `almacenes` (`idalmacen`),
   CONSTRAINT `puesto` FOREIGN KEY (`puesto`) REFERENCES `puestos_trabajo` (`idpuesto_trabajo`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -95,7 +93,7 @@ CREATE TABLE `incidencias` (
   `idincidencia` int NOT NULL AUTO_INCREMENT,
   `titulo` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `descripcion` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `idpeticion_asociada` int NOT NULL,
+  `idpedido_asociado` int NOT NULL,
   `tipo_incidencia` int NOT NULL,
   `vista` tinyint NOT NULL DEFAULT '0',
   PRIMARY KEY (`idincidencia`),
@@ -122,9 +120,11 @@ CREATE TABLE `pedidos` (
   `usuario_asignado` int NOT NULL,
   `usuario_responsable` int NOT NULL,
   `estado` int NOT NULL,
+  `id_transporte` varchar(45) COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`idPedido`),
   UNIQUE KEY `idPedidos_UNIQUE` (`idPedido`),
   UNIQUE KEY `numero_pedido_UNIQUE` (`numero_pedido`),
+  UNIQUE KEY `id_transporte_UNIQUE` (`id_transporte`),
   KEY `almacen_destino` (`almacen_destino`),
   KEY `almacen_origen` (`almacen_origen`),
   KEY `estado` (`estado`),
@@ -135,7 +135,7 @@ CREATE TABLE `pedidos` (
   CONSTRAINT `estado` FOREIGN KEY (`estado`) REFERENCES `tipo_estados` (`idestado`),
   CONSTRAINT `usuario_asignado` FOREIGN KEY (`usuario_asignado`) REFERENCES `empleados` (`idempleado`),
   CONSTRAINT `usuario_responsable` FOREIGN KEY (`usuario_responsable`) REFERENCES `empleados` (`idempleado`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -151,7 +151,7 @@ CREATE TABLE `puestos_trabajo` (
   PRIMARY KEY (`idpuesto_trabajo`),
   UNIQUE KEY `idpuesto_trabajo_UNIQUE` (`idpuesto_trabajo`),
   UNIQUE KEY `descripcion_UNIQUE` (`descripcion`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -167,7 +167,7 @@ CREATE TABLE `tipo_estados` (
   PRIMARY KEY (`idestado`),
   UNIQUE KEY `idestados_UNIQUE` (`idestado`),
   UNIQUE KEY `descripcion_UNIQUE` (`descripcion`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -195,4 +195,4 @@ CREATE TABLE `tipo_incidencia` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-11-22 11:51:16
+-- Dump completed on 2023-11-23 22:18:19
