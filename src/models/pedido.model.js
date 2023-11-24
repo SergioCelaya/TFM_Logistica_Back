@@ -31,9 +31,10 @@ const createPedido = ({
   usuario_responsable,
   estado,
   id_transporte,
+  detalle_pedido
 }) => {
   return db.query(
-    "insert into pedidos (numero_pedido,fecha_creacion,almacen_origen,almacen_destino,fecha_entrega,usuario_asignado,usuario_responsable,estado,id_transporte) values (?,?,?,?,?,?,?,?,?)",
+    "insert into pedidos (numero_pedido,fecha_creacion,almacen_origen,almacen_destino,fecha_entrega,usuario_asignado,usuario_responsable,estado,id_transporte,detalle_pedido) values (?,?,?,?,?,?,?,?,?,?)",
     [
       numero_pedido,
       fecha_creacion,
@@ -44,6 +45,7 @@ const createPedido = ({
       usuario_responsable,
       estado,
       id_transporte,
+      detalle_pedido
     ]
   );
 };
@@ -61,10 +63,11 @@ const updatePedido = (
     usuario_responsable,
     estado,
     id_transporte,
+    detalle_pedido
   }
 ) => {
   return db.query(
-    "update pedidos set numero_pedido = ? , fecha_creacion = ? , almacen_origen = ? , almacen_destino = ? , fecha_entrega = ? , usuario_asignado = ? , usuario_responsable= ? , estado = ? , id_transporte = ? where idPedido = ?",
+    "update pedidos set numero_pedido = ? , fecha_creacion = ? , almacen_origen = ? , almacen_destino = ? , fecha_entrega = ? , usuario_asignado = ? , usuario_responsable= ? , estado = ? , id_transporte = ? , detalle_pedido = ? where idPedido = ?",
     [
       numero_pedido,
       fecha_creacion,
@@ -76,6 +79,7 @@ const updatePedido = (
       estado,
       id_transporte,
       idPedido,
+      detalle_pedido
     ]
   );
 };

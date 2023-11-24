@@ -15,7 +15,7 @@ POST http://localhost:3000/api/pedidos/ HTTP/1.1
 content-type: application/json
 
 {
-    "numero_pedido": "2346668901",
+    "numero_pedido": "2346669001",
     "fecha_creacion": "2023-05-12 08:45:00",
     "almacen_origen": 1,
     "almacen_destino": 2,
@@ -23,6 +23,23 @@ content-type: application/json
     "usuario_asignado": 2,
     "usuario_responsable": 3,
     "estado": 3,
-    "id_transporte": "XYZ788"
+    "id_transporte": "XYZ780",
+    "detalle_pedido": "250 palés de cereales, de 500 kg cada uno."
+}
+### UPDATE
+UPDATE http://localhost:3000/api/pedidos/2 HTTP/1.1
+content-type: application/json
+
+{
+    "numero_pedido": "2346666661",
+    "fecha_creacion": "2023-07-12 08:45:00",
+    "almacen_origen": 1,
+    "almacen_destino": 3,
+    "fecha_entrega": "2023-12-04 23:00:00",
+    "usuario_asignado": 2,
+    "usuario_responsable": 3,
+    "estado": 3,
+    "id_transporte": "XYZ780",
+    "detalle_pedido": "250 palés de cereales, de 500 kg cada uno."
 }
 
