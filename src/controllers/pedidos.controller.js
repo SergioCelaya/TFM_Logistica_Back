@@ -1,9 +1,9 @@
-const pedidosModel = require("../models/pedido.model");
+const PedidosModel = require("../models/pedido.model");
 
 //GET
 const getAllPedidos = async (req, res) => {
   try {
-    const result = await pedidosModel.getAllPedidos();
+    const result = await PedidosModel.getAllPedidos();
     res.json(result[0]);
   } catch (error) {
     res.json({ fatal: error.message });
@@ -12,7 +12,7 @@ const getAllPedidos = async (req, res) => {
 
 const getAllPedidosByIdEmpleado = async (req, res) => {
   try {
-    const result = await pedidosModel.getPedidoByIdEmpleado(
+    const result = await PedidosModel.getPedidoByIdEmpleado(
       req.params.usuario_asignado
     );
     res.json(result[0]);
@@ -23,7 +23,7 @@ const getAllPedidosByIdEmpleado = async (req, res) => {
 
 const getPedidoById = async (req, res) => {
   try {
-    const [result] = await pedidosModel.getPedidoById(req.params.idPedido);
+    const [result] = await PedidosModel.getPedidoById(req.params.idPedido);
     res.json(result[0]);
   } catch (error) {
     res.json({ fatal: error.message });
@@ -32,7 +32,7 @@ const getPedidoById = async (req, res) => {
 
 const getPedidosByIdEmpleadoEstado = async (req, res) => {
   try {
-    const result = await pedidosModel.getPedidosByIdEmpleadoEstado(
+    const result = await PedidosModel.getPedidosByIdEmpleadoEstado(
       req.params.usuario_asignado,
       req.params.estado
     );
@@ -45,8 +45,8 @@ const getPedidosByIdEmpleadoEstado = async (req, res) => {
 //CREATE
 const createPedido = async (req, res) => {
   try {
-    const [result] = await pedidosModel.createPedido(req.body);
-    const [pedido] = await pedidosModel.getPedidoById(result.idPedido);
+    const [result] = await PedidosModel.createPedido(req.body);
+    const [pedido] = await PedidosModel.getPedidoById(result.idPedido);
     res.json(pedido[0]);
   } catch (error) {
     res.json({ fatal: error.message });
@@ -57,7 +57,7 @@ const createPedido = async (req, res) => {
 const updatePedido = async (req, res) => {
   try {
     const { idPedido } = req.params;
-    const [result] = await pedidosModel.updatePedido(idPedido, req.body);
+    const [result] = await PedidosModel.updatePedido(idPedido, req.body);
     res.json(result);
   } catch (error) {
     res.json({ fatal: error.message });
@@ -66,7 +66,7 @@ const updatePedido = async (req, res) => {
 
 const toPendienteValidar = async (req, res) => {
   try {
-    const [result] = await pedidosModel.toPendienteValidar(req.params.idPedido);
+    const [result] = await PedidosModel.toPendienteValidar(req.params.idPedido);
     res.json(result);
   } catch (error) {
     res.json({ fatal: error.message });
@@ -75,7 +75,7 @@ const toPendienteValidar = async (req, res) => {
 
 const toRectificar = async (req, res) => {
   try {
-    const [result] = await pedidosModel.toRectificar(req.params.idPedido);
+    const [result] = await PedidosModel.toRectificar(req.params.idPedido);
     res.json(result);
   } catch (error) {
     res.json({ fatal: error.message });
@@ -84,7 +84,7 @@ const toRectificar = async (req, res) => {
 
 const toValidado = async (req, res) => {
   try {
-    const [result] = await pedidosModel.toValidado(req.params.idPedido);
+    const [result] = await PedidosModel.toValidado(req.params.idPedido);
     res.json(result);
   } catch (error) {
     res.json({ fatal: error.message });
@@ -93,7 +93,7 @@ const toValidado = async (req, res) => {
 
 const toEnTransito = async (req, res) => {
   try {
-    const [result] = await pedidosModel.toEnTransito(req.params.idPedido);
+    const [result] = await PedidosModel.toEnTransito(req.params.idPedido);
     res.json(result);
   } catch (error) {
     res.json({ fatal: error.message });
@@ -102,7 +102,7 @@ const toEnTransito = async (req, res) => {
 
 const toPendienteRecepcionar = async (req, res) => {
   try {
-    const [result] = await pedidosModel.toPendienteRecepcionar(
+    const [result] = await PedidosModel.toPendienteRecepcionar(
       req.params.idPedido
     );
     res.json(result);
@@ -113,7 +113,7 @@ const toPendienteRecepcionar = async (req, res) => {
 
 const toFinalizado = async (req, res) => {
   try {
-    const [result] = await pedidosModel.toFinalizado(req.params.idPedido);
+    const [result] = await PedidosModel.toFinalizado(req.params.idPedido);
     res.json(result);
   } catch (error) {
     res.json({ fatal: error.message });

@@ -1,4 +1,10 @@
 // TODO limpiar comentarios
+//GET
+
+const getAllIncidencias = () => {
+    return db.query("select * from incidencias");
+  };
+
 //CREATE
 const createIncidencia = ({
         titulo,
@@ -22,6 +28,7 @@ const createIncidencia = ({
 
 
 module.exports = {
+    getAllIncidencias,
    createIncidencia
   };
   
