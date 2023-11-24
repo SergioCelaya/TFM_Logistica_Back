@@ -1,0 +1,28 @@
+### PEDIDOS ###
+###############
+
+### GET ###
+GET http://localhost:3000/api/pedidos
+### 
+GET http://localhost:3000/api/pedidos/2
+###
+GET http://localhost:3000/api/pedidos/byEmpleadoId/2
+###
+GET http://localhost:3000/api/pedidos/byEmpleadoEstado/2/1
+###
+### POST ###
+POST http://localhost:3000/api/pedidos/ HTTP/1.1
+content-type: application/json
+
+{
+    "numero_pedido": "2346668901",
+    "fecha_creacion": "2023-05-12 08:45:00",
+    "almacen_origen": 1,
+    "almacen_destino": 2,
+    "fecha_entrega": "2023-12-04 23:00:00",
+    "usuario_asignado": 2,
+    "usuario_responsable": 3,
+    "estado": 3,
+    "id_transporte": "XYZ788"
+}
+

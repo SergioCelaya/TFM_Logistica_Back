@@ -23,7 +23,7 @@ const getAllPedidosByIdEmpleado = async (req, res) => {
 
 const getPedidoById = async (req, res) => {
   try {
-    const result = await pedidosModel.getPedidoById(req.params.idPedido);
+    const [result] = await pedidosModel.getPedidoById(req.params.idPedido);
     res.json(result[0]);
   } catch (error) {
     res.json({ fatal: error.message });
