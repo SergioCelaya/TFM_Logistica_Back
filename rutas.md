@@ -122,7 +122,6 @@ Donde:
     "detalle_pedido": "250 palés de cereales, de 500 kg cada uno."
 }
 
-### UPDATE
 * # UPDATE http://localhost:3000/api/pedidos/:idPedido 
 
     - Permite modificar un pedido, indicando su id por el parámetro :idPedido y el body tiene que tener un formato como el siguiente:
@@ -148,3 +147,67 @@ Donde:
 * # UPDATE http://localhost:3000/api/pedidos/toEnTransito/:idPedido 
 * # UPDATE http://localhost:3000/api/pedidos/toPendienteRecepcionar/:idPedido 
 * # UPDATE http://localhost:3000/api/pedidos/toFinalizado/:idPedido 
+
+# ---------------------------------------------------------------------------
+
+##### -----------------------ALMACENES-------------------------#####
+
+Los métodos que se encuentran páginados, devuelven un total de elementos por págna configurable (.env),
+La respuesta de un metodo paginado, tiene el formato:
+
+{
+  "TotalElementos": 4,
+  "ElementosPagina": 3,
+  "Pagina": 1,
+  "Resultado": [
+    {...},{...},{...}
+  ]
+}
+Donde:
+
+- TotalElementos, son el total de elementos que hay al realizar la consulta
+- ElementosPagina, es el número de elementos por página
+- Pagina, la página en la que te encuentras
+- Resultado, el array con los elemetos resultado de la consulta
+
+* # GET http://localhost:3000/api/empleados/:pagina
+
+    - Método paginado que devuelve todos los empleados.
+
+* # GET http://localhost:3000/api/empleados/byId/:idEmpleado
+
+    - Método que develve un epleado consultando por su id
+
+* # GET http://localhost:3000/api/empleados/byPuesto/:idPuesto/:pagina
+
+    - Métdodo paginado, que develve los empleados de un puesto determinado.
+
+* # POST http://localhost:3000/api/empleados/
+
+    -Método para crear un empleado. Se debe de mandar un body de este estilo:
+
+    {
+      "pwd":"ASD34fERT",
+      "email": "carmen.rios@example.com",
+      "nombre": "Carmen",
+      "apellidos": "Rios",
+      "puesto": 2,
+      "idalmacen": 1,
+      "num_empleado": "#00666",
+      "activo": 1,
+      "fecha_contratacion": "2020-10-10 16:20:00"
+    }
+
+* # UPDATE http://localhost:3000/api/empleados/estado/:idEmpleado
+
+    Metodo para actualizar el estado de un empleado, pasando su id, y un body de este estilo:
+    {
+      "activo": 0
+    }
+
+* # UPDATE http://localhost:3000/api/empleados/almacen/:idEmpleado
+
+    Método para actualizar el almacén de un empleado, pasando su id, y un body de este estilo:
+    {
+      "idalmacen": 1
+    }
