@@ -5,6 +5,15 @@ const getAllIncidencias = () => {
     return db.query("select * from incidencias");
   };
 
+const getIncidenciaById = (idIncidencia) => {
+    return db.query("select * from incidencias where idincidencia = ?",[idIncidencia]);
+  };
+
+//TODO terminar sentencia
+const getIncidenciaByEmpleado = (usuario_asignado) => {
+    return db.query("",[usuario_asignado]);
+  };
+
 //CREATE
 const createIncidencia = ({
         titulo,
@@ -29,6 +38,7 @@ const createIncidencia = ({
 
 module.exports = {
     getAllIncidencias,
+    getIncidenciaById,
    createIncidencia
   };
   
