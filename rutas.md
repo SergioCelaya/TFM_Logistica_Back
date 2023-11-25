@@ -150,7 +150,7 @@ Donde:
 
 # ---------------------------------------------------------------------------
 
-##### -----------------------ALMACENES-------------------------#####
+##### -----------------------EMPLEADOS-------------------------#####
 
 Los métodos que se encuentran páginados, devuelven un total de elementos por págna configurable (.env),
 La respuesta de un metodo paginado, tiene el formato:
