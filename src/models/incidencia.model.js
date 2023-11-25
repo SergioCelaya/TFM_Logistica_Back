@@ -2,17 +2,29 @@
 //GET
 
 const getAllIncidencias = () => {
-    return db.query("select * from incidencias");
+    return db.query(
+        "SELECT * FROM incidencias"
+        );
   };
 
 const getIncidenciaById = (idIncidencia) => {
-    return db.query("select * from incidencias where idincidencia = ?",[idIncidencia]);
+    return db.query(
+        "SELECT * FROM incidencias WHERE idincidencia = ?",[idIncidencia]
+        );
   };
 
-//TODO terminar sentencia
-const getIncidenciaByEmpleado = (usuario_asignado) => {
-    return db.query("",[usuario_asignado]);
-  };
+  const getAllIncidenciasByEmpleado = (usuario_asignado) => {
+    return db.query(
+        "SELECT  ped.usuario_asignado, inc.* FROM incidencias inc INNER JOIN pedidos ped on inc.idpedido_asociado = ped.idPedido WHERE ped.usuario_asignado = ?", [usuario_asignado]
+        );
+};
+
+const getAllIncidenciasNoVistasByEmpleado = (usuario_asignado) => {
+    return db.query(
+        "SELECT ped.usuario_asignado, inc.* FROM incidencias inc INNER JOIN pedidos ped on inc.idpedido_asociado = ped.idPedido WHERE ped.usuario_asignado = ? AND inc.vista = 0", [usuario_asignado]
+    );
+};
+
 
 //CREATE
 const createIncidencia = ({
@@ -39,6 +51,8 @@ const createIncidencia = ({
 module.exports = {
     getAllIncidencias,
     getIncidenciaById,
+    getAllIncidenciasByEmpleado,
+    getAllIncidenciasNoVistasByEmpleado,
    createIncidencia
   };
   

@@ -4,7 +4,7 @@ const IncidenciaModel = require("../models/incidencia.model");
 const getAllIncidencias = async (req, res) => {
     try {
       const [result] = await IncidenciaModel.getAllIncidencias();
-      res.json(result[0]);
+      res.json(result);
     } catch (error) {
       res.json({ fatal: error.message });
     }
@@ -14,25 +14,37 @@ const getAllIncidencias = async (req, res) => {
     try {
       const idIncidencia = req.params.idIncidencia;
       const [result] = await IncidenciaModel.getIncidenciaById(idIncidencia);
-      res.json(result);
+      res.json(result[0]);
     } catch (error) {
       res.json({ fatal: error.message });
     }
   };
 
-  const getIncidenciaByEmpleado = async (req, res) => {
+  const getAllIncidenciasByIdEmpleado = async (req, res) => {
     try {
-      const usuario_asignado = req.params.usuario_asignado;
-      const [result] = await IncidenciaModel.getIncidenciaByEmpleado(usuario_asignado);
+      const [result] = await IncidenciaModel.getAllIncidenciasByEmpleado(
+        req.params.usuario_asignado
+      );
       res.json(result);
     } catch (error) {
       res.json({ fatal: error.message });
     }
   };
 
+  const getAllIncidenciasNoVistasByIdEmpleado = async (req, res) => {
+    try {
+      const [result] = await IncidenciaModel.getAllIncidenciasNoVistasByEmpleado(
+        req.params.usuario_asignado
+      );
+      res.json(result);
+    } catch (error) {
+      res.json({ fatal: error.message });
+    }
+  };
 
 module.exports = {
     getAllIncidencias,
     getIncidenciaById,
-    getIncidenciaByEmpleado
+    getAllIncidenciasByIdEmpleado,
+    getAllIncidenciasNoVistasByIdEmpleado
 }

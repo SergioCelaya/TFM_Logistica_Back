@@ -4,12 +4,14 @@ GET http://localhost:3000/api/incidencias/
 
 ###
 //GET http://localhost:3000/api/incidencias/:idIncidencia/
-GET http://localhost:3000/api/incidencias/4/
+GET http://localhost:3000/api/incidencias/8/
 
 ###
-//GET http://localhost:3000/api/incidencias/:usuario_asignado/
-GET http://localhost:3000/api/incidencias/:usuario_asignado/
+//GET http://localhost:3000/api/incidencias/usuario/:usuario_asignado/
+GET http://localhost:3000/api/incidencias/usuario/5/
 
 
 ###
-GET http://localhost:3000/api/incidencias/:usuario_asignado/0
+//GET http://localhost:3000/api/incidencias/noVistas/:usuario_asignado/
+GET http://localhost:3000/api/incidencias/noVistas/5/
+
