@@ -2,14 +2,34 @@
 ###############
 
 ### GET ###
-GET http://localhost:3000/api/pedidos
+## Obtiene todos los pedidos de la BBDD Paginado
+GET http://localhost:3000/api/pedidos/1
 ### 
-GET http://localhost:3000/api/pedidos/2
+## Obtiene el pedido por el id pedido
+GET http://localhost:3000/api/pedidos/byId/2
 ###
-GET http://localhost:3000/api/pedidos/byEmpleadoId/2
+## Obtiene todos los pedidos por un id de empleado Paginado
+GET http://localhost:3000/api/pedidos/byEmpleadoId/2/1
 ###
-GET http://localhost:3000/api/pedidos/byEmpleadoEstado/2/1
+## Obtiene los pedidos de un responsable Paginado
+GET http://localhost:3000/api/pedidos/byResponsableId/3/2
 ###
+##Obtiene todos los pedidos por empleado y estado Paginado
+##/byEmpleadoEstado/:usuario_asignado/:estado/:pagina
+GET http://localhost:3000/api/pedidos/byEmpleadoEstado/2/1/1
+###
+##Obtiene los pedidos de un responsable y estado Paginado
+##/byResponsableEstado/:usuario_responsable/:estado/:pagina
+GET http://localhost:3000/api/pedidos/byResponsableEstado/3/3/1
+###
+##Obtiene los pedidos de un almacen origen Paginado
+##/byAlmacenOrigen/:almacen_origen/:pagina
+GET http://localhost:3000/api/pedidos/byAlmacenOrigen/2/2
+###
+##Obtiene los pedidos de un almacen destino Paginado
+##/byAlmacenDestino/:almacen_destino/:pagina
+GET http://localhost:3000/api/pedidos/byAlmacenDestino/2/2
+
 ### POST ###
 POST http://localhost:3000/api/pedidos/ HTTP/1.1
 content-type: application/json

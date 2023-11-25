@@ -1,22 +1,111 @@
 //GET
-const getAllPedidos = () => {
-  return db.query("select * from pedidos");
+const getNumPedidos = () => {
+  return db.query("select count(*) total from pedidos");
 };
 
-const getPedidoByIdEmpleado = (usuario_asignado) => {
-  return db.query("select * from pedidos where usuario_asignado = ?", [
-    usuario_asignado,
-  ]);
+const getAllPedidos = (numElementos, pagina) => {
+  return db.query(
+    "select idPedido,numero_pedido,fecha_creacion,almacen_origen,almacen_destino,fecha_entrega,usuario_asignado,usuario_responsable,est.descripcion estado,id_transporte,detalle_pedido from pedidos ped inner join tipo_estados est on ped.estado = est.idestado LIMIT ? OFFSET ?",
+    [numElementos, pagina]
+  );
+};
+
+const getNumPedidosByIdEmpleado = (usuario_asignado) => {
+  return db.query(
+    "select count(*) total from pedidos ped inner join tipo_estados est on ped.estado = est.idestado where ped.usuario_asignado = ? ",
+    [usuario_asignado]
+  );
+};
+
+const getPedidoByIdEmpleado = (usuario_asignado, numElementos, pagina) => {
+  return db.query(
+    "select idPedido,numero_pedido,fecha_creacion,almacen_origen,almacen_destino,fecha_entrega,usuario_asignado,usuario_responsable,est.descripcion estado,id_transporte,detalle_pedido from pedidos ped inner join tipo_estados est on ped.estado = est.idestado where ped.usuario_asignado = ? LIMIT ? OFFSET ?",
+    [usuario_asignado, numElementos, pagina]
+  );
+};
+
+const getNumPedidosByIdResponsable = (usuario_responsable) => {
+  return db.query(
+    "select count(*) total from pedidos ped inner join tipo_estados est on ped.estado = est.idestado where ped.usuario_responsable = ? ",
+    [usuario_responsable]
+  );
+};
+
+const getPedidoByIdResponsable = (
+  usuario_responsable,
+  numElementos,
+  pagina
+) => {
+  return db.query(
+    "select idPedido,numero_pedido,fecha_creacion,almacen_origen,almacen_destino,fecha_entrega,usuario_asignado,usuario_responsable,est.descripcion estado,id_transporte,detalle_pedido from pedidos ped inner join tipo_estados est on ped.estado = est.idestado where ped.usuario_responsable = ? LIMIT ? OFFSET ?",
+    [usuario_responsable, numElementos, pagina]
+  );
 };
 
 const getPedidoById = (idPedido) => {
-  return db.query("select * from pedidos where idPedido = ?", [idPedido]);
+  return db.query(
+    "select idPedido,numero_pedido,fecha_creacion,almacen_origen,almacen_destino,fecha_entrega,usuario_asignado,usuario_responsable,est.descripcion estado,id_transporte,detalle_pedido from pedidos ped inner join tipo_estados est on ped.estado = est.idestado where ped.idPedido = ?",
+    [idPedido]
+  );
 };
 
-const getPedidosByIdEmpleadoEstado = (usuario_asignado,estado) => {
+const getNumPedidosByIdEmpleadoEstado = (usuario_asignado, estado) => {
   return db.query(
-    "select * from pedidos where usuario_asignado = ? and estado = ?",
+    "select count(*) total from pedidos ped inner join tipo_estados est on ped.estado = est.idestado where ped.usuario_asignado = ? and ped.estado = ?",
     [usuario_asignado, estado]
+  );
+};
+
+const getPedidosByIdEmpleadoEstado = (
+  usuario_asignado,
+  estado,
+  numElementos,
+  pagina
+) => {
+  return db.query(
+    "select idPedido,numero_pedido,fecha_creacion,almacen_origen,almacen_destino,fecha_entrega,usuario_asignado,usuario_responsable,est.descripcion estado,id_transporte,detalle_pedido from pedidos ped inner join tipo_estados est on ped.estado = est.idestado where ped.usuario_asignado = ? and ped.estado = ? LIMIT ? OFFSET ?",
+    [usuario_asignado, estado, numElementos, pagina]
+  );
+};
+
+const getNumPedidosByIdResponsableEstado = (usuario_responsable, estado) => {
+  return db.query(
+    "select count(*) total from pedidos ped inner join tipo_estados est on ped.estado = est.idestado where ped.usuario_responsable = ? and ped.estado = ?",
+    [usuario_responsable, estado]
+  );
+};
+
+const getPedidosByIdResponsableEstado = (usuario_responsable, estado) => {
+  return db.query(
+    "select idPedido,numero_pedido,fecha_creacion,almacen_origen,almacen_destino,fecha_entrega,usuario_asignado,usuario_responsable,est.descripcion estado,id_transporte,detalle_pedido from pedidos ped inner join tipo_estados est on ped.estado = est.idestado where ped.usuario_responsable = ? and ped.estado = ?",
+    [usuario_responsable, estado]
+  );
+};
+
+const getNumPedidosByAlmacenOrigen = (almacen_origen) => {
+  return db.query(
+    "select count(*) total from pedidos ped inner join tipo_estados est on ped.estado = est.idestado where ped.almacen_origen = ?",
+    [almacen_origen]
+  );
+};
+const getPedidosByAlmacenOrigen = (almacen_origen, numElementos, pagina) => {
+  return db.query(
+    "select idPedido,numero_pedido,fecha_creacion,almacen_origen,almacen_destino,fecha_entrega,usuario_asignado,usuario_responsable,est.descripcion estado,id_transporte,detalle_pedido from pedidos ped inner join tipo_estados est on ped.estado = est.idestado where ped.almacen_origen = ? LIMIT ? OFFSET ?",
+    [almacen_origen, numElementos, pagina]
+  );
+};
+
+const getNumPedidosByAlmacenDestino = (almacen_destino) => {
+  return db.query(
+    "select count(*) total from pedidos ped inner join tipo_estados est on ped.estado = est.idestado where ped.almacen_destino = ?",
+    [almacen_destino]
+  );
+};
+
+const getPedidosByAlmacenDestino = (almacen_destino, numElementos, pagina) => {
+  return db.query(
+    "select idPedido,numero_pedido,fecha_creacion,almacen_origen,almacen_destino,fecha_entrega,usuario_asignado,usuario_responsable,est.descripcion estado,id_transporte,detalle_pedido from pedidos ped inner join tipo_estados est on ped.estado = est.idestado where ped.almacen_destino = ? LIMIT ? OFFSET ?",
+    [almacen_destino, numElementos, pagina]
   );
 };
 
@@ -31,7 +120,7 @@ const createPedido = ({
   usuario_responsable,
   estado,
   id_transporte,
-  detalle_pedido
+  detalle_pedido,
 }) => {
   return db.query(
     "insert into pedidos (numero_pedido,fecha_creacion,almacen_origen,almacen_destino,fecha_entrega,usuario_asignado,usuario_responsable,estado,id_transporte,detalle_pedido) values (?,?,?,?,?,?,?,?,?,?)",
@@ -45,7 +134,7 @@ const createPedido = ({
       usuario_responsable,
       estado,
       id_transporte,
-      detalle_pedido
+      detalle_pedido,
     ]
   );
 };
@@ -63,7 +152,7 @@ const updatePedido = (
     usuario_responsable,
     estado,
     id_transporte,
-    detalle_pedido
+    detalle_pedido,
   }
 ) => {
   return db.query(
@@ -79,7 +168,7 @@ const updatePedido = (
       estado,
       id_transporte,
       idPedido,
-      detalle_pedido
+      detalle_pedido,
     ]
   );
 };
@@ -122,14 +211,24 @@ const toFinalizado = (idPedido) => {
 
 //DELETE
 const deletePedidoById = (idPedido) => {
-    return db.query("delete from pedidos where idPedido = ?",[idPedido]);
+  return db.query("delete from pedidos where idPedido = ?", [idPedido]);
 };
 
-
 module.exports = {
+  getNumPedidos,
+  getNumPedidosByAlmacenDestino,
+  getPedidosByAlmacenDestino,
+  getNumPedidosByAlmacenOrigen,
+  getPedidosByAlmacenOrigen,
+  getNumPedidosByIdResponsableEstado,
+  getPedidosByIdResponsableEstado,
+  getNumPedidosByIdResponsable,
+  getPedidoByIdResponsable,
   getAllPedidos,
   getPedidoById,
+  getNumPedidosByIdEmpleado,
   getPedidoByIdEmpleado,
+  getNumPedidosByIdEmpleadoEstado,
   getPedidosByIdEmpleadoEstado,
   createPedido,
   updatePedido,
@@ -139,5 +238,5 @@ module.exports = {
   toEnTransito,
   toPendienteRecepcionar,
   toFinalizado,
-  deletePedidoById
+  deletePedidoById,
 };

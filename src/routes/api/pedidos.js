@@ -3,10 +3,14 @@ const PedidosController = require("../../controllers/pedidos.controller");
 
 
 //GET
-router.get("/",PedidosController.getAllPedidos );
-router.get("/:idPedido",PedidosController.getPedidoById);
-router.get("/byEmpleadoId/:usuario_asignado",PedidosController.getAllPedidosByIdEmpleado);
-router.get("/byEmpleadoEstado/:usuario_asignado/:estado",PedidosController.getPedidosByIdEmpleadoEstado);
+router.get("/:pagina",PedidosController.getAllPedidos );
+router.get("/byId/:idPedido",PedidosController.getPedidoById);
+router.get("/byResponsableId/:usuario_responsable/:pagina",PedidosController.getAllPedidosByIdResponsable);
+router.get("/byEmpleadoId/:usuario_asignado/:pagina",PedidosController.getAllPedidosByIdEmpleado);
+router.get("/byEmpleadoEstado/:usuario_asignado/:estado/:pagina",PedidosController.getPedidosByIdEmpleadoEstado);
+router.get("/byResponsableEstado/:usuario_responsable/:estado/:pagina",PedidosController.getPedidosByIdResponsableEstado);
+router.get("/byAlmacenOrigen/:almacen_origen/:pagina",PedidosController.getPedidosByAlmacenOrigen);
+router.get("/byAlmacenDestino/:almacen_destino/:pagina",PedidosController.getPedidosByAlmacenDestino);
 //CREATE
 router.post("/",PedidosController.createPedido);
 //UPDATE
