@@ -211,3 +211,11 @@ Donde:
     {
       "idalmacen": 1
     }
+
+# ---------------------------------------------------------------------------
+
+##### -----------------------ESTADOS-------------------------#####
+
+* # GET http://localhost:3000/api/estados/:idPedido
+    
+    -Método que devuelve el historico de estados de un pedido.

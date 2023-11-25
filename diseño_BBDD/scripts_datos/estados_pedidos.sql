@@ -1,0 +1,13 @@
+INSERT INTO `logistica_almacen_tfm`.`estados_pedidos` (`idestado`, `idpedido`, `fecha_cambio_estado`) VALUES ('1', '1', '2023-11-25');
+INSERT INTO `logistica_almacen_tfm`.`estados_pedidos` (`idestado`, `idpedido`, `fecha_cambio_estado`) VALUES ('2', '1', '2023-11-25');
+INSERT INTO `logistica_almacen_tfm`.`estados_pedidos` (`idestado`, `idpedido`, `fecha_cambio_estado`) VALUES ('3', '1', '2023-11-25');
+INSERT INTO `logistica_almacen_tfm`.`estados_pedidos` (`idestado`, `idpedido`, `fecha_cambio_estado`) VALUES ('4', '1', '2023-11-25');
+INSERT INTO `logistica_almacen_tfm`.`estados_pedidos` (`idestado`, `idpedido`, `fecha_cambio_estado`) VALUES ('1', '3', '2023-11-25');
+INSERT INTO `logistica_almacen_tfm`.`estados_pedidos` (`idestado`, `idpedido`, `fecha_cambio_estado`) VALUES ('2', '3', '2023-11-25');
+INSERT INTO `logistica_almacen_tfm`.`estados_pedidos` (`idestado`, `idpedido`, `fecha_cambio_estado`) VALUES ('3', '3', '2023-11-25');
+INSERT INTO `logistica_almacen_tfm`.`estados_pedidos` (`idestado`, `idpedido`, `fecha_cambio_estado`) VALUES ('4', '3', '2023-11-25');
+INSERT INTO `logistica_almacen_tfm`.`estados_pedidos` (`idestado`, `idpedido`, `fecha_cambio_estado`) VALUES ('5', '3', '2023-11-25');
+INSERT INTO `logistica_almacen_tfm`.`estados_pedidos` (`idestado`, `idpedido`, `fecha_cambio_estado`) VALUES ('6', '3', '2023-11-25');
+INSERT INTO `logistica_almacen_tfm`.`estados_pedidos` (`idestado`, `idpedido`, `fecha_cambio_estado`) VALUES ('1', '5', '2023-11-25');
+INSERT INTO `logistica_almacen_tfm`.`estados_pedidos` (`idestado`, `idpedido`, `fecha_cambio_estado`) VALUES ('2', '5', '2023-11-25');
+INSERT INTO `logistica_almacen_tfm`.`estados_pedidos` (`idestado`, `idpedido`, `fecha_cambio_estado`) VALUES ('3', '5', '2023-11-25');
