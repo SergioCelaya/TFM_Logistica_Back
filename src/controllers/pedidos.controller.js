@@ -146,7 +146,7 @@ const getPedidosByAlmacenDestino = async (req, res) => {
 const createPedido = async (req, res) => {
   try {
     const [result] = await PedidosModel.createPedido(req.body);
-    const [pedido] = await PedidosModel.getPedidoById(result.idPedido);
+    const [pedido] = await PedidosModel.getPedidoById(result.insertId);
     res.json(pedido[0]);
   } catch (error) {
     res.json({ fatal: error.message });
@@ -157,7 +157,6 @@ const createPedido = async (req, res) => {
 const updatePedido = async (req, res) => {
   try {
     const { idPedido } = req.params;
-    console.log(req.body)
     const [result] = await PedidosModel.updatePedido(idPedido, req.body);
     res.json(result);
   } catch (error) {
