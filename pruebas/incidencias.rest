@@ -27,3 +27,17 @@ content-type: application/json
     "tipo_incidencia": 1,
     "vista": 0
 }
+
+### PUT ###
+
+PUT http://localhost:3000/api/incidencias/22 HTTP/1.1
+content-type: application/json
+
+{
+    "titulo": "Faltan cosas",
+    "descripcion": "Al pedido X le faltan cositas",
+    "idpedido_asociado": 5,
+    "tipo_incidencia": 1,
+    "vista": 0
+}
+

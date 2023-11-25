@@ -46,10 +46,19 @@ const getAllIncidencias = async (req, res) => {
 // CREATE
 const createIncidencia = async (req, res) => {
     try {
-      console.log(req.body)
       const [result] = await IncidenciaModel.createIncidencia(req.body);
       const [incidencia] = await IncidenciaModel.getIncidenciaById(result.insertId)
       res.json(incidencia[0]);
+    } catch (error) {
+      res.json({ fatal: error.message });
+    }
+  };
+
+  const updateIncidencia = async (req, res) => {
+    try {
+      const { idIncidencia } = req.params;
+      const [result] = await IncidenciaModel.updateIncidencia(idIncidencia, req.body);
+      res.json(result);
     } catch (error) {
       res.json({ fatal: error.message });
     }
@@ -60,5 +69,6 @@ module.exports = {
     getIncidenciaById,
     getAllIncidenciasByIdEmpleado,
     getAllIncidenciasNoVistasByIdEmpleado,
-    createIncidencia
+    createIncidencia,
+    updateIncidencia
 }

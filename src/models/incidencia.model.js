@@ -25,7 +25,8 @@ const getAllIncidenciasNoVistasByEmpleado = (usuario_asignado) => {
 };
 
 
-//CREATE
+// CREATE
+
 const createIncidencia = ({
         titulo,
         descripcion,
@@ -45,6 +46,30 @@ const createIncidencia = ({
     );
   };
 
+  // UPDATE
+
+  const updateIncidencia = (
+  idIncidencia,
+    {
+    titulo,
+    descripcion,
+    idpedido_asociado,
+    tipo_incidencia,
+    vista = 0 
+}) => {
+return db.query(
+    "UPDATE incidencias SET titulo = ?, descripcion = ?, idpedido_asociado = ?, tipo_incidencia = ?, vista = ? WHERE idincidencia = ?",
+    [
+      titulo,
+      descripcion,
+      idpedido_asociado,
+      tipo_incidencia,
+      vista,
+      idIncidencia
+    ]
+  );
+};
+
 
 
 module.exports = {
@@ -52,6 +77,7 @@ module.exports = {
     getIncidenciaById,
     getAllIncidenciasByEmpleado,
     getAllIncidenciasNoVistasByEmpleado,
-    createIncidencia
+    createIncidencia,
+    updateIncidencia
   };
   
