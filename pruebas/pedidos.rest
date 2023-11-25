@@ -47,7 +47,7 @@ content-type: application/json
     "detalle_pedido": "250 palés de cereales, de 500 kg cada uno."
 }
 ### UPDATE
-UPDATE http://localhost:3000/api/pedidos/2 HTTP/1.1
+PUT  http://localhost:3000/api/pedidos/2 HTTP/1.1
 content-type: application/json
 
 {
@@ -62,4 +62,15 @@ content-type: application/json
     "id_transporte": "XYZ780",
     "detalle_pedido": "250 palés de cereales, de 500 kg cada uno."
 }
-
+### 
+PUT http://localhost:3000/api/pedidos/toPendienteValidar/2 
+###
+PUT http://localhost:3000/api/pedidos/toRectificar/2
+###
+PUT http://localhost:3000/api/pedidos/toValidado/2
+###
+PUT http://localhost:3000/api/pedidos/toEnTransito/2
+###
+PUT http://localhost:3000/api/pedidos/toPendienteRecepcionar/2
+###
+PUT http://localhost:3000/api/pedidos/toFinalizado/2

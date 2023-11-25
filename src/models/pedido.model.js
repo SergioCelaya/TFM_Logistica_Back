@@ -167,8 +167,8 @@ const updatePedido = (
       usuario_responsable,
       estado,
       id_transporte,
-      idPedido,
       detalle_pedido,
+      idPedido
     ]
   );
 };

@@ -157,6 +157,7 @@ const createPedido = async (req, res) => {
 const updatePedido = async (req, res) => {
   try {
     const { idPedido } = req.params;
+    console.log(req.body)
     const [result] = await PedidosModel.updatePedido(idPedido, req.body);
     res.json(result);
   } catch (error) {

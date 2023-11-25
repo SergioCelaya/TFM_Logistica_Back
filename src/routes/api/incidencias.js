@@ -3,13 +3,13 @@ const IncidenciasController = require("../../controllers/incidencias.controller"
 
 // GET
 
-router.get("/", IncidenciasController.getAllIncidencias );
+router.get("/:pagina", IncidenciasController.getAllIncidencias );
 
-router.get("/:idIncidencia", IncidenciasController.getIncidenciaById);
+router.get("/byId/:idIncidencia", IncidenciasController.getIncidenciaById);
 
-router.get("/usuario/:usuario_asignado", IncidenciasController.getAllIncidenciasByIdEmpleado);
+router.get("/usuario/:usuario_asignado/:pagina", IncidenciasController.getAllIncidenciasByIdEmpleado);
 
-router.get("/noVistas/:usuario_asignado", IncidenciasController.getAllIncidenciasNoVistasByIdEmpleado);
+router.get("/noVistas/:usuario_asignado/:pagina", IncidenciasController.getAllIncidenciasNoVistasByIdEmpleado);
 
 // POST
 
