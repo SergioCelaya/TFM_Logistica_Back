@@ -1,6 +1,7 @@
 const IncidenciaModel = require("../models/incidencia.model");
 
-//GET
+// GET
+
 const getAllIncidencias = async (req, res) => {
     try {
       const [result] = await IncidenciaModel.getAllIncidencias();
@@ -42,9 +43,32 @@ const getAllIncidencias = async (req, res) => {
     }
   };
 
+// CREATE
+const createIncidencia = async (req, res) => {
+    try {
+      const [result] = await IncidenciaModel.createIncidencia(req.body);
+      const [incidencia] = await IncidenciaModel.getIncidenciaById(result.insertId)
+      res.json(incidencia[0]);
+    } catch (error) {
+      res.json({ fatal: error.message });
+    }
+  };
+
+  const updateIncidencia = async (req, res) => {
+    try {
+      const { idIncidencia } = req.params;
+      const [result] = await IncidenciaModel.updateIncidencia(idIncidencia, req.body);
+      res.json(result);
+    } catch (error) {
+      res.json({ fatal: error.message });
+    }
+  };
+  
 module.exports = {
     getAllIncidencias,
     getIncidenciaById,
     getAllIncidenciasByIdEmpleado,
-    getAllIncidenciasNoVistasByIdEmpleado
+    getAllIncidenciasNoVistasByIdEmpleado,
+    createIncidencia,
+    updateIncidencia
 }

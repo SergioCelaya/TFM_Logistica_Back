@@ -1,4 +1,3 @@
-// TODO limpiar comentarios
 //GET
 
 const getAllIncidencias = () => {
@@ -26,25 +25,50 @@ const getAllIncidenciasNoVistasByEmpleado = (usuario_asignado) => {
 };
 
 
-//CREATE
+// CREATE
+
 const createIncidencia = ({
         titulo,
         descripcion,
-        idpeticion_asociada,
+        idpedido_asociado,
         tipo_incidencia,
-        vista = 0 // valor por defecto
+        vista = 0 
   }) => {
     return db.query(
-      "insert into incidencias ( titulo,descripcion,idpeticion_asociada,tipo_incidencia,vista) values (?,?,?,?,?)",
+      "insert into incidencias ( titulo,descripcion,idpedido_asociado,tipo_incidencia,vista) values (?,?,?,?,?)",
       [
         titulo,
         descripcion,
-        idpeticion_asociada,
+        idpedido_asociado,
         tipo_incidencia,
         vista
       ]
     );
   };
+
+  // UPDATE
+
+  const updateIncidencia = (
+  idIncidencia,
+    {
+    titulo,
+    descripcion,
+    idpedido_asociado,
+    tipo_incidencia,
+    vista = 0 
+}) => {
+return db.query(
+    "UPDATE incidencias SET titulo = ?, descripcion = ?, idpedido_asociado = ?, tipo_incidencia = ?, vista = ? WHERE idincidencia = ?",
+    [
+      titulo,
+      descripcion,
+      idpedido_asociado,
+      tipo_incidencia,
+      vista,
+      idIncidencia
+    ]
+  );
+};
 
 
 
@@ -53,6 +77,7 @@ module.exports = {
     getIncidenciaById,
     getAllIncidenciasByEmpleado,
     getAllIncidenciasNoVistasByEmpleado,
-   createIncidencia
+    createIncidencia,
+    updateIncidencia
   };
   
