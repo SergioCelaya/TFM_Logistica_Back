@@ -15,3 +15,15 @@ GET http://localhost:3000/api/incidencias/usuario/5/
 //GET http://localhost:3000/api/incidencias/noVistas/:usuario_asignado/
 GET http://localhost:3000/api/incidencias/noVistas/5/
 
+### POST ###
+
+POST http://localhost:3000/api/incidencias/ HTTP/1.1
+content-type: application/json
+
+{
+    "titulo": "Faltan cosas",
+    "descripcion": "Al pedido X le faltan cosas",
+    "idpedido_asociado": 5,
+    "tipo_incidencia": 1,
+    "vista": 0
+}
