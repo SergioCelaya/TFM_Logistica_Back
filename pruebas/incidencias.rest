@@ -1,6 +1,7 @@
+### GET ###
 
 ### GET http://localhost:3000/api/incidencias/:pagina
-GET http://localhost:3000/api/incidencias/4
+GET http://localhost:3000/api/incidencias/1
 
 ###
 //GET http://localhost:3000/api/incidencias/:idIncidencia/
@@ -8,7 +9,7 @@ GET http://localhost:3000/api/incidencias/byId/11
 
 ###
 //GET http://localhost:3000/api/incidencias/usuario/:usuario_asignado/:pagina
-GET http://localhost:3000/api/incidencias/usuario/5/1
+GET http://localhost:3000/api/incidencias/usuario/3/1
 
 
 ###
@@ -44,4 +45,9 @@ content-type: application/json
 ### 
 //PUT http://localhost:3000/api/incidencias/vista/:idIncidencia
 PUT http://localhost:3000/api/incidencias/vista/22
+
+### 
+//PUT http://localhost:3000/api/incidencias/noVista/:idIncidencia
+PUT http://localhost:3000/api/incidencias/noVista/22
+
 
