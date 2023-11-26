@@ -10,7 +10,6 @@ const upload = multer({
   storage: multer.diskStorage({
     destination: path.join("./imagenes"),
     filename: (req, file, cb) => {
-        console.log("Entra por aqui")
       const fileExtension = path.extname(file.originalname);
       const filename = file.originalname.split(fileExtension)[0];
       cb(null, `${filename}-${Date.now()}${fileExtension}`);
@@ -29,11 +28,16 @@ const upload = multer({
 });
 
 router.post(
-  "/upload/:idEmpleado",
+  "/uploadImagenEmpleado/:idEmpleado",
   upload.single("imagen"),
   ImagenesController.saveImagenEmpleado
 );
+router.post(
+    "/uploadImagenAlmacen/:idAlmacen",
+    upload.single("imagen"),
+    ImagenesController.saveImagenAlmacen
+  );
 
-router.use("/getImagenEmpleado",express.static("./imagenes"))
+router.use("/getImagen",express.static("./imagenes"))
 
 module.exports = router;

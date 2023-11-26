@@ -1,4 +1,5 @@
 const EmpleadosModel = require("../models/empleado.model");
+const AlmacenModel = require("../models/almacen.model");
 
 const saveImagenEmpleado = async(req, res) => {
     try {
@@ -9,6 +10,16 @@ const saveImagenEmpleado = async(req, res) => {
       }
   }
 
+  const saveImagenAlmacen = async(req, res) => {
+    try {
+      AlmacenModel.updateNombreImagenAlmacen(req.params.idAlmacen,req.file.filename)
+        res.json({"Resultado":"Guardado"})
+      } catch (error) {
+        res.json({ fatal: error.message });
+      }
+  }
+
   module.exports = {
-    saveImagenEmpleado
+    saveImagenEmpleado,
+    saveImagenAlmacen
   }
