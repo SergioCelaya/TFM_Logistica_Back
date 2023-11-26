@@ -78,6 +78,22 @@ const updateIncidencia = (
   );
 };
 
+const updateIncidenciaToVista = (idIncidencia) => {
+  return db.query(
+    "UPDATE incidencias SET vista = 1 WHERE idincidencia = ?",
+    [idIncidencia]
+  );
+};
+
+
+const updateIncidenciaToNoVista = (idIncidencia) => {
+  return db.query(
+    "UPDATE incidencias SET vista = 0 WHERE idincidencia = ?",
+    [idIncidencia]
+  );
+};
+
+
 module.exports = {
   getNumAllIncidenciasByEmpleado,
   getNumAllIncidenciasNoVistasByEmpleado,
@@ -88,4 +104,6 @@ module.exports = {
   getAllIncidenciasNoVistasByEmpleado,
   createIncidencia,
   updateIncidencia,
+  updateIncidenciaToVista,
+  updateIncidenciaToNoVista
 };

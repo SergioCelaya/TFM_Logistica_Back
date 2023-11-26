@@ -16,8 +16,11 @@ router.get("/noVistas/:usuario_asignado/:pagina", IncidenciasController.getAllIn
 router.post("/", IncidenciasController.createIncidencia);
 
 // UPDATE
-// TODO añadir método para toVista
 router.put("/:idIncidencia", IncidenciasController.updateIncidencia);
+
+router.put("/vista/:idIncidencia", IncidenciasController.updateIncidenciaToVista);
+
+router.put("/noVista/:idIncidencia", IncidenciasController.updateIncidenciaToNoVista);
 
 
 
