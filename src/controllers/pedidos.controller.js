@@ -9,7 +9,21 @@ function addPaginado(pagina, total, respuesta) {
     Resultado: respuesta,
   });
 }
-
+async function addEmpleadosPedidos(pedidos){
+  let result = [];
+  for (let pedido of pedidos) {
+    let [empleado] = await EmpleadosMoodel.getEmpleadoById(
+      pedido.usuario_asignado
+    );
+    pedido.usuario_asignado = empleado[0];
+    let [encargado] = await EmpleadosMoodel.getEmpleadoById(
+      pedido.usuario_responsable
+    );
+    pedido.usuario_responsable = encargado[0];
+    result.push(pedido);
+  }
+  return result;
+}
 //GET
 const getAllPedidos = async (req, res) => {
   try {
@@ -157,22 +171,6 @@ const getPedidosByAlmacenDestino = async (req, res) => {
     res.json({ fatal: error.message });
   }
 };
-
-async function addEmpleadosPedidos(pedidos){
-  let result = [];
-  for (let pedido of pedidos) {
-    let [empleado] = await EmpleadosMoodel.getEmpleadoById(
-      pedido.usuario_asignado
-    );
-    pedido.usuario_asignado = empleado[0];
-    let [encargado] = await EmpleadosMoodel.getEmpleadoById(
-      pedido.usuario_responsable
-    );
-    pedido.usuario_responsable = encargado[0];
-    result.push(pedido);
-  }
-  return result;
-}
 
 //CREATE
 const createPedido = async (req, res) => {
