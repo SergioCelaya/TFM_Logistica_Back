@@ -13,13 +13,13 @@ POST http://localhost:3000/api/empleados/ HTTP/1.1
 content-type: application/json
 
 {
-      "pwd":"ASD34fERT",
-      "email": "carmen.rios@example.com",
+      "pwd":"12345678",
+      "email": "calmen.rios@example.com",
       "nombre": "Carmen",
       "apellidos": "Rios",
       "puesto": 2,
       "idalmacen": 1,
-      "num_empleado": "#00666",
+      "num_empleado": "#00676",
       "activo": 1,
       "fecha_contratacion": "2020-10-10 16:20:00"
     }

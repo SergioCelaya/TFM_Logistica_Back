@@ -1,0 +1,25 @@
+### GET http://localhost:3000/api/auth/
+##Generar un token correcto
+POST http://localhost:3000/api/login HTTP/1.1
+content-type: application/json
+
+{
+    "email": "calmen.rios@example.com",
+    "pwd" : "12345678"
+}
+### GET http://localhost:3000/api/auth/
+## No genera token, error contraseña incorrecta
+POST http://localhost:3000/api/login HTTP/1.1
+content-type: application/json
+
+{
+    "email": "calmen.rios@example.com",
+    "pwd" : "1234568"
+}
+
+### GET http://localhost:3000/api/auth/
+## metodo para probar que se genera correctamente el token, y además que se recupera el usuario. Antes de esta prueba hay que generar un toen nuevo, ya que se caducan
+
+POST http://localhost:3000/api/login/pruebaAuth HTTP/1.1
+content-type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZEVtcGxlYWRvIjoxNSwicHVlc3RvIjoiRW5jYXJnYWRvIiwiZXhwIjoxNzAxNjI2NTE1LCJpYXQiOjE3MDEwMjE3MTV9.8qPdjolkP-1ZW5FfyO7C1RUMDrM-xOMVOP-dpwP3qeM

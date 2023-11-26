@@ -1,3 +1,5 @@
+const bcrypt = require('bcryptjs');
+
 //GET
 
 const getAllEmpleados = (numElementos, pagina) => {
@@ -14,6 +16,13 @@ const getEmpleadoById = (idEmpleado) => {
   return db.query(
     "SELECT emp.idempleado,emp.email,emp.nombre,emp.apellidos,pst.descripcion puesto,emp.idalmacen,emp.num_empleado,emp.activo,emp.fecha_contratacion FROM empleados emp inner join puestos_trabajo pst on emp.puesto = pst.idpuesto_trabajo where emp.idempleado = ?",
     [idEmpleado]
+  );
+};
+
+const getEmpleadoByEmailConPwd = (email) => {
+  return db.query(
+    "SELECT idempleado,pwd FROM empleados where email = ?",
+    [email]
   );
 };
 
@@ -43,7 +52,7 @@ const createEmpleado = ({
     "INSERT INTO empleados (email,pwd,nombre,apellidos,puesto,idalmacen,num_empleado,activo,fecha_contratacion) VALUES (?,?,?,?,?,?,?,?,?)",
     [
       email,
-      pwd,
+      bcrypt.hashSync(pwd,8),
       nombre,
       apellidos,
       puesto,
@@ -105,6 +114,7 @@ const updateAlmacenEmpleado = (idEmpleado, {idalmacen}) => {
   ]);
 };
 module.exports = {
+  getEmpleadoByEmailConPwd,
   updateNombreImagenEmpleado,
   getAllEmpleados,
   getNumAllEmpleados,
