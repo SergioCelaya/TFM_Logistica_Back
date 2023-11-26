@@ -1,0 +1,44 @@
+### GET ###
+
+### GET http://localhost:3000/api/almacenes/
+GET http://localhost:3000/api/almacenes/
+
+###
+//GET http://localhost:3000/api/almacenes/:idAlmacen/
+GET http://localhost:3000/api/almacenes/2
+
+
+### POST ###
+
+//POST http://localhost:3000/api/almacenes/
+//Por defecto activo es = 1, si se quiere otra cosa añadir clave/valor "activo" = 0
+POST http://localhost:3000/api/almacenes/ HTTP/1.1
+content-type: application/json
+
+{
+    "nombre_almacen": "Almacén Sevilla",
+    "long": "-4545421",
+    "lat": "54545"
+}
+
+### PUT ###
+
+//PUT http://localhost:3000/api/incidencias/:idAlmacen
+PUT http://localhost:3000/api/almacenes/5 HTTP/1.1
+content-type: application/json
+
+{
+    "nombre_almacen": "Almacén Sevil actualido",
+    "long": "-45421",
+    "lat": "54545",
+    "activo": 0
+}
+
+### 
+//PUT http://localhost:3000/api/incidencias/toActive/:idAlmacen
+PUT http://localhost:3000/api/almacenes/toActive/2
+
+### 
+//PUT http://localhost:3000/api/incidencias/toInactive/:idAlmacen
+PUT http://localhost:3000/api/almacenes/toInactive/2
+  

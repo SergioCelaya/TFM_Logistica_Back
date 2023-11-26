@@ -68,8 +68,49 @@ Donde:
     - Setea el valor 0 (incidencia no vista) sobre el campo "vista".
 
 
-# --------------------------------------------------------------------------------------------------------------------------------
+# -----------------------------------------------------------------------------------
 
+##### -----------------------ALMACENES-------------------------#####
+
+* # GET http://localhost:3000/api/almacenes/
+
+    - Devuelve un array con todos los almacenes que se encuentran en la bbdd.
+
+* # GET http://localhost:3000/api/almacenes/:idAlmacen/
+
+    - Devuelve un objeto con el almacén obtenido mediante el id.
+
+* # POST http://localhost:3000/api/almacenes/
+
+    - Crea un almacén en la bbdd, para ello es obligatorio pasarle los siguientes campos:
+     
+     {
+        "nombre_almacen": "Almacén Sevilla",
+        "long": "-4545421",
+        "lat": "54545"
+     }
+// Por defecto el campo "activo" se crea con el valor 1, aunque se le puede pasar el valor 0 (inactivo).
+
+* # PUT http://localhost:3000/api/incidencias/:idAlmacen
+
+    - Actualiza un almacén pasándole los valores del siguiente modo:
+
+            {
+                "nombre_almacen": "Almacén Sevil actualido",
+                "long": "-45421",
+                "lat": "54545",
+                "activo": 0
+            } 
+
+* # PUT http://localhost:3000/api/incidencias/toActive/:idAlmacen
+
+    - Actualiza el almacén indicado en el idAlmacén el campo activo con el valor 1.
+
+# PUT http://localhost:3000/api/incidencias/toInactive/:idAlmacen
+
+    - Actualiza el almacén indicado en el idAlmacén el campo activo con el valor 0.
+
+# -----------------------------------------------------------------------------------
 
 
 
@@ -99,7 +140,7 @@ Donde:
 
 * # GET http://localhost:3000/api/pedidos/:pagina
 
-    - Obtiene la página indcada de todos los pedidos.
+    - Obtiene la página indicada de todos los pedidos.
 
 * # GET http://localhost:3000/api/pedidos/byId/:idPedido
 
@@ -237,7 +278,7 @@ Donde:
       "idalmacen": 1
     }
 
-# ----------------------------------------------------------------------------------------------------------------
+# -----------------------------------------------------------------------------------
 
 
 

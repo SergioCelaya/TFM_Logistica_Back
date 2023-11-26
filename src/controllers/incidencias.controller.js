@@ -1,4 +1,5 @@
 const IncidenciaModel = require("../models/incidencia.model");
+const EmpleadoModel = require("../models/empleado.model"); 
 
 function addPaginado(pagina, total, respuesta) {
   return (response = {
@@ -15,10 +16,18 @@ const getAllIncidencias = async (req, res) => {
     const [total] = await IncidenciaModel.getNumAllIncidencias();
     const pagina =
       (req.params.pagina - 1) * parseInt(process.env.ELEMENTOS_POR_PAGINA);
-    const [result] = await IncidenciaModel.getAllIncidencias(
+    const [incidencias] = await IncidenciaModel.getAllIncidencias(
       parseInt(process.env.ELEMENTOS_POR_PAGINA),
       pagina
     );
+
+    let result = [];
+    for (let incidencia of incidencias) {
+      let [empleadoAsignado] = await EmpleadoModel.getEmpleadoById(incidencia.usuario_asignado);
+      incidencia.usuario_asignado = empleadoAsignado[0];
+      result.push(incidencia);
+    }
+
     res.json(addPaginado(req.params.pagina, total[0].total, result));
   } catch (error) {
     res.json({ fatal: error.message });
@@ -85,10 +94,7 @@ const createIncidencia = async (req, res) => {
 const updateIncidencia = async (req, res) => {
   try {
     const { idIncidencia } = req.params;
-    const [result] = await IncidenciaModel.updateIncidencia(
-      idIncidencia,
-      req.body
-    );
+    const [result] = await IncidenciaModel.updateIncidencia(idIncidencia,req.body);
     res.json(result);
   } catch (error) {
     res.json({ fatal: error.message });
