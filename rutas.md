@@ -49,8 +49,33 @@ Donde:
         }
     // La vista por defecto es 0, en el caso de que ya haya sido revisada por el usuario pasaría a ser 1.
 
+* # PUT http://localhost:3000/api/incidencias/:idIncidencia
 
-# ---------------------------------------------------------------------------
+    - Actualiza los campos que se le envíen en la base de datos.
+        {
+            "titulo": "Faltan cosas",
+            "descripcion": "Al pedido X le faltan cositas",
+            "idpedido_asociado": 5,
+            "tipo_incidencia": 1,
+            "vista": 0
+        }
+* # PUT http://localhost:3000/api/incidencias/vista/:idIncidencia
+
+    - Setea el valor 1 (incidencia vista) sobre el campo "vista".
+
+* # PUT http://localhost:3000/api/incidencias/noVista/:idIncidencia
+
+    - Setea el valor 0 (incidencia no vista) sobre el campo "vista".
+
+
+# --------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
 
 ##### -----------------------PEDIDOS-------------------------#####
 
@@ -82,11 +107,11 @@ Donde:
 
 * # GET http://localhost:3000/api/pedidos/byEmpleadoId/:usuario_asignado/:pagina
 
-    - Obtiene la página indcada de todos los pedidos por un id de empleado
+    - Obtiene la página indicada de todos los pedidos por un id de empleado
 
 * # GET http://localhost:3000/api/pedidos/byResponsableId/:usuario_responsable/:pagina
 
-    - Obtiene la página indcada de todos los pedidos por un id de responsable
+    - Obtiene la página indicada de todos los pedidos por un id de responsable
 
 * # GET http://localhost:3000/api/pedidos/byEmpleadoEstado/:usuario_asignado/:estado/:pagina
 
@@ -212,7 +237,13 @@ Donde:
       "idalmacen": 1
     }
 
-# ---------------------------------------------------------------------------
+# ----------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
 
 ##### -----------------------ESTADOS-------------------------#####
 

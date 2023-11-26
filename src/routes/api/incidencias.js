@@ -20,6 +20,8 @@ router.put("/:idIncidencia", IncidenciasController.updateIncidencia);
 
 router.put("/vista/:idIncidencia", IncidenciasController.updateIncidenciaToVista);
 
+router.put("/noVista/:idIncidencia", IncidenciasController.updateIncidenciaToNoVista);
+
 
 
 

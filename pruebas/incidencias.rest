@@ -29,7 +29,7 @@ content-type: application/json
 }
 
 ### PUT ###
-
+//PUT http://localhost:3000/api/incidencias/:idIncidencia
 PUT http://localhost:3000/api/incidencias/22 HTTP/1.1
 content-type: application/json
 
@@ -42,5 +42,6 @@ content-type: application/json
 }
 
 ### 
+//PUT http://localhost:3000/api/incidencias/vista/:idIncidencia
 PUT http://localhost:3000/api/incidencias/vista/22
 

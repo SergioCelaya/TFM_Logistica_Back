@@ -106,6 +106,16 @@ const updateIncidenciaToVista = async (req, res) => {
   }
 };
 
+const updateIncidenciaToNoVista = async (req, res) => {
+  try {
+    const idIncidencia = req.params.idIncidencia;
+    const [result] = await IncidenciaModel.updateIncidenciaToNoVista(idIncidencia);
+    res.json(result[0]);
+  } catch (error) {
+    res.json({ fatal: error.message });
+  }
+};
+
 module.exports = {
   getAllIncidencias,
   getIncidenciaById,
@@ -113,5 +123,6 @@ module.exports = {
   getAllIncidenciasNoVistasByIdEmpleado,
   createIncidencia,
   updateIncidencia,
-  updateIncidenciaToVista
+  updateIncidenciaToVista,
+  updateIncidenciaToNoVista
 };
