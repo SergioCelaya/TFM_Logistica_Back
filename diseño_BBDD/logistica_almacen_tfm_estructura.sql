@@ -32,6 +32,7 @@ CREATE TABLE `almacenes` (
   `long` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `lat` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `activo` tinyint NOT NULL,
+  `imagen_almacen` VARCHAR(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL,
   PRIMARY KEY (`idalmacen`),
   UNIQUE KEY `idalmacen_UNIQUE` (`idalmacen`),
   UNIQUE KEY `nombre_almacen_UNIQUE` (`nombre_almacen`)
@@ -48,7 +49,7 @@ DROP TABLE IF EXISTS `empleados`;
 CREATE TABLE `empleados` (
   `idempleado` int NOT NULL AUTO_INCREMENT,
   `email` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `pwd` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `pwd` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `nombre` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `apellidos` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `puesto` int NOT NULL,
@@ -56,6 +57,7 @@ CREATE TABLE `empleados` (
   `num_empleado` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `activo` tinyint DEFAULT NULL,
   `fecha_contratacion` datetime NOT NULL,
+  `imagen_empleado` VARCHAR(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci  NULL,
   PRIMARY KEY (`idempleado`),
   UNIQUE KEY `idempleado_UNIQUE` (`idempleado`),
   UNIQUE KEY `email_UNIQUE` (`email`),
