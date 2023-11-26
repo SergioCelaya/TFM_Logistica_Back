@@ -41,3 +41,6 @@ content-type: application/json
     "vista": 0
 }
 
+### 
+PUT http://localhost:3000/api/incidencias/vista/22
+
