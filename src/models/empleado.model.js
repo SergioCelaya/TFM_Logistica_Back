@@ -84,6 +84,13 @@ const updateEmpleado = (idempleado,{
   );
 };
 
+const updateNombreImagenEmpleado= (idEmpleado,imagen_empleado)=>{
+  return db.query("UPDATE empleados SET imagen_empleado = ? WHERE idempleado = ?", [
+    imagen_empleado,
+    idEmpleado,
+  ]);
+}
+
 const updateEstadoEmpleado = (idEmpleado,{activo}) => {
   return db.query("UPDATE empleados SET activo = ? WHERE idempleado = ?", [
     activo,
@@ -98,6 +105,7 @@ const updateAlmacenEmpleado = (idEmpleado, {idalmacen}) => {
   ]);
 };
 module.exports = {
+  updateNombreImagenEmpleado,
   getAllEmpleados,
   getNumAllEmpleados,
   getEmpleadoById,

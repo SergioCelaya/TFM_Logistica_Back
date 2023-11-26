@@ -1,8 +1,9 @@
+const EmpleadosModel = require("../models/empleado.model");
+
 const saveImagenEmpleado = async(req, res) => {
     try {
-        console.log(req.params)
-        console.log(req)
-        res.json({exito:true})
+        EmpleadosModel.updateNombreImagenEmpleado(req.params.idEmpleado,req.file.filename)
+        res.json({"Resultado":"Guardado"})
       } catch (error) {
         res.json({ fatal: error.message });
       }
