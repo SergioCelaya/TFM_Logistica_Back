@@ -9,26 +9,32 @@ function addPaginado(pagina, total, respuesta) {
     Resultado: respuesta,
   });
 }
-
+async function addEmpleadosPedidos(pedidos){
+  let result = [];
+  for (let pedido of pedidos) {
+    let [empleado] = await EmpleadosMoodel.getEmpleadoById(
+      pedido.usuario_asignado
+    );
+    pedido.usuario_asignado = empleado[0];
+    let [encargado] = await EmpleadosMoodel.getEmpleadoById(
+      pedido.usuario_responsable
+    );
+    pedido.usuario_responsable = encargado[0];
+    result.push(pedido);
+  }
+  return result;
+}
 //GET
 const getAllPedidos = async (req, res) => {
   try {
     const [total] = await PedidosModel.getNumPedidos();
     const pagina =
       (req.params.pagina - 1) * parseInt(process.env.ELEMENTOS_POR_PAGINA);
-    let pedidos = await PedidosModel.getAllPedidos(
+    let [pedidos] = await PedidosModel.getAllPedidos(
       parseInt(process.env.ELEMENTOS_POR_PAGINA),
       pagina
     );
-    let result =[];
-    for(let pedido of pedidos[0]){
-      let [empleado] = await EmpleadosMoodel.getEmpleadoById(pedido.usuario_asignado);
-      pedido.usuario_asignado = empleado[0];
-      let [encargado] = await EmpleadosMoodel.getEmpleadoById(pedido.usuario_responsable);
-      pedido.usuario_responsable = encargado[0];
-      result.push(pedido);
-    }
-    res.json(addPaginado(req.params.pagina, total[0].total, result));
+    res.json(addPaginado(req.params.pagina, total[0].total, await addEmpleadosPedidos(pedidos)));
   } catch (error) {
     res.json({ fatal: error.message });
   }
@@ -41,12 +47,12 @@ const getAllPedidosByIdEmpleado = async (req, res) => {
     );
     const pagina =
       (req.params.pagina - 1) * parseInt(process.env.ELEMENTOS_POR_PAGINA);
-    const result = await PedidosModel.getPedidoByIdEmpleado(
+    const [pedidos] = await PedidosModel.getPedidoByIdEmpleado(
       req.params.usuario_asignado,
       parseInt(process.env.ELEMENTOS_POR_PAGINA),
       pagina
     );
-    res.json(addPaginado(req.params.pagina, total[0].total, result[0]));
+    res.json(addPaginado(req.params.pagina, total[0].total, await addEmpleadosPedidos(pedidos)));
   } catch (error) {
     res.json({ fatal: error.message });
   }
@@ -59,12 +65,12 @@ const getAllPedidosByIdResponsable = async (req, res) => {
     );
     const pagina =
       (req.params.pagina - 1) * parseInt(process.env.ELEMENTOS_POR_PAGINA);
-    const result = await PedidosModel.getPedidoByIdResponsable(
+    const [pedidos] = await PedidosModel.getPedidoByIdResponsable(
       req.params.usuario_responsable,
       parseInt(process.env.ELEMENTOS_POR_PAGINA),
       pagina
     );
-    res.json(addPaginado(req.params.pagina, total[0].total, result[0]));
+    res.json(addPaginado(req.params.pagina, total[0].total, await addEmpleadosPedidos(pedidos)));
   } catch (error) {
     res.json({ fatal: error.message });
   }
@@ -72,8 +78,19 @@ const getAllPedidosByIdResponsable = async (req, res) => {
 
 const getPedidoById = async (req, res) => {
   try {
-    const [result] = await PedidosModel.getPedidoById(req.params.idPedido);
-    res.json(result[0]);
+    const [pedido] = await PedidosModel.getPedidoById(req.params.idPedido);
+    console.log(pedido)
+    let result = [];
+    let [empleado] = await EmpleadosMoodel.getEmpleadoById(
+      pedido[0].usuario_asignado
+    );
+    pedido[0].usuario_asignado = empleado[0];
+    let [encargado] = await EmpleadosMoodel.getEmpleadoById(
+      pedido[0].usuario_responsable
+    );
+    pedido[0].usuario_responsable = encargado[0];
+    result.push(pedido[0]);
+    res.json(result);
   } catch (error) {
     res.json({ fatal: error.message });
   }
@@ -87,13 +104,13 @@ const getPedidosByIdEmpleadoEstado = async (req, res) => {
     );
     const pagina =
       (req.params.pagina - 1) * parseInt(process.env.ELEMENTOS_POR_PAGINA);
-    const result = await PedidosModel.getPedidosByIdEmpleadoEstado(
+    const [pedidos] = await PedidosModel.getPedidosByIdEmpleadoEstado(
       req.params.usuario_asignado,
       req.params.estado,
       parseInt(process.env.ELEMENTOS_POR_PAGINA),
       pagina
-    );
-    res.json(addPaginado(req.params.pagina, total[0].total, result[0]));
+    );  
+    res.json(addPaginado(req.params.pagina, total[0].total, await addEmpleadosPedidos(pedidos)));
   } catch (error) {
     res.json({ fatal: error.message });
   }
@@ -107,13 +124,13 @@ const getPedidosByIdResponsableEstado = async (req, res) => {
     );
     const pagina =
       (req.params.pagina - 1) * parseInt(process.env.ELEMENTOS_POR_PAGINA);
-    const result = await PedidosModel.getPedidosByIdResponsableEstado(
+    const [pedidos] = await PedidosModel.getPedidosByIdResponsableEstado(
       req.params.usuario_responsable,
       req.params.estado,
       parseInt(process.env.ELEMENTOS_POR_PAGINA),
       pagina
     );
-    res.json(addPaginado(req.params.pagina, total[0].total, result[0]));
+    res.json(addPaginado(req.params.pagina, total[0].total, await addEmpleadosPedidos(pedidos)));
   } catch (error) {
     res.json({ fatal: error.message });
   }
@@ -121,15 +138,17 @@ const getPedidosByIdResponsableEstado = async (req, res) => {
 
 const getPedidosByAlmacenOrigen = async (req, res) => {
   try {
-    const [total] = await PedidosModel.getNumPedidosByAlmacenOrigen(req.params.almacen_origen);
+    const [total] = await PedidosModel.getNumPedidosByAlmacenOrigen(
+      req.params.almacen_origen
+    );
     const pagina =
       (req.params.pagina - 1) * parseInt(process.env.ELEMENTOS_POR_PAGINA);
-    const result = await PedidosModel.getPedidosByAlmacenOrigen(
+    const [pedidos] = await PedidosModel.getPedidosByAlmacenOrigen(
       req.params.almacen_origen,
       parseInt(process.env.ELEMENTOS_POR_PAGINA),
       pagina
     );
-    res.json(addPaginado(req.params.pagina, total[0].total, result[0]));
+    res.json(addPaginado(req.params.pagina, total[0].total, await addEmpleadosPedidos(pedidos)));
   } catch (error) {
     res.json({ fatal: error.message });
   }
@@ -137,15 +156,17 @@ const getPedidosByAlmacenOrigen = async (req, res) => {
 
 const getPedidosByAlmacenDestino = async (req, res) => {
   try {
-    const [total] = await PedidosModel.getNumPedidosByAlmacenDestino(req.params.almacen_destino);
+    const [total] = await PedidosModel.getNumPedidosByAlmacenDestino(
+      req.params.almacen_destino
+    );
     const pagina =
       (req.params.pagina - 1) * parseInt(process.env.ELEMENTOS_POR_PAGINA);
-    const result = await PedidosModel.getPedidosByAlmacenDestino(
+    const [pedidos] = await PedidosModel.getPedidosByAlmacenDestino(
       req.params.almacen_destino,
       parseInt(process.env.ELEMENTOS_POR_PAGINA),
       pagina
     );
-    res.json(addPaginado(req.params.pagina, total[0].total, result[0]));
+    res.json(addPaginado(req.params.pagina, total[0].total,await addEmpleadosPedidos(pedidos)));
   } catch (error) {
     res.json({ fatal: error.message });
   }
