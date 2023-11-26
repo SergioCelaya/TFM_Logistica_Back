@@ -1,4 +1,5 @@
 const PedidosModel = require("../models/pedido.model");
+const EmpleadosMoodel = require("../models/empleado.model");
 
 function addPaginado(pagina, total, respuesta) {
   return (response = {
@@ -15,11 +16,19 @@ const getAllPedidos = async (req, res) => {
     const [total] = await PedidosModel.getNumPedidos();
     const pagina =
       (req.params.pagina - 1) * parseInt(process.env.ELEMENTOS_POR_PAGINA);
-    const result = await PedidosModel.getAllPedidos(
+    let pedidos = await PedidosModel.getAllPedidos(
       parseInt(process.env.ELEMENTOS_POR_PAGINA),
       pagina
     );
-    res.json(addPaginado(req.params.pagina, total[0].total, result[0]));
+    let result =[];
+    for(let pedido of pedidos[0]){
+      let [empleado] = await EmpleadosMoodel.getEmpleadoById(pedido.usuario_asignado);
+      pedido.usuario_asignado = empleado[0];
+      let [encargado] = await EmpleadosMoodel.getEmpleadoById(pedido.usuario_responsable);
+      pedido.usuario_responsable = encargado[0];
+      result.push(pedido);
+    }
+    res.json(addPaginado(req.params.pagina, total[0].total, result));
   } catch (error) {
     res.json({ fatal: error.message });
   }
