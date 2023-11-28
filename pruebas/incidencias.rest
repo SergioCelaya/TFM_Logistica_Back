@@ -5,7 +5,7 @@ GET http://localhost:3000/api/incidencias/1
 
 ###
 //GET http://localhost:3000/api/incidencias/:idIncidencia/
-GET http://localhost:3000/api/incidencias/byId/11
+GET http://localhost:3000/api/incidencias/byId/30
 
 ###
 //GET http://localhost:3000/api/incidencias/usuario/:usuario_asignado/:pagina
@@ -24,9 +24,8 @@ content-type: application/json
 {
     "titulo": "Faltan cosas",
     "descripcion": "Al pedido X le faltan cosas",
-    "idpedido_asociado": 5,
-    "tipo_incidencia": 1,
-    "vista": 0
+    "idpedido_asociado": "27",
+    "tipo_incidencia": 1
 }
 
 ### PUT ###
@@ -39,7 +38,7 @@ content-type: application/json
     "descripcion": "Al pedido X le faltan cositas",
     "idpedido_asociado": 5,
     "tipo_incidencia": 1,
-    "vista": 0
+    "vista": 1
 }
 
 ### 

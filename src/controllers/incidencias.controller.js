@@ -62,7 +62,7 @@ const getAllIncidenciasByIdEmpleado = async (req, res) => {
 
 const getAllIncidenciasNoVistasByIdEmpleado = async (req, res) => {
   try {
-    console.log(req.params)
+    
     const [total] =
       await IncidenciaModel.getNumAllIncidenciasNoVistasByEmpleado(req.params.usuario_asignado,);
     const pagina =
@@ -81,6 +81,7 @@ const getAllIncidenciasNoVistasByIdEmpleado = async (req, res) => {
 // CREATE
 const createIncidencia = async (req, res) => {
   try {
+    
     const [result] = await IncidenciaModel.createIncidencia(req.body);
     const [incidencia] = await IncidenciaModel.getIncidenciaById(
       result.insertId
