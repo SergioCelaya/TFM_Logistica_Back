@@ -14,14 +14,14 @@ content-type: application/json
 
 {
       "pwd":"12345678",
-      "email": "calmen.rios@example.com",
+      "email": "calmen.riostre@example.com",
       "nombre": "Carmen",
       "apellidos": "Rios",
-      "puesto": 2,
-      "idalmacen": 1,
+      "puesto": 1,
+      "idalmacen": 2,
       "num_empleado": "#00676",
       "activo": 1,
-      "fecha_contratacion": "2020-10-10 16:20:00",
+      "fecha_contratacion": "2020-10-10 16:20:00"
 
     }
 

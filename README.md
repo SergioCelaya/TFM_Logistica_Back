@@ -8,4 +8,5 @@ DB_USER="nombre_MySQL_User"
 DB_PASSWORD="password"
 DB_PORT= numero_puerto
 DB_NAME="db_name"
-ELEMENTOS_POR_PAGINA= (número decimal elementos por página)
+ELEMENTOS_POR_PAGINA= (número de elementos por página)
+SECRET_KEY="SeCrEt"

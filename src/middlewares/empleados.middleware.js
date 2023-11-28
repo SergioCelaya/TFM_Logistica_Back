@@ -4,7 +4,6 @@ const checkEmpleadoId = async (req, res, next) => {
     const { idEmpleado } = req.params;
     try{
         const [empleado] = await EmpleadoModel.getEmpleadoById(idEmpleado);
-      console.log(empleado)
         if(!empleado[0]) {
             return res.json({ error: 'No se ha encontrado el empleado' });
         }
@@ -29,7 +28,6 @@ const validateEmpleado = (req, res, next) => {
       fecha_contratacion,
 
     } = req.body;
-  
     if (!email || !pwd || !nombre || !apellidos || !puesto || !idalmacen || !num_empleado || !activo || !fecha_contratacion) {
       return res.status(400).json({ error: 'Faltan campos requeridos.' });
     }
@@ -45,7 +43,6 @@ const validateEmpleado = (req, res, next) => {
         isNaN(Date.parse(fecha_contratacion))) {
       return res.status(400).json({ error: 'Tipos de datos incorrectos en los campos.' });
     }
-  
     next();
   };
 
