@@ -1,14 +1,15 @@
 const router = require("express").Router();
 const EmpleadosController = require("../../controllers/empleados.controller");
+const {checkEmpleadoId, validateEmpleado} = require("../../middlewares/empleados.middleware")
 
 //GET
 router.get("/:pagina",EmpleadosController.getAllEmpleados);
 router.get("/byId/:idEmpleado",EmpleadosController.getEmpleadoById);
 router.get("/byPuesto/:puesto/:pagina",EmpleadosController.getEmpleadosByPuesto);
 //POST
-router.post("/",EmpleadosController.newEmpleado);
+router.post("/", validateEmpleado, EmpleadosController.newEmpleado);
 //UPDATE
-router.put("/:idEmpleado",EmpleadosController.updateEmpleado);
-router.put("/estado/:idEmpleado",EmpleadosController.updateEstado);
-router.put("/almacen/:idEmpleado",EmpleadosController.updateAlmacen);
+router.put("/:idEmpleado", checkEmpleadoId, EmpleadosController.updateEmpleado);
+router.put("/estado/:idEmpleado",checkEmpleadoId, EmpleadosController.updateEstado);
+router.put("/almacen/:idEmpleado", checkEmpleadoId, EmpleadosController.updateAlmacen);
 module.exports = router;

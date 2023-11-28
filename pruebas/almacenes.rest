@@ -16,19 +16,19 @@ POST http://localhost:3000/api/almacenes/ HTTP/1.1
 content-type: application/json
 
 {
-    "nombre_almacen": "Almacén Sevilla",
-    "long": "-4545421",
+    "nombre_almacen": "Almac Sevill actualizado",
+    "long": "-45421",
     "lat": "54545"
 }
 
 ### PUT ###
 
 //PUT http://localhost:3000/api/incidencias/:idAlmacen
-PUT http://localhost:3000/api/almacenes/5 HTTP/1.1
+PUT http://localhost:3000/api/almacenes/1 HTTP/1.1
 content-type: application/json
 
 {
-    "nombre_almacen": "Almacén Sevil actualido",
+    "nombre_almacen": "Almacén Sevill actualizado",
     "long": "-45421",
     "lat": "54545",
     "activo": 0
@@ -36,7 +36,7 @@ content-type: application/json
 
 ### 
 //PUT http://localhost:3000/api/incidencias/toActive/:idAlmacen
-PUT http://localhost:3000/api/almacenes/toActive/2
+PUT http://localhost:3000/api/almacenes/toActive/9
 
 ### 
 //PUT http://localhost:3000/api/incidencias/toInactive/:idAlmacen

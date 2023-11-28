@@ -1,5 +1,6 @@
 const router = require("express").Router();
-const AlmacenController = require('../../controllers/almacenes.controller')
+const AlmacenController = require('../../controllers/almacenes.controller');
+const {checkAlmacenId, validateAlmacen} = require('../../middlewares/almacenes.middleware')
 
 // GET
 
@@ -8,15 +9,15 @@ router.get('/', AlmacenController.getAllAlmacenes);
 router.get('/:idAlmacen', AlmacenController.getAlmacenById);
 
 
-router.post('/', AlmacenController.createAlmacen);
+router.post('/', validateAlmacen, AlmacenController.createAlmacen);
 
 // UPDATE
 
-router.put('/:idAlmacen', AlmacenController.updateAlmacen);
+router.put('/:idAlmacen', checkAlmacenId, validateAlmacen, AlmacenController.updateAlmacen);
 
-router.put('/toActive/:idAlmacen', AlmacenController.updateAlmacenToActive);
+router.put('/toActive/:idAlmacen', checkAlmacenId, AlmacenController.updateAlmacenToActive);
 
-router.put('/toInactive/:idAlmacen', AlmacenController.updateAlmacenToInactive);
+router.put('/toInactive/:idAlmacen', checkAlmacenId, AlmacenController.updateAlmacenToInactive);
 
 
 

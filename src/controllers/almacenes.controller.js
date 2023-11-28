@@ -14,7 +14,7 @@ const getAllAlmacenes = async (req, res) => {
     try {
       const idAlmacen = req.params.idAlmacen
       const [result] = await AlmacenModel.getAlmacenById(idAlmacen);
-      res.json(result);
+      res.json(result[0]);
     } catch (error) {
       res.json({ fatal: error.message });
     }

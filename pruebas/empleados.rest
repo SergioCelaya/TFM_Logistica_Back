@@ -21,7 +21,8 @@ content-type: application/json
       "idalmacen": 1,
       "num_empleado": "#00676",
       "activo": 1,
-      "fecha_contratacion": "2020-10-10 16:20:00"
+      "fecha_contratacion": "2020-10-10 16:20:00",
+
     }
 
 ### UPDATE http://localhost:3000/api/empleados/estado/:idEmpleado
