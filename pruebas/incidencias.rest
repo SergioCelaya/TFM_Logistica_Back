@@ -5,7 +5,7 @@ GET http://localhost:3000/api/incidencias/2
 
 ###
 //GET http://localhost:3000/api/incidencias/:idIncidencia/
-GET http://localhost:3000/api/incidencias/byId/30
+GET http://localhost:3000/api/incidencias/byId/14
 
 ###
 //GET http://localhost:3000/api/incidencias/usuario/:usuario_asignado/:pagina
@@ -24,7 +24,7 @@ content-type: application/json
 {
     "titulo": "Faltan cosas",
     "descripcion": "Al pedido X le faltan cosas",
-    "idpedido_asociado": "27",
+    "idpedido_asociado": 27,
     "tipo_incidencia": 1
 }
 

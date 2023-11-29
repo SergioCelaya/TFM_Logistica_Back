@@ -49,11 +49,17 @@ const getAllIncidenciasByIdEmpleado = async (req, res) => {
     const [total] = await IncidenciaModel.getNumAllIncidenciasByEmpleado(req.params.usuario_asignado);
     const pagina =
       (req.params.pagina - 1) * parseInt(process.env.ELEMENTOS_POR_PAGINA);
-    const [result] = await IncidenciaModel.getAllIncidenciasByEmpleado(
+    const [incidencias] = await IncidenciaModel.getAllIncidenciasByEmpleado(
       req.params.usuario_asignado,
       parseInt(process.env.ELEMENTOS_POR_PAGINA),
       pagina
     );
+    let result = [];
+    for (let incidencia of incidencias) {
+      let [empleadoAsignado] = await EmpleadoModel.getEmpleadoById(incidencia.usuario_asignado);
+      incidencia.usuario_asignado = empleadoAsignado[0];
+      result.push(incidencia);
+    }
     res.json(addPaginado(req.params.pagina, total[0].total, result));
   } catch (error) {
     res.json({ fatal: error.message });
@@ -67,11 +73,17 @@ const getAllIncidenciasNoVistasByIdEmpleado = async (req, res) => {
       await IncidenciaModel.getNumAllIncidenciasNoVistasByEmpleado(req.params.usuario_asignado,);
     const pagina =
       (req.params.pagina - 1) * parseInt(process.env.ELEMENTOS_POR_PAGINA);
-    const [result] = await IncidenciaModel.getAllIncidenciasNoVistasByEmpleado(
+    const [incidencias] = await IncidenciaModel.getAllIncidenciasNoVistasByEmpleado(
       req.params.usuario_asignado,
       parseInt(process.env.ELEMENTOS_POR_PAGINA),
       pagina
     );
+    let result = [];
+    for (let incidencia of incidencias) {
+      let [empleadoAsignado] = await EmpleadoModel.getEmpleadoById(incidencia.usuario_asignado);
+      incidencia.usuario_asignado = empleadoAsignado[0];
+      result.push(incidencia);
+    }
     res.json(addPaginado(req.params.pagina, total[0].total, result));
   } catch (error) {
     res.json({ fatal: error.message });
