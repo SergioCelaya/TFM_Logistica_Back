@@ -28,7 +28,7 @@ const login = async (req, res) => {
 
 const getUser= async(req,res) =>{
     try {
-        res.json(req.user[0]);
+        res.json(req.user[0][0]);
       } catch (error) {
         res.json({ fatal: error.message });
       }
