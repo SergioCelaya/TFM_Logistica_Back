@@ -13,17 +13,17 @@ POST http://localhost:3000/api/empleados/ HTTP/1.1
 content-type: application/json
 
 {
-      "pwd":"12345678",
-      "email": "calmen.riostre@example.com",
-      "nombre": "Carmen",
-      "apellidos": "Rios",
-      "puesto": 1,
-      "idalmacen": 2,
-      "num_empleado": "#00676",
+      "pwd":"12345779",
+      "email": "Leire.rins@example.com",
+      "nombre": "Leire",
+      "apellidos": "Rins",
+      "puesto": 3,
+      "idalmacen": 1,
+      "num_empleado": "#00690",
       "activo": 1,
       "fecha_contratacion": "2020-10-10 16:20:00"
 
-    }
+}
 
 ### UPDATE http://localhost:3000/api/empleados/estado/:idEmpleado
 PUT http://localhost:3000/api/empleados/estado/14 HTTP/1.1
