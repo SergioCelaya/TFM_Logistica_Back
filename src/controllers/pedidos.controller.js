@@ -1,14 +1,7 @@
 const PedidosModel = require("../models/pedido.model");
 const EmpleadosMoodel = require("../models/empleado.model");
+const {addPaginado} = require("../helpers/utils");
 
-function addPaginado(pagina, total, respuesta) {
-  return (response = {
-    TotalElementos: parseInt(total),
-    ElementosPagina: parseInt(process.env.ELEMENTOS_POR_PAGINA),
-    Pagina: parseInt(pagina),
-    Resultado: respuesta,
-  });
-}
 async function addEmpleadosPedidos(pedidos){
   let result = [];
   for (let pedido of pedidos) {

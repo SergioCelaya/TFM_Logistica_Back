@@ -10,6 +10,18 @@ const createToken = (user) => {
     return jsonwebtoken.sign(payload, process.env.SECRET_KEY);
 }
 
-module.exports = {
-    createToken
-}
+// Paginación
+
+function addPaginado(pagina, total, respuesta) {
+    return {
+      TotalElementos: parseInt(total),
+      ElementosPagina: parseInt(process.env.ELEMENTOS_POR_PAGINA),
+      Pagina: parseInt(pagina),
+      Resultado: respuesta,
+    };
+  }
+  
+  module.exports = {
+    createToken,
+    addPaginado
+  };

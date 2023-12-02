@@ -1,14 +1,6 @@
 const EmpleadosModel =require("../models/empleado.model");
+const {addPaginado} = require("../helpers/utils");
 
-
-function addPaginado(pagina, total, respuesta) {
-    return (response = {
-      TotalElementos: parseInt(total),
-      ElementosPagina: parseInt(process.env.ELEMENTOS_POR_PAGINA),
-      Pagina: parseInt(pagina),
-      Resultado: respuesta,
-    });
-  }
 
   // GET
 

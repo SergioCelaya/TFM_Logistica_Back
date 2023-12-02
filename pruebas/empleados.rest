@@ -1,6 +1,6 @@
 
 ## GET http://localhost:3000/api/empleados/:pagina
-GET http://localhost:3000/api/empleados/4
+GET http://localhost:3000/api/empleados/1
 
 ### GET http://localhost:3000/api/empleados/byId/:idEmpleado
 GET http://localhost:3000/api/empleados/byId/4
