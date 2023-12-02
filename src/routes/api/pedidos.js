@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const PedidosController = require("../../controllers/pedidos.controller");
+const {checkPedidoId, validatePedido} = require("../../middlewares/pedidos.middleware");
 
 
 //GET
@@ -12,14 +13,14 @@ router.get("/byResponsableEstado/:usuario_responsable/:estado/:pagina",PedidosCo
 router.get("/byAlmacenOrigen/:almacen_origen/:pagina",PedidosController.getPedidosByAlmacenOrigen);
 router.get("/byAlmacenDestino/:almacen_destino/:pagina",PedidosController.getPedidosByAlmacenDestino);
 //CREATE
-router.post("/",PedidosController.createPedido);
+router.post("/",validatePedido, PedidosController.createPedido);
 //UPDATE
-router.put("/:idPedido",PedidosController.updatePedido);
-router.put("/toPendienteValidar/:idPedido",PedidosController.toPendienteValidar);
-router.put("/toRectificar/:idPedido",PedidosController.toRectificar);
-router.put("/toValidado/:idPedido",PedidosController.toValidado);
-router.put("/toEnTransito/:idPedido",PedidosController.toEnTransito);
-router.put("/toPendienteRecepcionar/:idPedido",PedidosController.toPendienteRecepcionar);
-router.put("/toFinalizado/:idPedido",PedidosController.toFinalizado);
+router.put("/:idPedido",checkPedidoId,PedidosController.updatePedido);
+router.put("/toPendienteValidar/:idPedido", checkPedidoId, PedidosController.toPendienteValidar);
+router.put("/toRectificar/:idPedido",checkPedidoId, PedidosController.toRectificar);
+router.put("/toValidado/:idPedido",checkPedidoId, PedidosController.toValidado);
+router.put("/toEnTransito/:idPedido",checkPedidoId, PedidosController.toEnTransito);
+router.put("/toPendienteRecepcionar/:idPedido", checkPedidoId, PedidosController.toPendienteRecepcionar);
+router.put("/toFinalizado/:idPedido",checkPedidoId, PedidosController.toFinalizado);
 
 module.exports = router;

@@ -35,7 +35,7 @@ POST http://localhost:3000/api/pedidos/ HTTP/1.1
 content-type: application/json
 
 {
-    "numero_pedido": "2346669001",
+    "numero_pedido": "2346669005",
     "fecha_creacion": "2023-05-12 08:45:00",
     "almacen_origen": 1,
     "almacen_destino": 2,
