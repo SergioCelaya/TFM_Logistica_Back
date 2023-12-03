@@ -68,6 +68,23 @@ const getAllPedidosByIdResponsable = async (req, res) => {
     res.json({ fatal: error.message });
   }
 };
+const getAllPedidosByEstado = async (req, res) => {
+  try {
+    const [total] = await PedidosModel.getNumPedidosByEstado(
+      req.params.estado
+    );
+    const pagina =
+      (req.params.pagina - 1) * parseInt(process.env.ELEMENTOS_POR_PAGINA);
+    const [pedidos] = await PedidosModel.getAllPedidosByEstado(
+      req.params.estado,
+      parseInt(process.env.ELEMENTOS_POR_PAGINA),
+      pagina
+    );
+    res.json(addPaginado(req.params.pagina, total[0].total, await addEmpleadosPedidos(pedidos)));
+  } catch (error) {
+    res.json({ fatal: error.message });
+  }
+};
 
 const getPedidoById = async (req, res) => {
   try {
@@ -269,6 +286,7 @@ module.exports = {
   getPedidoById,
   getPedidoByNumPedido,
   getAllPedidosByIdEmpleado,
+  getAllPedidosByEstado,
   getAllPedidosByIdResponsable,
   getPedidosByIdEmpleadoEstado,
   getPedidosByIdResponsableEstado,

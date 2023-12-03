@@ -5,6 +5,9 @@
 ## Obtiene todos los pedidos de la BBDD Paginado
 GET http://localhost:3000/api/pedidos/1
 ### 
+## Obtiene todos los pedidos por estado Paginado
+GET http://localhost:3000/api/pedidos/estado/3/1
+### 
 ## Obtiene el pedido por el id pedido
 GET http://localhost:3000/api/pedidos/byId/5
 ###

@@ -167,6 +167,9 @@ Donde:
 
     - Obtiene la página indicada de todos los pedidos de un empleado en un estado concreto
 
+* # GET http://localhost:3000/api/pedidos/estado/:estado/:pagina
+
+    - Obtiene la página indicada de todos los pedidos paginados en un estado concreto
 * # GET http://localhost:3000/api/pedidos/byAlmacenOrigen/:almacen_origen/:pagina
 
     - Otiene la pagina indicada de los pedidos de un almacen origen
