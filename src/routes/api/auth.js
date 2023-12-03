@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { checkToken } = require('../../middlewares/auth.middleware')
+const { checkToken } = require('../../middlewares/authAndRol.middleware')
 const AuthController = require('../../controllers/auth.controller');
 const PruebaController = require('../../controllers/prueba-auth.controller');
 

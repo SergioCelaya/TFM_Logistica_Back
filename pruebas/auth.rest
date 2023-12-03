@@ -22,7 +22,7 @@ content-type: application/json
 
 POST http://localhost:3000/api/login/getUser HTTP/1.1
 content-type: application/json
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZEVtcGxlYWRvIjoxNSwicHVlc3RvIjoiRW5jYXJnYWRvIiwiZXhwIjoxNzAxNjI2NTE1LCJpYXQiOjE3MDEwMjE3MTV9.8qPdjolkP-1ZW5FfyO7C1RUMDrM-xOMVOP-dpwP3qeM
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZEVtcGxlYWRvIjoxNSwicHVlc3RvIjoiRW5jYXJnYWRvIiwiZXhwIjoxNzAyMjM2OTI1LCJpYXQiOjE3MDE2MzIxMjV9.61IVY7DhnfuU5fiFR9U25Po5Nif58iXEjOkduJI-d2I
 
 
 ### GET http://localhost:3000/api/auth/
