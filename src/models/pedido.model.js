@@ -49,6 +49,14 @@ const getPedidoById = (idPedido) => {
   );
 };
 
+
+const getPedidoByNumPedido = (numPedido) => {
+  return db.query(
+    "SELECT  numero_pedido, idPedido, fecha_creacion, almacen_origen, almacen_destino, fecha_entrega, usuario_asignado, usuario_responsable, est.descripcion estado, id_transporte, detalle_pedido FROM pedidos ped INNER JOIN tipo_estados est ON ped.estado = est.idestado WHERE numero_pedido = ?",
+    [numPedido]
+  );
+};
+
 const getNumPedidosByIdEmpleadoEstado = (usuario_asignado, estado) => {
   return db.query(
     "select count(*) total from pedidos ped inner join tipo_estados est on ped.estado = est.idestado where ped.usuario_asignado = ? and ped.estado = ?",
@@ -226,6 +234,7 @@ module.exports = {
   getPedidoByIdResponsable,
   getAllPedidos,
   getPedidoById,
+  getPedidoByNumPedido,
   getNumPedidosByIdEmpleado,
   getPedidoByIdEmpleado,
   getNumPedidosByIdEmpleadoEstado,

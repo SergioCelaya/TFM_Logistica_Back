@@ -1,15 +1,15 @@
 const PedidosModel = require("../models/pedido.model");
-const EmpleadosMoodel = require("../models/empleado.model");
+const EmpleadosModel = require("../models/empleado.model");
 const {addPaginado} = require("../helpers/utils");
 
 async function addEmpleadosPedidos(pedidos){
   let result = [];
   for (let pedido of pedidos) {
-    let [empleado] = await EmpleadosMoodel.getEmpleadoById(
+    let [empleado] = await EmpleadosModel.getEmpleadoById(
       pedido.usuario_asignado
     );
     pedido.usuario_asignado = empleado[0];
-    let [encargado] = await EmpleadosMoodel.getEmpleadoById(
+    let [encargado] = await EmpleadosModel.getEmpleadoById(
       pedido.usuario_responsable
     );
     pedido.usuario_responsable = encargado[0];
@@ -72,13 +72,12 @@ const getAllPedidosByIdResponsable = async (req, res) => {
 const getPedidoById = async (req, res) => {
   try {
     const [pedido] = await PedidosModel.getPedidoById(req.params.idPedido);
-    console.log(pedido)
     let result = [];
-    let [empleado] = await EmpleadosMoodel.getEmpleadoById(
+    let [empleado] = await EmpleadosModel.getEmpleadoById(
       pedido[0].usuario_asignado
     );
     pedido[0].usuario_asignado = empleado[0];
-    let [encargado] = await EmpleadosMoodel.getEmpleadoById(
+    let [encargado] = await EmpleadosModel.getEmpleadoById(
       pedido[0].usuario_responsable
     );
     pedido[0].usuario_responsable = encargado[0];
@@ -88,6 +87,26 @@ const getPedidoById = async (req, res) => {
     res.json({ fatal: error.message });
   }
 };
+
+const getPedidoByNumPedido = async (req, res) => {
+  try {
+    const [pedido] = await PedidosModel.getPedidoByNumPedido(req.params.numPedido);
+    let result = [];
+    let [empleado] = await EmpleadosModel.getEmpleadoById(
+      pedido[0].usuario_asignado
+    );
+    pedido[0].usuario_asignado = empleado[0];
+    let [encargado] = await EmpleadosModel.getEmpleadoById(
+      pedido[0].usuario_responsable
+    );
+    pedido[0].usuario_responsable = encargado[0];
+    result.push(pedido[0]);
+    res.json(result);
+  } catch (error) {
+    res.json({ fatal: error.message });
+  }
+};
+
 
 const getPedidosByIdEmpleadoEstado = async (req, res) => {
   try {
@@ -248,6 +267,7 @@ module.exports = {
   getPedidosByAlmacenDestino,
   getAllPedidos,
   getPedidoById,
+  getPedidoByNumPedido,
   getAllPedidosByIdEmpleado,
   getAllPedidosByIdResponsable,
   getPedidosByIdEmpleadoEstado,

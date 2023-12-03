@@ -146,6 +146,10 @@ Donde:
 
     - Obtiene el pedido con idpedido = :idPedido
 
+* # GET http://localhost:3000/api/pedidos/byNumPedido/:numPedido"
+
+    - Obtiene el pedido con numero_pedido = :numPedido
+
 * # GET http://localhost:3000/api/pedidos/byEmpleadoId/:usuario_asignado/:pagina
 
     - Obtiene la página indicada de todos los pedidos por un id de empleado

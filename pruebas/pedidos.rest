@@ -8,6 +8,9 @@ GET http://localhost:3000/api/pedidos/1
 ## Obtiene el pedido por el id pedido
 GET http://localhost:3000/api/pedidos/byId/5
 ###
+## Obtiene el pedido por el número de pedido
+GET http://localhost:3000/api/pedidos/byNumPedido/1234567890/
+###
 ## Obtiene todos los pedidos por un id de empleado Paginado
 GET http://localhost:3000/api/pedidos/byEmpleadoId/2/2
 ###

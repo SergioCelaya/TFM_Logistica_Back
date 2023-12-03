@@ -6,6 +6,7 @@ const {checkPedidoId, validatePedido} = require("../../middlewares/pedidos.middl
 //GET
 router.get("/:pagina",PedidosController.getAllPedidos );
 router.get("/byId/:idPedido",PedidosController.getPedidoById);
+router.get("/byNumPedido/:numPedido",PedidosController.getPedidoByNumPedido);
 router.get("/byResponsableId/:usuario_responsable/:pagina",PedidosController.getAllPedidosByIdResponsable);
 router.get("/byEmpleadoId/:usuario_asignado/:pagina",PedidosController.getAllPedidosByIdEmpleado);
 router.get("/byEmpleadoEstado/:usuario_asignado/:estado/:pagina",PedidosController.getPedidosByIdEmpleadoEstado);
