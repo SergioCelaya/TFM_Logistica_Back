@@ -10,19 +10,19 @@ const getAlmacenById = (idAlmacen) => {
 
 // CREATE
 
-const createAlmacen = ({ nombre_almacen, long, lat, activo = 1 }) => {
+const createAlmacen = ({ nombre_almacen, long, lat, activo = 1, imagen_almacen = 'Almacen0.jpg' }) => {
   return db.query(
-    "INSERT INTO almacenes ( nombre_almacen, `long`, lat, activo) VALUES (?,?,?,?)",
-    [nombre_almacen, long, lat, activo]
+    "INSERT INTO almacenes ( nombre_almacen, `long`, lat, activo, imagen_almacen) VALUES (?,?,?,?,?)",
+    [nombre_almacen, long, lat, activo, imagen_almacen]
   );
 };
 
 // UPDATE
 
-const updateAlmacen = (idAlmacen, { nombre_almacen, long, lat, activo }) => {
+const updateAlmacen = (idAlmacen, { nombre_almacen, long, lat, activo, imagen_almacen }) => {
   return db.query(
-    "UPDATE almacenes SET nombre_almacen = ?, `long` = ?, lat = ?, activo = ? WHERE idalmacen = ?",
-    [nombre_almacen, long, lat, activo, idAlmacen]
+    "UPDATE almacenes SET nombre_almacen = ?, `long` = ?, lat = ?, activo = ?, imagen_almacen = ? WHERE idalmacen = ?",
+    [nombre_almacen, long, lat, activo, imagen_almacen, idAlmacen]
   );
 };
 

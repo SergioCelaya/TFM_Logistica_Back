@@ -25,6 +25,7 @@ const getAllAlmacenes = async (req, res) => {
   const createAlmacen = async (req, res) => {
     try {
       const [result] = await AlmacenModel.createAlmacen(req.body);
+      console.log(result);
       const [almacen] = await AlmacenModel.getAlmacenById(
         result.insertId
       );
@@ -38,8 +39,10 @@ const getAllAlmacenes = async (req, res) => {
 
   const updateAlmacen = async (req, res) => {
     try {
+      console.log(req.body);
       const { idAlmacen } = req.params;
       const [result] = await AlmacenModel.updateAlmacen( idAlmacen, req.body);
+      console.log(result);
       res.json(result);
     } catch (error) {
       res.json({ fatal: error.message });
