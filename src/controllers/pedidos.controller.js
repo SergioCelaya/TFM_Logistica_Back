@@ -89,7 +89,6 @@ const getAllPedidosByEstado = async (req, res) => {
 const getPedidoById = async (req, res) => {
   try {
     const [pedido] = await PedidosModel.getPedidoById(req.params.idPedido);
-    let result = [];
     let [empleado] = await EmpleadosModel.getEmpleadoById(
       pedido[0].usuario_asignado
     );
@@ -98,8 +97,7 @@ const getPedidoById = async (req, res) => {
       pedido[0].usuario_responsable
     );
     pedido[0].usuario_responsable = encargado[0];
-    result.push(pedido[0]);
-    res.json(result);
+    res.json(pedido);
   } catch (error) {
     res.json({ fatal: error.message });
   }
@@ -201,9 +199,30 @@ const getPedidosByAlmacenDestino = async (req, res) => {
   }
 };
 
+const getPedidosDeEncargado = async (req,res)=>{
+  try{
+    console.log(req.params)
+    const [total] = await PedidosModel.getNumPedidosEncargado(
+      req.params.idalmacen
+    );
+    console.log(total)
+    const pagina =
+    (req.params.pagina - 1) * parseInt(process.env.ELEMENTOS_POR_PAGINA);
+  const [pedidos] = await PedidosModel.getPedidosEncargado(
+    req.params.idalmacen,
+    parseInt(process.env.ELEMENTOS_POR_PAGINA),
+    pagina
+  );
+  res.json(addPaginado(req.params.pagina, total[0].total,await addEmpleadosPedidos(pedidos)));
+  }catch (error) {
+    res.json({ fatal: error.message });
+  }
+}
+
 //CREATE
 const createPedido = async (req, res) => {
   try {
+    console.log(req.body);
     const [result] = await PedidosModel.createPedido(req.body);
     const [pedido] = await PedidosModel.getPedidoById(result.insertId);
     res.json(pedido[0]);
@@ -215,6 +234,8 @@ const createPedido = async (req, res) => {
 //UPDATE
 const updatePedido = async (req, res) => {
   try {
+    console.log(req.body);
+    console.log(req.params);
     const { idPedido } = req.params;
     const [result] = await PedidosModel.updatePedido(idPedido, req.body);
     res.json(result);
@@ -290,6 +311,7 @@ module.exports = {
   getAllPedidosByIdResponsable,
   getPedidosByIdEmpleadoEstado,
   getPedidosByIdResponsableEstado,
+  getPedidosDeEncargado,
   createPedido,
   updatePedido,
   toPendienteValidar,

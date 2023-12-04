@@ -35,13 +35,18 @@ GET http://localhost:3000/api/pedidos/byAlmacenOrigen/1/3
 ##Obtiene los pedidos de un almacen destino Paginado
 ##/byAlmacenDestino/:almacen_destino/:pagina
 GET http://localhost:3000/api/pedidos/byAlmacenDestino/2/1
+###
+##Obtiene los pedidos de un encargado
+##de su almacen en estado pendiente de validar y si su almacen es el destino pendiente de recepción
+##/byEncargado/:idempleado/:pagina
+GET http://localhost:3000/api/pedidos/deEncargadoByAlmacen/1/1
 
 ### POST ###
 POST http://localhost:3000/api/pedidos/ HTTP/1.1
 content-type: application/json
 
 {
-    "numero_pedido": "2346669005",
+    "numero_pedido": "236669005",
     "fecha_creacion": "2023-05-12 08:45:00",
     "almacen_origen": 1,
     "almacen_destino": 2,
