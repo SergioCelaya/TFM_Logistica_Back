@@ -44,7 +44,14 @@ const getAllEmpleados = async (req, res) => {
         res.json({ fatal: error.message });
       }
   }
-
+  const getEmpleadosByPuestoSinPaginar = async(req, res) => {
+    try {
+        const [result] = await EmpleadosModel.getEmpleadosByPuestoSinPaginar(req.params.puesto);
+        res.json(result);
+      } catch (error) {
+        res.json({ fatal: error.message });
+      }
+  }
   const newEmpleado = async(req,res) =>{
     try{
         const [empleado] = await EmpleadosModel.createEmpleado(req.body);
@@ -89,6 +96,7 @@ const getAllEmpleados = async (req, res) => {
     getAllEmpleados,
     getEmpleadoById,
     getEmpleadosByPuesto,
+    getEmpleadosByPuestoSinPaginar,
     newEmpleado,
     updateEmpleado,
     updateEstado,

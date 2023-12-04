@@ -8,6 +8,9 @@ GET http://localhost:3000/api/empleados/byId/4
 ### GET http://localhost:3000/api/empleados/byPuesto/:idPuesto/:pagina
 GET http://localhost:3000/api/empleados/byPuesto/2/2
 
+### GET http://localhost:3000/api/empleados/byPuestoSinPag/:puesto
+GET http://localhost:3000/api/empleados/byPuestoSinPag/1
+
 ### POST http://localhost:3000/api/empleados/
 POST http://localhost:3000/api/empleados/ HTTP/1.1
 content-type: application/json
