@@ -7,7 +7,7 @@ const { fileURLToPath } = require("url");
 const MIMETYPES = ["image/jpg", "image/jpeg", "image/png"];
 const rutaAlmacen = "./imagenes/almacenes";
 const rutaUsuario = "./imagenes/empleados";
-
+const rutaEstados = "./imagenes/estados";
 function uploadImagen(ruta) {
   return multer({
     storage: multer.diskStorage({
@@ -48,4 +48,6 @@ router.post(
 
 router.use("/getImagenEmpleado", express.static(rutaUsuario));
 router.use("/getImagenAlmacen", express.static(rutaAlmacen));
+router.use("/getImagenEstado", express.static(rutaEstados));
+
 module.exports = router;
