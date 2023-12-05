@@ -6,7 +6,8 @@ const {checkEmpleadoId, validateEmpleado} = require("../../middlewares/empleados
 router.get("/:pagina",EmpleadosController.getAllEmpleados);
 router.get("/byId/:idEmpleado",EmpleadosController.getEmpleadoById);
 router.get("/byPuesto/:puesto/:pagina",EmpleadosController.getEmpleadosByPuesto);
-router.get("/byPuestoSinPag/:puesto",EmpleadosController.getEmpleadosByPuestoSinPaginar)
+router.get("/byPuestoSinPag/:puesto",EmpleadosController.getEmpleadosByPuestoSinPaginar);
+router.get("/byPuestoAlmacenSinPag/:puesto/:idalmacen",EmpleadosController.getEmpleadosByPuestoAlmacenSinPaginar);
 //POST
 router.post("/", validateEmpleado, EmpleadosController.newEmpleado);
 //UPDATE

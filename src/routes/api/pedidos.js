@@ -14,7 +14,7 @@ router.get("/byEmpleadoEstado/:usuario_asignado/:estado/:pagina",PedidosControll
 router.get("/byResponsableEstado/:usuario_responsable/:estado/:pagina",PedidosController.getPedidosByIdResponsableEstado);
 router.get("/byAlmacenOrigen/:almacen_origen/:pagina",PedidosController.getPedidosByAlmacenOrigen);
 router.get("/byAlmacenDestino/:almacen_destino/:pagina",PedidosController.getPedidosByAlmacenDestino);
-router.get("/deEncargadoByAlmacen/:idalmacen/:pagina",PedidosController.getPedidosDeEncargado);
+router.get("/deEncargadoByAlmacen/:idalmacen/:idempleado/:pagina",PedidosController.getPedidosDeEncargado);
 //CREATE
 router.post("/",validatePedido, PedidosController.createPedido);
 //UPDATE

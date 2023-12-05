@@ -76,19 +76,19 @@ const getNumPedidosByIdEmpleadoEstado = (usuario_asignado, estado) => {
   );
 };
 
-const getPedidosEncargado=(idAlmacen,
+const getPedidosEncargado=(idAlmacen,idempleado,
   numElementos,
   pagina) =>{
   return db.query(
-    "SELECT  numero_pedido, idPedido, fecha_creacion, almacen_origen, almacen_destino, fecha_entrega, usuario_asignado, usuario_responsable, est.descripcion estado, id_transporte, detalle_pedido FROM pedidos ped inner join tipo_estados est on ped.estado = est.idestado where (ped.almacen_origen = ? and ped.estado=1) or (ped.almacen_destino = ? and ped.estado = 5) LIMIT ? OFFSET ?",
-    [idAlmacen,idAlmacen, numElementos, pagina]
+    "SELECT  numero_pedido, idPedido, fecha_creacion, almacen_origen, almacen_destino, fecha_entrega, usuario_asignado, usuario_responsable, est.descripcion estado, id_transporte, detalle_pedido FROM pedidos ped inner join tipo_estados est on ped.estado = est.idestado where (ped.almacen_origen = ? and usuario_responsable = ? and ped.estado=1) or (ped.almacen_destino = ? and ped.estado = 5) LIMIT ? OFFSET ?",
+    [idAlmacen,idempleado,idAlmacen, numElementos, pagina]
   );
 }
 
-const getNumPedidosEncargado=(idAlmacen) =>{
+const getNumPedidosEncargado=(idAlmacen,idempleado) =>{
   return db.query(
-    "select count(*) total from pedidos where (almacen_origen = ? and estado=1) or (almacen_destino = ? and estado = 5)",
-    [idAlmacen,idAlmacen]
+    "select count(*) total from pedidos where (almacen_origen = ? and usuario_responsable = ? and estado=1) or (almacen_destino = ? and estado = 5)",
+    [idAlmacen,idempleado,idAlmacen]
   );
 }
 

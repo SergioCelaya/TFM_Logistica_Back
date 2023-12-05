@@ -56,6 +56,19 @@ const getEmpleadosByPuestoSinPaginar = async (req, res) => {
     res.json({ fatal: error.message });
   }
 };
+
+const getEmpleadosByPuestoAlmacenSinPaginar = async (req, res) => {
+  try {
+    const [result] = await EmpleadosModel.getEmpleadosByPuestoAlmacenSinPaginar(
+      req.params.puesto,
+      req.params.idalmacen
+    );
+    res.json(result);
+  } catch (error) {
+    res.json({ fatal: error.message });
+  }
+};
+
 const newEmpleado = async (req, res) => {
   try {
     const [empleado] = await EmpleadosModel.createEmpleado(req.body);
@@ -107,6 +120,7 @@ module.exports = {
   getEmpleadoById,
   getEmpleadosByPuesto,
   getEmpleadosByPuestoSinPaginar,
+  getEmpleadosByPuestoAlmacenSinPaginar,
   newEmpleado,
   updateEmpleado,
   updateEstado,

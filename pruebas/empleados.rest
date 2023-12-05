@@ -10,6 +10,8 @@ GET http://localhost:3000/api/empleados/byPuesto/2/2
 
 ### GET http://localhost:3000/api/empleados/byPuestoSinPag/:puesto
 GET http://localhost:3000/api/empleados/byPuestoSinPag/2
+### GET http://localhost:3000/api/empleados/byPuestoSinPag/:puesto/:idalmacen
+GET http://localhost:3000/api/empleados/byPuestoAlmacenSinPag/1/1
 
 ### POST http://localhost:3000/api/empleados/
 POST http://localhost:3000/api/empleados/ HTTP/1.1

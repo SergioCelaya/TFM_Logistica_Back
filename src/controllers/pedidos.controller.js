@@ -203,13 +203,15 @@ const getPedidosDeEncargado = async (req,res)=>{
   try{
     console.log(req.params)
     const [total] = await PedidosModel.getNumPedidosEncargado(
-      req.params.idalmacen
+      req.params.idalmacen,
+      req.params.idempleado
     );
     console.log(total)
     const pagina =
     (req.params.pagina - 1) * parseInt(process.env.ELEMENTOS_POR_PAGINA);
   const [pedidos] = await PedidosModel.getPedidosEncargado(
     req.params.idalmacen,
+    req.params.idempleado,
     parseInt(process.env.ELEMENTOS_POR_PAGINA),
     pagina
   );

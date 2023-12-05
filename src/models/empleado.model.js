@@ -40,6 +40,13 @@ const getEmpleadosByPuestoSinPaginar = (puesto) => {
   );
 };
 
+const getEmpleadosByPuestoAlmacenSinPaginar = (puesto,idalmacen) => {
+  return db.query(
+    "SELECT emp.idempleado,emp.email,emp.nombre,emp.apellidos,pst.descripcion puesto,emp.idalmacen,emp.num_empleado,emp.activo,emp.fecha_contratacion FROM empleados emp inner join puestos_trabajo pst on emp.puesto = pst.idpuesto_trabajo where emp.puesto = ? and emp.idalmacen = ?",
+    [puesto,idalmacen]
+  );
+};
+
 const getNumEmpleadosByPuesto = (puesto) => {
   return db.query("SELECT count(*) total FROM empleados where puesto = ? ", [puesto]);
 };
@@ -134,4 +141,5 @@ module.exports = {
   updateEmpleado,
   updateEstadoEmpleado,
   updateAlmacenEmpleado,
+  getEmpleadosByPuestoAlmacenSinPaginar
 };
