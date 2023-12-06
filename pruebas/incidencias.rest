@@ -49,10 +49,10 @@ content-type: application/json
 
 ### 
 //PUT http://localhost:3000/api/incidencias/vista/:idIncidencia
-PUT http://localhost:3000/api/incidencias/vista/22
+PUT http://localhost:3000/api/incidencias/vista/11
 
 ### 
 //PUT http://localhost:3000/api/incidencias/noVista/:idIncidencia
-PUT http://localhost:3000/api/incidencias/noVista/22
+PUT http://localhost:3000/api/incidencias/noVista/11
 
 

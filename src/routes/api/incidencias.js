@@ -21,9 +21,9 @@ router.post("/", validateIncidencia, IncidenciasController.createIncidencia);
 // UPDATE
 router.put("/:idIncidencia", checkIncidenciaId, validateIncidencia, IncidenciasController.updateIncidencia);
 
-router.put("/vista/:idIncidencia", checkIncidenciaId, validateIncidencia, IncidenciasController.updateIncidenciaToVista);
+router.put("/vista/:idIncidencia", checkIncidenciaId,  IncidenciasController.updateIncidenciaToVista);
 
-router.put("/noVista/:idIncidencia", IncidenciasController.updateIncidenciaToNoVista);
+router.put("/noVista/:idIncidencia",checkIncidenciaId, IncidenciasController.updateIncidenciaToNoVista);
 
 
 
