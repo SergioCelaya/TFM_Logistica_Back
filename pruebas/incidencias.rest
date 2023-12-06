@@ -9,7 +9,7 @@ GET http://localhost:3000/api/incidencias/byId/14
 
 ###
 //http://localhost:3000/api/incidencias/byIdPedido/:idpedido
-GET http://localhost:3000/api/incidencias/byIdPedido/2
+GET http://localhost:3000/api/incidencias/byIdPedido/1
 
 
 ###

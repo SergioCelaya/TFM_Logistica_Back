@@ -41,7 +41,7 @@ const getIncidenciaByIdPedido = async (req, res) => {
   try {
     const idpedido = req.params.idpedido;
     const [result] = await IncidenciaModel.getIncidenciaByIdPedido(idpedido);
-    res.json(result[0]);
+    res.json(result);
   } catch (error) {
     res.json({ fatal: error.message });
   }
