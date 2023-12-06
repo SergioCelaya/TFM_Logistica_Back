@@ -9,7 +9,7 @@ const getAllIncidencias = (numElementos, pagina) => {
 
 const getIncidenciaByIdPedido=(idPedido)=>{
   return db.query(
-    "SELECT * FROM incidencias where idpedido_asociado = ? and vista = 0",
+    "SELECT * FROM incidencias where idpedido_asociado = ? ",
     [idPedido]
   );
 }
