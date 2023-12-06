@@ -8,6 +8,8 @@ router.get("/:pagina", IncidenciasController.getAllIncidencias );
 
 router.get("/byId/:idIncidencia", checkIncidenciaId, IncidenciasController.getIncidenciaById);
 
+router.get("/byIdPedido/:idpedido",  IncidenciasController.getIncidenciaByIdPedido);
+
 router.get("/usuario/:usuario_asignado/:pagina", IncidenciasController.getAllIncidenciasByIdEmpleado);
 
 router.get("/noVistas/:usuario_asignado/:pagina", IncidenciasController.getAllIncidenciasNoVistasByIdEmpleado);

@@ -7,6 +7,12 @@ const getAllIncidencias = (numElementos, pagina) => {
   );
 };
 
+const getIncidenciaByIdPedido=(idPedido)=>{
+  return db.query(
+    "SELECT * FROM incidencias where idpedido_asociado = ?",
+    [idPedido]
+  );
+}
 
 const getNumAllIncidencias = () => {
   return db.query("SELECT count(*) total FROM incidencias");
@@ -109,5 +115,6 @@ module.exports = {
   createIncidencia,
   updateIncidencia,
   updateIncidenciaToVista,
-  updateIncidenciaToNoVista
+  updateIncidenciaToNoVista,
+  getIncidenciaByIdPedido
 };

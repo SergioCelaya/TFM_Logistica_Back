@@ -8,8 +8,14 @@ GET http://localhost:3000/api/incidencias/2
 GET http://localhost:3000/api/incidencias/byId/14
 
 ###
+//http://localhost:3000/api/incidencias/byIdPedido/:idpedido
+GET http://localhost:3000/api/incidencias/byIdPedido/2
+
+
+###
 //GET http://localhost:3000/api/incidencias/usuario/:usuario_asignado/:pagina
 GET http://localhost:3000/api/incidencias/usuario/3/1
+
 
 
 ###

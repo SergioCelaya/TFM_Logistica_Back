@@ -37,6 +37,16 @@ const getIncidenciaById = async (req, res) => {
   }
 };
 
+const getIncidenciaByIdPedido = async (req, res) => {
+  try {
+    const idpedido = req.params.idpedido;
+    const [result] = await IncidenciaModel.getIncidenciaByIdPedido(idpedido);
+    res.json(result[0]);
+  } catch (error) {
+    res.json({ fatal: error.message });
+  }
+};
+
 const getAllIncidenciasByIdEmpleado = async (req, res) => {
   try {
     const [total] = await IncidenciaModel.getNumAllIncidenciasByEmpleado(req.params.usuario_asignado);
@@ -82,6 +92,8 @@ const getAllIncidenciasNoVistasByIdEmpleado = async (req, res) => {
     res.json({ fatal: error.message });
   }
 };
+
+
 
 // CREATE
 const createIncidencia = async (req, res) => {
@@ -136,5 +148,6 @@ module.exports = {
   createIncidencia,
   updateIncidencia,
   updateIncidenciaToVista,
-  updateIncidenciaToNoVista
+  updateIncidenciaToNoVista,
+  getIncidenciaByIdPedido
 };
