@@ -125,6 +125,7 @@ const getPedidoByNumPedido = async (req, res) => {
 
 const getPedidosByIdEmpleadoEstado = async (req, res) => {
   try {
+    console.log(req.params)
     const [total] = await PedidosModel.getNumPedidosByIdEmpleadoEstado(
       req.params.usuario_asignado,
       req.params.estado
@@ -212,6 +213,48 @@ const getPedidosDeEncargado = async (req,res)=>{
   const [pedidos] = await PedidosModel.getPedidosEncargado(
     req.params.idalmacen,
     req.params.idempleado,
+    parseInt(process.env.ELEMENTOS_POR_PAGINA),
+    pagina
+  );
+  res.json(addPaginado(req.params.pagina, total[0].total,await addEmpleadosPedidos(pedidos)));
+  }catch (error) {
+    res.json({ fatal: error.message });
+  }
+}
+
+const getPedidosEncargadosValidar= async (req,res)=>{
+  try{
+    console.log(req.params)
+    const [total] = await PedidosModel.getPedidosNumEncargadoValidar(
+      req.params.idalmacen,
+      req.params.idempleado
+    );
+    console.log(total)
+    const pagina =
+    (req.params.pagina - 1) * parseInt(process.env.ELEMENTOS_POR_PAGINA);
+  const [pedidos] = await PedidosModel.getPedidosEncargadoValidar(
+    req.params.idalmacen,
+    req.params.idempleado,
+    parseInt(process.env.ELEMENTOS_POR_PAGINA),
+    pagina
+  );
+  res.json(addPaginado(req.params.pagina, total[0].total,await addEmpleadosPedidos(pedidos)));
+  }catch (error) {
+    res.json({ fatal: error.message });
+  }
+}
+
+const getPedidosEncargadosRecepcionar= async (req,res)=>{
+  try{
+    console.log(req.params)
+    const [total] = await PedidosModel.getPedidosNumEncargadoRecepcionar(
+      req.params.idalmacen
+    );
+    console.log(total)
+    const pagina =
+    (req.params.pagina - 1) * parseInt(process.env.ELEMENTOS_POR_PAGINA);
+  const [pedidos] = await PedidosModel.getPedidosEncargadoRecepcionar(
+    req.params.idalmacen,
     parseInt(process.env.ELEMENTOS_POR_PAGINA),
     pagina
   );
@@ -314,6 +357,8 @@ module.exports = {
   getPedidosByIdEmpleadoEstado,
   getPedidosByIdResponsableEstado,
   getPedidosDeEncargado,
+  getPedidosEncargadosValidar,
+  getPedidosEncargadosRecepcionar,
   createPedido,
   updatePedido,
   toPendienteValidar,

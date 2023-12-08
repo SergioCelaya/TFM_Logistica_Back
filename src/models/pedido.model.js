@@ -92,6 +92,39 @@ const getNumPedidosEncargado=(idAlmacen,idempleado) =>{
   );
 }
 
+const getPedidosEncargadoValidar=(idAlmacen,idempleado,
+  numElementos,
+  pagina) =>{
+  return db.query(
+    "SELECT  numero_pedido, idPedido, fecha_creacion, almacen_origen, almacen_destino, fecha_entrega, usuario_asignado, usuario_responsable, est.descripcion estado, id_transporte, detalle_pedido FROM pedidos ped inner join tipo_estados est on ped.estado = est.idestado where ped.almacen_origen = ? and usuario_responsable = ? and ped.estado=1 LIMIT ? OFFSET ?",
+    [idAlmacen,idempleado, numElementos, pagina]
+  );
+}
+
+const getPedidosNumEncargadoValidar=(idAlmacen,idempleado) =>{
+  return db.query(
+    "SELECT  count(*) FROM pedidos ped inner join tipo_estados est on ped.estado = est.idestado where ped.almacen_origen = ? and usuario_responsable = ? and ped.estado=1 ",
+    [idAlmacen,idempleado]
+  );
+}
+
+const getPedidosNumEncargadoRecepcionar=(idAlmacen) =>{
+  return db.query(
+    "SELECT count(*) FROM pedidos ped inner join tipo_estados est on ped.estado = est.idestado where ped.almacen_destino = ? and ped.estado = 5",
+    [idAlmacen]
+  );
+}
+
+const getPedidosEncargadoRecepcionar=(idAlmacen,
+  numElementos,
+  pagina) =>{
+  return db.query(
+    "SELECT  numero_pedido, idPedido, fecha_creacion, almacen_origen, almacen_destino, fecha_entrega, usuario_asignado, usuario_responsable, est.descripcion estado, id_transporte, detalle_pedido FROM pedidos ped inner join tipo_estados est on ped.estado = est.idestado where ped.almacen_destino = ? and ped.estado = 5 LIMIT ? OFFSET ?",
+    [idAlmacen, numElementos, pagina]
+  );
+}
+
+
 const getPedidosByIdEmpleadoEstado = (
   usuario_asignado,
   estado,
@@ -280,4 +313,8 @@ module.exports = {
   getPedidosEncargado,
   getNumPedidosEncargado,
   deletePedidoById,
+  getPedidosEncargadoValidar,
+  getPedidosNumEncargadoValidar,
+  getPedidosNumEncargadoRecepcionar,
+  getPedidosEncargadoRecepcionar
 };
