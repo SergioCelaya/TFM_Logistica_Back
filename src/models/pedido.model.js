@@ -103,14 +103,14 @@ const getPedidosEncargadoValidar=(idAlmacen,idempleado,
 
 const getPedidosNumEncargadoValidar=(idAlmacen,idempleado) =>{
   return db.query(
-    "SELECT  count(*) FROM pedidos ped inner join tipo_estados est on ped.estado = est.idestado where ped.almacen_origen = ? and usuario_responsable = ? and ped.estado=1 ",
+    "SELECT  count(*) total FROM pedidos ped inner join tipo_estados est on ped.estado = est.idestado where ped.almacen_origen = ? and usuario_responsable = ? and ped.estado=1 ",
     [idAlmacen,idempleado]
   );
 }
 
 const getPedidosNumEncargadoRecepcionar=(idAlmacen) =>{
   return db.query(
-    "SELECT count(*) FROM pedidos ped inner join tipo_estados est on ped.estado = est.idestado where ped.almacen_destino = ? and ped.estado = 5",
+    "SELECT count(*) total FROM pedidos ped inner join tipo_estados est on ped.estado = est.idestado where ped.almacen_destino = ? and ped.estado = 5",
     [idAlmacen]
   );
 }
