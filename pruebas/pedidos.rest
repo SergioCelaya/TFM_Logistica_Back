@@ -18,7 +18,7 @@ GET http://localhost:3000/api/pedidos/byNumPedido/1234567890/
 GET http://localhost:3000/api/pedidos/byEmpleadoId/2/2
 ###
 ## Obtiene los pedidos de un responsable Paginado
-GET http://localhost:3000/api/pedidos/byResponsableId/3/1
+GET http://localhost:3000/api/pedidos/byResponsableId/19/1
 ###
 ##Obtiene todos los pedidos por empleado y estado Paginado
 ##/byEmpleadoEstado/:usuario_asignado/:estado/:pagina
@@ -39,10 +39,10 @@ GET http://localhost:3000/api/pedidos/byAlmacenDestino/2/1
 ##Obtiene los pedidos de un encargado
 ##de su almacen en estado pendiente de validar y si su almacen es el destino pendiente de recepción
 ##/byEncargado/:idempleado/:pagina
-GET http://localhost:3000/api/pedidos/deEncargadoByAlmacen/1/3/1
+GET http://localhost:3000/api/pedidos/deEncargadoByAlmacen/1/19/1
 ###
 ##Obtiene los pedidos de un encargado pendientes de validar
-##de su almacen en estado pendiente de validar y si su almacen es el destino pendiente de recepción
+##de su almacen en estado pendiente de validar 
 ##/byEncargado/:idempleado/:pagina
 GET http://localhost:3000/api/pedidos/deEncargadoValidar/1/3/1
 
