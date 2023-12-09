@@ -1,6 +1,7 @@
 var nodemailer = require("nodemailer");
 
 const sendEmail = function (req, res) {
+  console.log(req.body);
   // Definimos el transporter
   var transporter = nodemailer.createTransport({
     host: 'smtp.gmail.com',
@@ -14,6 +15,7 @@ const sendEmail = function (req, res) {
   const destinatario = req.body.destinatario;
   const asunto = req.body.asunto;
   const contenido = req.body.contenido;
+  
   // Definimos el email
   var mailOptions = {
     from: "tfm.logistics.sl@gmail.com",

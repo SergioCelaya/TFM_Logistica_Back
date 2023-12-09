@@ -150,7 +150,6 @@ const getPedidoByNumPedido = async (req, res) => {
 
 const getPedidosByIdEmpleadoEstado = async (req, res) => {
   try {
-    console.log(req.params);
     const [total] = await PedidosModel.getNumPedidosByIdEmpleadoEstado(
       req.params.usuario_asignado,
       req.params.estado
@@ -251,12 +250,10 @@ const getPedidosByAlmacenDestino = async (req, res) => {
 
 const getPedidosDeEncargado = async (req, res) => {
   try {
-    console.log(req.params);
     const [total] = await PedidosModel.getNumPedidosEncargado(
       req.params.idalmacen,
       req.params.idempleado
     );
-    console.log(total);
     const pagina =
       (req.params.pagina - 1) * parseInt(process.env.ELEMENTOS_POR_PAGINA);
     const [pedidos] = await PedidosModel.getPedidosEncargado(
@@ -279,12 +276,10 @@ const getPedidosDeEncargado = async (req, res) => {
 
 const getPedidosEncargadosValidar = async (req, res) => {
   try {
-    console.log(req.params);
     const [total] = await PedidosModel.getPedidosNumEncargadoValidar(
       req.params.idalmacen,
       req.params.idempleado
     );
-    console.log(total);
     const pagina =
       (req.params.pagina - 1) * parseInt(process.env.ELEMENTOS_POR_PAGINA);
     const [pedidos] = await PedidosModel.getPedidosEncargadoValidar(
@@ -307,11 +302,9 @@ const getPedidosEncargadosValidar = async (req, res) => {
 
 const getPedidosEncargadosRecepcionar = async (req, res) => {
   try {
-    console.log(req.params);
     const [total] = await PedidosModel.getPedidosNumEncargadoRecepcionar(
       req.params.idalmacen
     );
-    console.log(total);
     const pagina =
       (req.params.pagina - 1) * parseInt(process.env.ELEMENTOS_POR_PAGINA);
     const [pedidos] = await PedidosModel.getPedidosEncargadoRecepcionar(
@@ -334,7 +327,6 @@ const getPedidosEncargadosRecepcionar = async (req, res) => {
 //CREATE
 const createPedido = async (req, res) => {
   try {
-    console.log(req.body);
     const [result] = await PedidosModel.createPedido(req.body);
     const [pedido] = await PedidosModel.getPedidoById(result.insertId);
     res.json(pedido[0]);
@@ -346,8 +338,6 @@ const createPedido = async (req, res) => {
 //UPDATE
 const updatePedido = async (req, res) => {
   try {
-    console.log(req.body);
-    console.log(req.params);
     const { idPedido } = req.params;
     const [result] = await PedidosModel.updatePedido(idPedido, req.body);
     res.json(result);
