@@ -4,7 +4,7 @@ const bcrypt = require('bcryptjs');
 
 const getAllEmpleados = (numElementos, pagina) => {
   return db.query(
-    "SELECT emp.idempleado,emp.email,emp.nombre,emp.apellidos,pst.descripcion puesto,emp.idalmacen,emp.num_empleado,emp.activo,emp.fecha_contratacion FROM empleados emp inner join puestos_trabajo pst on emp.puesto = pst.idpuesto_trabajo LIMIT ? OFFSET ?",
+    "SELECT emp.idempleado,emp.email,emp.nombre,emp.apellidos,pst.descripcion puesto,emp.idalmacen,emp.num_empleado,emp.activo,emp.fecha_contratacion FROM empleados emp inner join puestos_trabajo pst on emp.puesto = pst.idpuesto_trabajo order by emp.idempleado desc LIMIT ? OFFSET ?",
     [numElementos, pagina]
   );
 };
@@ -28,21 +28,21 @@ const getEmpleadoByEmailConPwd = (email) => {
 
 const getEmpleadosByPuesto = (puesto, numElementos, pagina) => {
   return db.query(
-    "SELECT emp.idempleado,emp.email,emp.nombre,emp.apellidos,pst.descripcion puesto,emp.idalmacen,emp.num_empleado,emp.activo,emp.fecha_contratacion FROM empleados emp inner join puestos_trabajo pst on emp.puesto = pst.idpuesto_trabajo where emp.puesto = ? LIMIT ? OFFSET ?",
+    "SELECT emp.idempleado,emp.email,emp.nombre,emp.apellidos,pst.descripcion puesto,emp.idalmacen,emp.num_empleado,emp.activo,emp.fecha_contratacion FROM empleados emp inner join puestos_trabajo pst on emp.puesto = pst.idpuesto_trabajo where emp.puesto = ? order by emp.idempleado desc  LIMIT ? OFFSET ?",
     [puesto, numElementos, pagina]
   );
 };
 
 const getEmpleadosByPuestoSinPaginar = (puesto) => {
   return db.query(
-    "SELECT emp.idempleado,emp.email,emp.nombre,emp.apellidos,pst.descripcion puesto,emp.idalmacen,emp.num_empleado,emp.activo,emp.fecha_contratacion FROM empleados emp inner join puestos_trabajo pst on emp.puesto = pst.idpuesto_trabajo where emp.puesto = ?",
+    "SELECT emp.idempleado,emp.email,emp.nombre,emp.apellidos,pst.descripcion puesto,emp.idalmacen,emp.num_empleado,emp.activo,emp.fecha_contratacion FROM empleados emp inner join puestos_trabajo pst on emp.puesto = pst.idpuesto_trabajo where emp.puesto = ? order by emp.idempleado desc ",
     [puesto]
   );
 };
 
 const getEmpleadosByPuestoAlmacenSinPaginar = (puesto,idalmacen) => {
   return db.query(
-    "SELECT emp.idempleado,emp.email,emp.nombre,emp.apellidos,pst.descripcion puesto,emp.idalmacen,emp.num_empleado,emp.activo,emp.fecha_contratacion FROM empleados emp inner join puestos_trabajo pst on emp.puesto = pst.idpuesto_trabajo where emp.puesto = ? and emp.idalmacen = ?",
+    "SELECT emp.idempleado,emp.email,emp.nombre,emp.apellidos,pst.descripcion puesto,emp.idalmacen,emp.num_empleado,emp.activo,emp.fecha_contratacion FROM empleados emp inner join puestos_trabajo pst on emp.puesto = pst.idpuesto_trabajo where emp.puesto = ? and emp.idalmacen = ? order by emp.idempleado desc ",
     [puesto,idalmacen]
   );
 };

@@ -28,6 +28,7 @@ POST http://localhost:3000/api/incidencias/ HTTP/1.1
 content-type: application/json
 
 {
+    "idincidencia": null,
     "titulo": "Faltan cosas",
     "descripcion": "Al pedido X le faltan cosas",
     "idpedido_asociado": 27,

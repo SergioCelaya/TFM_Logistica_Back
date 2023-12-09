@@ -2,14 +2,14 @@
 
 const getAllIncidencias = (numElementos, pagina) => {
   return db.query(
-    "SELECT inc.*, ped.usuario_asignado FROM incidencias inc INNER JOIN pedidos ped ON inc.idpedido_asociado = ped.idPedido LIMIT ? OFFSET ?",
+    "SELECT inc.*, ped.usuario_asignado FROM incidencias inc INNER JOIN pedidos ped ON inc.idpedido_asociado = ped.idPedido order by inc.idincidencia desc LIMIT ? OFFSET ?",
     [numElementos, pagina]
   );
 };
 
 const getIncidenciaByIdPedido=(idPedido)=>{
   return db.query(
-    "SELECT * FROM incidencias where idpedido_asociado = ? and vista = 0",
+    "SELECT * FROM incidencias where idpedido_asociado = ? and vista = 0 order by idincidencia desc ",
     [idPedido]
   );
 }
@@ -26,7 +26,7 @@ const getIncidenciaById = (idIncidencia) => {
 
 const getAllIncidenciasByEmpleado = (usuario_asignado,numElementos, pagina) => {
   return db.query(
-    "SELECT  ped.usuario_asignado, inc.* FROM incidencias inc INNER JOIN pedidos ped ON inc.idpedido_asociado = ped.idPedido WHERE ped.usuario_asignado = ? LIMIT ? OFFSET ?",
+    "SELECT  ped.usuario_asignado, inc.* FROM incidencias inc INNER JOIN pedidos ped ON inc.idpedido_asociado = ped.idPedido WHERE ped.usuario_asignado = ? order by inc.idincidencia desc  LIMIT ? OFFSET ?",
     [usuario_asignado,numElementos, pagina]
   );
 };
@@ -42,7 +42,7 @@ const getNumAllIncidenciasByEmpleado = (usuario_asignado) => {
 
 const getAllIncidenciasNoVistasByEmpleado = (usuario_asignado,numElementos, pagina) => {
   return db.query(
-    "SELECT ped.usuario_asignado, inc.* FROM incidencias inc INNER JOIN pedidos ped ON inc.idpedido_asociado = ped.idPedido WHERE ped.usuario_asignado = ? AND inc.vista = 0 LIMIT ? OFFSET ?",
+    "SELECT ped.usuario_asignado, inc.* FROM incidencias inc INNER JOIN pedidos ped ON inc.idpedido_asociado = ped.idPedido WHERE ped.usuario_asignado = ? AND inc.vista = 0 order by inc.idincidencia desc  LIMIT ? OFFSET ?",
     [usuario_asignado,numElementos, pagina]
   );
 };
