@@ -11,7 +11,7 @@ const sendEmail = function (req, res) {
         pass: "lavs tgxj okjb coov" 
     }
   });
-  const destinatario = req.body.detinatario;
+  const destinatario = req.body.destinatario;
   const asunto = req.body.asunto;
   const contenido = req.body.contenido;
   // Definimos el email
