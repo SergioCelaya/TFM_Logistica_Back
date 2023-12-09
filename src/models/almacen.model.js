@@ -4,6 +4,10 @@ const getAllAlmacenes = () => {
   return db.query("SELECT * FROM almacenes");
 };
 
+const getAllAlmacenesActivos = () => {
+  return db.query("SELECT * FROM almacenes where activo = 1");
+};
+
 const getAlmacenById = (idAlmacen) => {
   return db.query("SELECT * FROM almacenes WHERE idalmacen = ?", [idAlmacen]);
 };
@@ -47,6 +51,7 @@ const updateNombreImagenAlmacen = (idAlmacen, imagen_almacen) => {
 
 module.exports = {
   getAllAlmacenes,
+  getAllAlmacenesActivos,
   getAlmacenById,
   createAlmacen,
   updateAlmacen,

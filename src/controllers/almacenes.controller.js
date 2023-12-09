@@ -10,6 +10,15 @@ const getAllAlmacenes = async (req, res) => {
     }
   };
 
+  const getAllAlmacenesActivos = async (req, res) => {
+    try {
+      const [result] = await AlmacenModel.getAllAlmacenesActivos();
+      res.json(result);
+    } catch (error) {
+      res.json({ fatal: error.message });
+    }
+  };
+
   const getAlmacenById = async (req, res) => {
     try {
       const idAlmacen = req.params.idAlmacen
@@ -70,6 +79,7 @@ const getAllAlmacenes = async (req, res) => {
   };
   module.exports = {
     getAllAlmacenes,
+    getAllAlmacenesActivos,
     getAlmacenById,
     createAlmacen,
     updateAlmacen,

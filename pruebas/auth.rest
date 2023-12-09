@@ -14,7 +14,7 @@ content-type: application/json
 
 {
     "email": "calmen.rios@example.com",
-    "pwd" : "1234568"
+    "pwd" : "12345678"
 }
 
 ### GET http://localhost:3000/api/auth/

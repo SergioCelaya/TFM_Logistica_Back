@@ -3,6 +3,8 @@
 ### GET http://localhost:3000/api/almacenes/
 GET http://localhost:3000/api/almacenes/
 
+### GET http://localhost:3000/api/almacenes/activos
+GET http://localhost:3000/api/almacenes/activos
 ###
 //GET http://localhost:3000/api/almacenes/:idAlmacen/
 GET http://localhost:3000/api/almacenes/2

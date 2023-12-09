@@ -5,9 +5,8 @@ const {checkAlmacenId, validateAlmacen} = require('../../middlewares/almacenes.m
 // GET
 
 router.get('/', AlmacenController.getAllAlmacenes);
-
+router.get('/activos', AlmacenController.getAllAlmacenesActivos);
 router.get('/:idAlmacen', AlmacenController.getAlmacenById);
-
 
 router.post('/', validateAlmacen, AlmacenController.createAlmacen);
 
