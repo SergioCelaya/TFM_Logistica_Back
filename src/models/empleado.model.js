@@ -4,7 +4,7 @@ const bcrypt = require('bcryptjs');
 
 const getAllEmpleados = (numElementos, pagina) => {
   return db.query(
-    "SELECT emp.idempleado,emp.email,emp.nombre,emp.apellidos,pst.descripcion puesto,emp.idalmacen,emp.num_empleado,emp.activo,emp.fecha_contratacion FROM empleados emp inner join puestos_trabajo pst on emp.puesto = pst.idpuesto_trabajo order by emp.idempleado desc LIMIT ? OFFSET ?",
+    "SELECT emp.idempleado, emp.email, emp.nombre, emp.apellidos, pst.descripcion puesto, emp.idalmacen, emp.num_empleado, emp.activo, emp.fecha_contratacion FROM empleados emp INNER JOIN puestos_trabajo pst ON emp.puesto = pst.idpuesto_trabajo ORDER BY emp.nombre ASC LIMIT ? OFFSET ?",
     [numElementos, pagina]
   );
 };
