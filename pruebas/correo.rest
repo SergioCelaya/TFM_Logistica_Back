@@ -1,0 +1,10 @@
+### POST http://localhost:3000/api/correos/
+POST http://localhost:3000/api/correos/ HTTP/1.1
+content-type: application/json
+
+{
+      "detinatario":"sercelaya@gmail.com",
+      "asunto": "Cambio de estado",
+      "contenido": "Esto es un correo de cambio de estado"
+}
+
