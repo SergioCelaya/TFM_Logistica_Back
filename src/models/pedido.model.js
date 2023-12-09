@@ -207,44 +207,6 @@ const createPedido = ({
     ]
   );
 };
-/*const createPedido = async ({
-  fecha_creacion,
-  almacen_origen,
-  almacen_destino,
-  fecha_entrega,
-  usuario_asignado,
-  usuario_responsable,
-  estado,
-  id_transporte,
-  detalle_pedido,
-}) => {
-  try {
-    // Obtener el número de pedido actual en la base de datos
-    const [currentNumberResult] = await db.query("SELECT MAX(numero_pedido) AS max_numero FROM pedidos");
-
-    // Verificar si se obtuvo un resultado válido
-    const currentNumber = currentNumberResult && currentNumberResult[0] && currentNumberResult[0].max_numero;
-
-    if (typeof currentNumber === 'undefined') {
-      throw new Error("Error al obtener el número de pedido actual.");
-    }
-
-    // Calcular el nuevo número de pedido como un entero
-    const nextNumber = currentNumber ? currentNumber + 1 : 1000000001;
-
-    // Insertar el nuevo pedido con el número calculado
-    const [result] = await db.query(
-      "INSERT INTO pedidos (numero_pedido, fecha_creacion, almacen_origen, almacen_destino, fecha_entrega, usuario_asignado, usuario_responsable, estado, id_transporte, detalle_pedido) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
-      [nextNumber, fecha_creacion, almacen_origen, almacen_destino, fecha_entrega, usuario_asignado, usuario_responsable, estado, id_transporte, detalle_pedido]
-    );
-
-    // Devolver el número de pedido generado
-    return { numero_pedido: nextNumber, ...result };
-  } catch (error) {
-    console.error("Error al crear el pedido:", error);
-    throw error;
-  }
-};*/
 
 //UPDATE
 const updatePedido = (
