@@ -28,7 +28,6 @@ const getAllIncidencias = async (req, res) => {
 
 const getAllIncidenciasAlmacen = async (req, res) => {
   try {
-    console.log(req.params)
     const idAlmacen = req.params.idAlmacen;
     const pagina =
     (req.params.pagina - 1) * parseInt(process.env.ELEMENTOS_POR_PAGINA_INCIDENCIAS);

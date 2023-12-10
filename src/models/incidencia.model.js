@@ -65,7 +65,7 @@ const getNumAllIncidenciasAlmacen = (idAlmacen) => {
 
 const getAllIncidenciasAlmacen = (idAlmacen,numElementos, pagina) => {
   return db.query(
-    "SELECT inc.*, ped.usuario_asignado total FROM incidencias inc INNER JOIN pedidos ped ON inc.idpedido_asociado = ped.idPedido where  ped.almacen_origen = ? order by inc.idincidencia desc LIMIT ? OFFSET ?",
+    "SELECT inc.*, ped.usuario_asignado FROM incidencias inc INNER JOIN pedidos ped ON inc.idpedido_asociado = ped.idPedido where  ped.almacen_origen = ? order by inc.idincidencia desc LIMIT ? OFFSET ?",
     [idAlmacen,numElementos, pagina]
   );
 };
