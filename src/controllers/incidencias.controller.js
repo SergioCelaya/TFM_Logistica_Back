@@ -26,6 +26,31 @@ const getAllIncidencias = async (req, res) => {
   }
 };
 
+const getAllIncidenciasAlmacen = async (req, res) => {
+  try {
+    console.log(req.params)
+    const idAlmacen = req.params.idAlmacen;
+    const pagina =
+    (req.params.pagina - 1) * parseInt(process.env.ELEMENTOS_POR_PAGINA_INCIDENCIAS);
+    const [total] = await IncidenciaModel.getNumAllIncidenciasAlmacen(idAlmacen);
+    const [incidencias] = await IncidenciaModel.getAllIncidenciasAlmacen(
+      idAlmacen,
+      parseInt(6),
+      pagina
+    );
+    let result = [];
+    for (let incidencia of incidencias) {
+      let [empleadoAsignado] = await EmpleadoModel.getEmpleadoById(incidencia.usuario_asignado);
+      incidencia.usuario_asignado = empleadoAsignado[0];
+      result.push(incidencia);
+    }
+
+    res.json(addPaginadoIncidencias(req.params.pagina, total[0].total, result));
+  } catch (error) {
+    res.json({ fatal: error.message });
+  }
+};
+
 const getIncidenciaById = async (req, res) => {
   try {
     const idIncidencia = req.params.idIncidencia;
@@ -141,6 +166,7 @@ const updateIncidenciaToNoVista = async (req, res) => {
 
 module.exports = {
   getAllIncidencias,
+  getAllIncidenciasAlmacen,
   getIncidenciaById,
   getAllIncidenciasByIdEmpleado,
   getAllIncidenciasNoVistasByIdEmpleado,

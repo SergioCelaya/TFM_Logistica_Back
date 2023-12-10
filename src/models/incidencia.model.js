@@ -53,6 +53,21 @@ const getNumAllIncidenciasNoVistasByEmpleado = (usuario_asignado) => {
     "SELECT count(*) total FROM incidencias inc INNER JOIN pedidos ped ON inc.idpedido_asociado = ped.idPedido WHERE ped.usuario_asignado = ? AND inc.vista = 0",
     [usuario_asignado]
   );
+
+};
+
+const getNumAllIncidenciasAlmacen = (idAlmacen) => {
+  return db.query(
+    "SELECT count(*) total FROM incidencias inc  INNER JOIN pedidos ped ON inc.idpedido_asociado = ped.idPedido where  ped.almacen_origen = ?",
+    [idAlmacen]
+  );
+};
+
+const getAllIncidenciasAlmacen = (idAlmacen,numElementos, pagina) => {
+  return db.query(
+    "SELECT inc.*, ped.usuario_asignado total FROM incidencias inc INNER JOIN pedidos ped ON inc.idpedido_asociado = ped.idPedido where  ped.almacen_origen = ? order by inc.idincidencia desc LIMIT ? OFFSET ?",
+    [idAlmacen,numElementos, pagina]
+  );
 };
 // CREATE
 
@@ -109,6 +124,8 @@ module.exports = {
   getNumAllIncidenciasNoVistasByEmpleado,
   getNumAllIncidencias,
   getAllIncidencias,
+  getAllIncidenciasAlmacen,
+  getNumAllIncidenciasAlmacen,
   getIncidenciaById,
   getAllIncidenciasByEmpleado,
   getAllIncidenciasNoVistasByEmpleado,

@@ -6,6 +6,8 @@ const {checkIncidenciaId, validateIncidencia} = require('../../middlewares/incid
 
 router.get("/:pagina", IncidenciasController.getAllIncidencias );
 
+router.get("/byAlmacen/:idAlmacen/:pagina",IncidenciasController.getAllIncidenciasAlmacen);
+
 router.get("/byId/:idIncidencia", checkIncidenciaId, IncidenciasController.getIncidenciaById);
 
 router.get("/byIdPedido/:idpedido",  IncidenciasController.getIncidenciaByIdPedido);
