@@ -1,5 +1,6 @@
 const PedidosModel = require("../models/pedido.model");
 const EmpleadosModel = require("../models/empleado.model");
+const EstadosController = require("../controllers/estados.controller");
 const { addPaginado } = require("../helpers/utils");
 
 async function addEmpleadosPedidos(pedidos) {
@@ -339,7 +340,7 @@ const createPedido = async (req, res) => {
 const updatePedido = async (req, res) => {
   try {
     const { idPedido } = req.params;
-    const [result] = await PedidosModel.updatePedido(idPedido, req.body);
+    const [result] = await PedidosModel.updatePedido(idPedido, req.body);  
     res.json(result);
   } catch (error) {
     res.json({ fatal: error.message });
@@ -348,7 +349,9 @@ const updatePedido = async (req, res) => {
 
 const toPendienteValidar = async (req, res) => {
   try {
+    const { idPedido } = req.params;
     const [result] = await PedidosModel.toPendienteValidar(req.params.idPedido);
+    await EstadosController.insertEstadoPedido(idPedido, 1);
     res.json(result);
   } catch (error) {
     res.json({ fatal: error.message });
@@ -357,7 +360,9 @@ const toPendienteValidar = async (req, res) => {
 
 const toRectificar = async (req, res) => {
   try {
+    const { idPedido } = req.params;
     const [result] = await PedidosModel.toRectificar(req.params.idPedido);
+    await EstadosController.insertEstadoPedido(idPedido, 2);
     res.json(result);
   } catch (error) {
     res.json({ fatal: error.message });
@@ -366,7 +371,9 @@ const toRectificar = async (req, res) => {
 
 const toValidado = async (req, res) => {
   try {
+    const { idPedido } = req.params;
     const [result] = await PedidosModel.toValidado(req.params.idPedido);
+    await EstadosController.insertEstadoPedido(idPedido, 3);
     res.json(result);
   } catch (error) {
     res.json({ fatal: error.message });
@@ -375,7 +382,9 @@ const toValidado = async (req, res) => {
 
 const toEnTransito = async (req, res) => {
   try {
+    const { idPedido } = req.params;
     const [result] = await PedidosModel.toEnTransito(req.params.idPedido);
+    await EstadosController.insertEstadoPedido(idPedido, 4);
     res.json(result);
   } catch (error) {
     res.json({ fatal: error.message });
@@ -384,9 +393,9 @@ const toEnTransito = async (req, res) => {
 
 const toPendienteRecepcionar = async (req, res) => {
   try {
-    const [result] = await PedidosModel.toPendienteRecepcionar(
-      req.params.idPedido
-    );
+    const { idPedido } = req.params;
+    const [result] = await PedidosModel.toPendienteRecepcionar(req.params.idPedido);
+    await EstadosController.insertEstadoPedido(idPedido, 5);
     res.json(result);
   } catch (error) {
     res.json({ fatal: error.message });
@@ -395,7 +404,9 @@ const toPendienteRecepcionar = async (req, res) => {
 
 const toFinalizado = async (req, res) => {
   try {
+    const { idPedido } = req.params;
     const [result] = await PedidosModel.toFinalizado(req.params.idPedido);
+    await EstadosController.insertEstadoPedido(idPedido, 6);
     res.json(result);
   } catch (error) {
     res.json({ fatal: error.message });

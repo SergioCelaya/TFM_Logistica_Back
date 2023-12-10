@@ -84,14 +84,14 @@ content-type: application/json
     "detalle_pedido": "250 palés de cereales, de 500 kg cada uno."
 }
 ### 
-PUT http://localhost:3000/api/pedidos/toPendienteValidar/2 
+PUT http://localhost:3000/api/pedidos/toPendienteValidar/5 
 ###
-PUT http://localhost:3000/api/pedidos/toRectificar/2
+PUT http://localhost:3000/api/pedidos/toRectificar/5
 ###
-PUT http://localhost:3000/api/pedidos/toValidado/2
+PUT http://localhost:3000/api/pedidos/toValidado/5
 ###
-PUT http://localhost:3000/api/pedidos/toEnTransito/2
+PUT http://localhost:3000/api/pedidos/toEnTransito/5
 ###
-PUT http://localhost:3000/api/pedidos/toPendienteRecepcionar/2
+PUT http://localhost:3000/api/pedidos/toPendienteRecepcionar/5
 ###
-PUT http://localhost:3000/api/pedidos/toFinalizado/2
+PUT http://localhost:3000/api/pedidos/toFinalizado/5
