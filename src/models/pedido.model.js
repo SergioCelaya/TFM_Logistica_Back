@@ -31,7 +31,7 @@ const getNumPedidosByIdEmpleado = (usuario_asignado) => {
 
 const getPedidoByIdEmpleado = (usuario_asignado, numElementos, pagina) => {
   return db.query(
-    "select idPedido,numero_pedido,fecha_creacion,almacen_origen,almacen_destino,fecha_entrega,usuario_asignado,usuario_responsable,est.descripcion estado,id_transporte,detalle_pedido from pedidos ped inner join tipo_estados est on ped.estado = est.idestado where ped.usuario_asignado = ? ORDER BY fecha_creacion DESC LIMIT ? OFFSET ?",
+    "select idPedido,numero_pedido,fecha_creacion,almacen_origen,almacen_destino,fecha_entrega,usuario_asignado,usuario_responsable,est.descripcion estado,id_transporte,detalle_pedido from pedidos ped inner join tipo_estados est on ped.estado = est.idestado where ped.usuario_asignado = ? ORDER BY fecha_creacion DESC, idPedido DESC LIMIT ? OFFSET ?",
     [usuario_asignado, numElementos, pagina]
   );
 };
