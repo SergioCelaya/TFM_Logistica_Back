@@ -5,7 +5,7 @@ const getNumPedidos = () => {
 
 const getAllPedidos = (numElementos, pagina) => {
   return db.query(
-    "select idPedido,numero_pedido,fecha_creacion,almacen_origen,almacen_destino,fecha_entrega,usuario_asignado,usuario_responsable,est.descripcion estado,id_transporte,detalle_pedido from pedidos ped inner join tipo_estados est on ped.estado = est.idestado LIMIT ? OFFSET ?",
+    "select idPedido,numero_pedido,CONVERT_TZ(fecha_creacion, '+00:00', '+02:00') as fecha_creacion,almacen_origen,almacen_destino,CONVERT_TZ(fecha_entrega, '+00:00', '+02:00') as fecha_entrega,usuario_asignado,usuario_responsable,est.descripcion estado,id_transporte,detalle_pedido from pedidos ped inner join tipo_estados est on ped.estado = est.idestado LIMIT ? OFFSET ?",
     [numElementos, pagina]
   );
 };
@@ -16,7 +16,7 @@ const getNumPedidosByEstado = (estado) => {
 
 const getAllPedidosByEstado = (estado, numElementos, pagina) => {
   return db.query(
-    "SELECT idPedido, numero_pedido, fecha_creacion, almacen_origen, almacen_destino, fecha_entrega, usuario_asignado, usuario_responsable, est.descripcion estado, id_transporte, detalle_pedido FROM pedidos ped INNER JOIN tipo_estados est ON ped.estado = est.idestado WHERE estado = ? LIMIT ? OFFSET ?",
+    "SELECT idPedido, numero_pedido, CONVERT_TZ(fecha_creacion, '+00:00', '+02:00') as fecha_creacion, almacen_origen, almacen_destino, CONVERT_TZ(fecha_entrega, '+00:00', '+02:00') as fecha_entrega, usuario_asignado, usuario_responsable, est.descripcion estado, id_transporte, detalle_pedido FROM pedidos ped INNER JOIN tipo_estados est ON ped.estado = est.idestado WHERE estado = ? LIMIT ? OFFSET ?",
     [estado, numElementos, pagina]
   );
 };
@@ -31,7 +31,7 @@ const getNumPedidosByIdEmpleado = (usuario_asignado) => {
 
 const getPedidoByIdEmpleado = (usuario_asignado, numElementos, pagina) => {
   return db.query(
-    "select idPedido,numero_pedido,fecha_creacion,almacen_origen,almacen_destino,fecha_entrega,usuario_asignado,usuario_responsable,est.descripcion estado,id_transporte,detalle_pedido from pedidos ped inner join tipo_estados est on ped.estado = est.idestado where ped.usuario_asignado = ? ORDER BY fecha_creacion DESC, idPedido DESC LIMIT ? OFFSET ?",
+    "select idPedido,numero_pedido,CONVERT_TZ(fecha_creacion, '+00:00', '+02:00') as fecha_creacion,almacen_origen,almacen_destino,CONVERT_TZ(fecha_entrega, '+00:00', '+02:00') as fecha_entrega,usuario_asignado,usuario_responsable,est.descripcion estado,id_transporte,detalle_pedido from pedidos ped inner join tipo_estados est on ped.estado = est.idestado where ped.usuario_asignado = ? ORDER BY fecha_creacion DESC, idPedido DESC LIMIT ? OFFSET ?",
     [usuario_asignado, numElementos, pagina]
   );
 };
@@ -49,14 +49,14 @@ const getPedidoByIdResponsable = (
   pagina
 ) => {
   return db.query(
-    "select idPedido,numero_pedido,fecha_creacion,almacen_origen,almacen_destino,fecha_entrega,usuario_asignado,usuario_responsable,est.descripcion estado,id_transporte,detalle_pedido from pedidos ped inner join tipo_estados est on ped.estado = est.idestado where ped.usuario_responsable = ? LIMIT ? OFFSET ?",
+    "select idPedido,numero_pedido,CONVERT_TZ(fecha_creacion, '+00:00', '+02:00') as fecha_creacion,almacen_origen,almacen_destino,CONVERT_TZ(fecha_entrega, '+00:00', '+02:00') as fecha_entrega,usuario_asignado,usuario_responsable,est.descripcion estado,id_transporte,detalle_pedido from pedidos ped inner join tipo_estados est on ped.estado = est.idestado where ped.usuario_responsable = ? LIMIT ? OFFSET ?",
     [usuario_responsable, numElementos, pagina]
   );
 };
 
 const getPedidoById = (idPedido) => {
   return db.query(
-    "select idPedido,numero_pedido,fecha_creacion,almacen_origen,almacen_destino,fecha_entrega,usuario_asignado,usuario_responsable,est.descripcion estado,id_transporte,detalle_pedido from pedidos ped inner join tipo_estados est on ped.estado = est.idestado where ped.idPedido = ?",
+    "select idPedido,numero_pedido,CONVERT_TZ(fecha_creacion, '+00:00', '+02:00') as fecha_creacion,almacen_origen,almacen_destino,CONVERT_TZ(fecha_entrega, '+00:00', '+02:00') as fecha_entrega,usuario_asignado,usuario_responsable,est.descripcion estado,id_transporte,detalle_pedido from pedidos ped inner join tipo_estados est on ped.estado = est.idestado where ped.idPedido = ?",
     [idPedido]
   );
 };
@@ -64,7 +64,7 @@ const getPedidoById = (idPedido) => {
 
 const getPedidoByNumPedido = (numPedido) => {
   return db.query(
-    "SELECT  numero_pedido, idPedido, fecha_creacion, almacen_origen, almacen_destino, fecha_entrega, usuario_asignado, usuario_responsable, est.descripcion estado, id_transporte, detalle_pedido FROM pedidos ped INNER JOIN tipo_estados est ON ped.estado = est.idestado WHERE numero_pedido = ?",
+    "SELECT  numero_pedido, idPedido, CONVERT_TZ(fecha_creacion, '+00:00', '+02:00') as fecha_creacion, almacen_origen, almacen_destino, CONVERT_TZ(fecha_entrega, '+00:00', '+02:00') as fecha_entrega, usuario_asignado, usuario_responsable, est.descripcion estado, id_transporte, detalle_pedido FROM pedidos ped INNER JOIN tipo_estados est ON ped.estado = est.idestado WHERE numero_pedido = ?",
     [numPedido]
   );
 };
@@ -80,7 +80,7 @@ const getPedidosEncargado=(idAlmacen,idempleado,
   numElementos,
   pagina) =>{
   return db.query(
-    "SELECT  numero_pedido, idPedido, fecha_creacion, almacen_origen, almacen_destino, fecha_entrega, usuario_asignado, usuario_responsable, est.descripcion estado, id_transporte, detalle_pedido FROM pedidos ped inner join tipo_estados est on ped.estado = est.idestado where (ped.almacen_origen = ? and usuario_responsable = ? and ped.estado=1) or (ped.almacen_destino = ? and ped.estado = 5) LIMIT ? OFFSET ?",
+    "SELECT  numero_pedido, idPedido, CONVERT_TZ(fecha_creacion, '+00:00', '+02:00') as fecha_creacion, almacen_origen, almacen_destino, CONVERT_TZ(fecha_entrega, '+00:00', '+02:00') as fecha_entrega, usuario_asignado, usuario_responsable, est.descripcion estado, id_transporte, detalle_pedido FROM pedidos ped inner join tipo_estados est on ped.estado = est.idestado where (ped.almacen_origen = ? and usuario_responsable = ? and ped.estado=1) or (ped.almacen_destino = ? and ped.estado = 5) LIMIT ? OFFSET ?",
     [idAlmacen,idempleado,idAlmacen, numElementos, pagina]
   );
 }
@@ -96,7 +96,7 @@ const getPedidosEncargadoValidar=(idAlmacen,idempleado,
   numElementos,
   pagina) =>{
   return db.query(
-    "SELECT  numero_pedido, idPedido, fecha_creacion, almacen_origen, almacen_destino, fecha_entrega, usuario_asignado, usuario_responsable, est.descripcion estado, id_transporte, detalle_pedido FROM pedidos ped inner join tipo_estados est on ped.estado = est.idestado where ped.almacen_origen = ? and usuario_responsable = ? and ped.estado=1 LIMIT ? OFFSET ?",
+    "SELECT  numero_pedido, idPedido, CONVERT_TZ(fecha_creacion, '+00:00', '+02:00') as fecha_creacion, almacen_origen, almacen_destino, CONVERT_TZ(fecha_entrega, '+00:00', '+02:00') as fecha_entrega, usuario_asignado, usuario_responsable, est.descripcion estado, id_transporte, detalle_pedido FROM pedidos ped inner join tipo_estados est on ped.estado = est.idestado where ped.almacen_origen = ? and usuario_responsable = ? and ped.estado=1 LIMIT ? OFFSET ?",
     [idAlmacen,idempleado, numElementos, pagina]
   );
 }
@@ -119,7 +119,7 @@ const getPedidosEncargadoRecepcionar=(idAlmacen,
   numElementos,
   pagina) =>{
   return db.query(
-    "SELECT  numero_pedido, idPedido, fecha_creacion, almacen_origen, almacen_destino, fecha_entrega, usuario_asignado, usuario_responsable, est.descripcion estado, id_transporte, detalle_pedido FROM pedidos ped inner join tipo_estados est on ped.estado = est.idestado where ped.almacen_destino = ? and ped.estado = 5 LIMIT ? OFFSET ?",
+    "SELECT  numero_pedido, idPedido, CONVERT_TZ(fecha_creacion, '+00:00', '+02:00') as fecha_creacion, almacen_origen, almacen_destino, CONVERT_TZ(fecha_entrega, '+00:00', '+02:00') as fecha_entrega, usuario_asignado, usuario_responsable, est.descripcion estado, id_transporte, detalle_pedido FROM pedidos ped inner join tipo_estados est on ped.estado = est.idestado where ped.almacen_destino = ? and ped.estado = 5 LIMIT ? OFFSET ?",
     [idAlmacen, numElementos, pagina]
   );
 }
@@ -132,7 +132,7 @@ const getPedidosByIdEmpleadoEstado = (
   pagina
 ) => {
   return db.query(
-    "select idPedido,numero_pedido,fecha_creacion,almacen_origen,almacen_destino,fecha_entrega,usuario_asignado,usuario_responsable,est.descripcion estado,id_transporte,detalle_pedido from pedidos ped inner join tipo_estados est on ped.estado = est.idestado where ped.usuario_asignado = ? and ped.estado = ? LIMIT ? OFFSET ?",
+    "select idPedido,numero_pedido,CONVERT_TZ(fecha_creacion, '+00:00', '+02:00') as fecha_creacion,almacen_origen,almacen_destino,CONVERT_TZ(fecha_entrega, '+00:00', '+02:00') as fecha_entrega,usuario_asignado,usuario_responsable,est.descripcion estado,id_transporte,detalle_pedido from pedidos ped inner join tipo_estados est on ped.estado = est.idestado where ped.usuario_asignado = ? and ped.estado = ? LIMIT ? OFFSET ?",
     [usuario_asignado, estado, numElementos, pagina]
   );
 };
@@ -146,7 +146,7 @@ const getNumPedidosByIdResponsableEstado = (usuario_responsable, estado) => {
 
 const getPedidosByIdResponsableEstado = (usuario_responsable, estado) => {
   return db.query(
-    "select idPedido,numero_pedido,fecha_creacion,almacen_origen,almacen_destino,fecha_entrega,usuario_asignado,usuario_responsable,est.descripcion estado,id_transporte,detalle_pedido from pedidos ped inner join tipo_estados est on ped.estado = est.idestado where ped.usuario_responsable = ? and ped.estado = ?",
+    "select idPedido,numero_pedido,CONVERT_TZ(fecha_creacion, '+00:00', '+02:00') as fecha_creacion,almacen_origen,almacen_destino,CONVERT_TZ(fecha_entrega, '+00:00', '+02:00') as fecha_entrega,usuario_asignado,usuario_responsable,est.descripcion estado,id_transporte,detalle_pedido from pedidos ped inner join tipo_estados est on ped.estado = est.idestado where ped.usuario_responsable = ? and ped.estado = ?",
     [usuario_responsable, estado]
   );
 };
@@ -159,7 +159,7 @@ const getNumPedidosByAlmacenOrigen = (almacen_origen) => {
 };
 const getPedidosByAlmacenOrigen = (almacen_origen, numElementos, pagina) => {
   return db.query(
-    "select idPedido,numero_pedido,fecha_creacion,almacen_origen,almacen_destino,fecha_entrega,usuario_asignado,usuario_responsable,est.descripcion estado,id_transporte,detalle_pedido from pedidos ped inner join tipo_estados est on ped.estado = est.idestado where ped.almacen_origen = ? LIMIT ? OFFSET ?",
+    "select idPedido,numero_pedido,CONVERT_TZ(fecha_creacion, '+00:00', '+02:00') as fecha_creacion,almacen_origen,almacen_destino,CONVERT_TZ(fecha_entrega, '+00:00', '+02:00') as fecha_entrega,usuario_asignado,usuario_responsable,est.descripcion estado,id_transporte,detalle_pedido from pedidos ped inner join tipo_estados est on ped.estado = est.idestado where ped.almacen_origen = ? LIMIT ? OFFSET ?",
     [almacen_origen, numElementos, pagina]
   );
 };
@@ -173,7 +173,7 @@ const getNumPedidosByAlmacenDestino = (almacen_destino) => {
 
 const getPedidosByAlmacenDestino = (almacen_destino, numElementos, pagina) => {
   return db.query(
-    "select idPedido,numero_pedido,fecha_creacion,almacen_origen,almacen_destino,fecha_entrega,usuario_asignado,usuario_responsable,est.descripcion estado,id_transporte,detalle_pedido from pedidos ped inner join tipo_estados est on ped.estado = est.idestado where ped.almacen_destino = ? LIMIT ? OFFSET ?",
+    "select idPedido,numero_pedido,CONVERT_TZ(fecha_creacion, '+00:00', '+02:00') as fecha_creacion,almacen_origen,almacen_destino,CONVERT_TZ(fecha_entrega, '+00:00', '+02:00') as fecha_entrega,usuario_asignado,usuario_responsable,est.descripcion estado,id_transporte,detalle_pedido from pedidos ped inner join tipo_estados est on ped.estado = est.idestado where ped.almacen_destino = ? LIMIT ? OFFSET ?",
     [almacen_destino, numElementos, pagina]
   );
 };

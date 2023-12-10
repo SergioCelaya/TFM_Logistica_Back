@@ -3,13 +3,13 @@
 
 ### GET ###
 ## Obtiene todos los pedidos de la BBDD Paginado
-GET http://localhost:3000/api/pedidos/1
+GET http://localhost:3000/api/pedidos/3
 ### 
 ## Obtiene todos los pedidos por estado Paginado
 GET http://localhost:3000/api/pedidos/estado/3/1
 ### 
 ## Obtiene el pedido por el id pedido
-GET http://localhost:3000/api/pedidos/byId/5
+GET http://localhost:3000/api/pedidos/byId/29
 ###
 ## Obtiene el pedido por el número de pedido
 GET http://localhost:3000/api/pedidos/byNumPedido/1234567890/
@@ -68,15 +68,15 @@ content-type: application/json
     "detalle_pedido": "250 palés de cereales, de 500 kg cada uno."
 }
 ### UPDATE
-PUT  http://localhost:3000/api/pedidos/2 HTTP/1.1
+PUT  http://localhost:3000/api/pedidos/27 HTTP/1.1
 content-type: application/json
 
 {
-    "numero_pedido": "2346666661",
+    "numero_pedido": "5735683",
     "fecha_creacion": "2023-07-12 08:45:00",
     "almacen_origen": 1,
     "almacen_destino": 3,
-    "fecha_entrega": "2023-12-04 23:00:00",
+    "fecha_entrega": "2023-12-04 09:00:00",
     "usuario_asignado": 2,
     "usuario_responsable": 3,
     "estado": 3,
