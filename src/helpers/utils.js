@@ -33,9 +33,19 @@ function addPaginado(pagina, total, respuesta) {
       Resultado: respuesta,
     };
   }
+
+  function addPaginadoEmpleados(pagina, total, respuesta) {
+    return {
+      TotalElementos: parseInt(total),
+      ElementosPagina: parseInt(process.env.ELEMENTOS_POR_PAGINA_EMPLEADOS),
+      Pagina: parseInt(pagina),
+      Resultado: respuesta,
+    };
+  }
   
   module.exports = {
     addPaginadoIncidencias,
+    addPaginadoEmpleados,
     createToken,
     addPaginado
   };

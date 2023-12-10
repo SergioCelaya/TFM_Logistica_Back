@@ -1,5 +1,5 @@
 const EmpleadosModel = require("../models/empleado.model");
-const { addPaginado } = require("../helpers/utils");
+const { addPaginadoEmpleados } = require("../helpers/utils");
 
 // GET
 
@@ -7,12 +7,12 @@ const getAllEmpleados = async (req, res) => {
   try {
     const [total] = await EmpleadosModel.getNumAllEmpleados();
     const pagina =
-      (req.params.pagina - 1) * parseInt(process.env.ELEMENTOS_POR_PAGINA);
+      (req.params.pagina - 1) * parseInt(process.env.ELEMENTOS_POR_PAGINA_EMPLEADOS);
     const [result] = await EmpleadosModel.getAllEmpleados(
-      parseInt(process.env.ELEMENTOS_POR_PAGINA),
+      parseInt(4),
       pagina
     );
-    res.json(addPaginado(req.params.pagina, total[0].total, result));
+    res.json(addPaginadoEmpleados(req.params.pagina, total[0].total, result));
   } catch (error) {
     res.json({ fatal: error.message });
   }
@@ -35,13 +35,13 @@ const getEmpleadosByPuesto = async (req, res) => {
       req.params.puesto
     );
     const pagina =
-      (req.params.pagina - 1) * parseInt(process.env.ELEMENTOS_POR_PAGINA);
+      (req.params.pagina - 1) * parseInt(process.env.ELEMENTOS_POR_PAGINA_EMPLEADOS);
     const [result] = await EmpleadosModel.getEmpleadosByPuesto(
       req.params.puesto,
       parseInt(process.env.ELEMENTOS_POR_PAGINA),
       pagina
     );
-    res.json(addPaginado(req.params.pagina, total[0].total, result));
+    res.json(addPaginadoEmpleados(req.params.pagina, total[0].total, result));
   } catch (error) {
     res.json({ fatal: error.message });
   }
