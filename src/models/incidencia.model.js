@@ -1,9 +1,9 @@
 //GET
 
-const getAllIncidencias = (numElementos, pagina) => {
+const getAllIncidencias = (numElementos = 6, pagina) => {
   return db.query(
     "SELECT inc.*, ped.usuario_asignado FROM incidencias inc INNER JOIN pedidos ped ON inc.idpedido_asociado = ped.idPedido order by inc.idincidencia desc LIMIT ? OFFSET ?",
-    [numElementos, pagina]
+    [numElementos = 6, pagina]
   );
 };
 
