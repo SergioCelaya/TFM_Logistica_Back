@@ -25,3 +25,17 @@ function addPaginado(pagina, total, respuesta) {
     createToken,
     addPaginado
   };
+  function addPaginadoIncidencias(pagina, total, respuesta) {
+    return {
+      TotalElementos: parseInt(total),
+      ElementosPagina: parseInt(process.env.ELEMENTOS_POR_PAGINA_INCIDENCIAS),
+      Pagina: parseInt(pagina),
+      Resultado: respuesta,
+    };
+  }
+  
+  module.exports = {
+    addPaginadoIncidencias,
+    createToken,
+    addPaginado
+  };

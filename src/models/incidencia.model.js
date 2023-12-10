@@ -15,7 +15,7 @@ const getIncidenciaByIdPedido=(idPedido)=>{
 }
 
 const getNumAllIncidencias = () => {
-  return db.query("SELECT count(*) total FROM incidencias");
+  return db.query("SELECT count(*) total FROM incidencias inc INNER JOIN pedidos ped ON inc.idpedido_asociado = ped.idPedido");
 };
 
 const getIncidenciaById = (idIncidencia) => {

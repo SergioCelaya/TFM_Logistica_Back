@@ -1,6 +1,6 @@
 const IncidenciaModel = require("../models/incidencia.model");
 const EmpleadoModel = require("../models/empleado.model"); 
-const {addPaginado} = require("../helpers/utils");
+const { addPaginadoIncidencias} = require("../helpers/utils");
 
 // GET
 
@@ -8,12 +8,11 @@ const getAllIncidencias = async (req, res) => {
   try {
     const [total] = await IncidenciaModel.getNumAllIncidencias();
     const pagina =
-      (req.params.pagina - 1) * parseInt(process.env.ELEMENTOS_POR_PAGINA);
+      (req.params.pagina - 1) * parseInt(process.env.ELEMENTOS_POR_PAGINA_INCIDENCIAS);
     const [incidencias] = await IncidenciaModel.getAllIncidencias(
-      parseInt(process.env.ELEMENTOS_POR_PAGINA),
+      parseInt(6),
       pagina
     );
-
     let result = [];
     for (let incidencia of incidencias) {
       let [empleadoAsignado] = await EmpleadoModel.getEmpleadoById(incidencia.usuario_asignado);
@@ -21,7 +20,7 @@ const getAllIncidencias = async (req, res) => {
       result.push(incidencia);
     }
 
-    res.json(addPaginado(req.params.pagina, total[0].total, result));
+    res.json(addPaginadoIncidencias(req.params.pagina, total[0].total, result));
   } catch (error) {
     res.json({ fatal: error.message });
   }
@@ -51,10 +50,10 @@ const getAllIncidenciasByIdEmpleado = async (req, res) => {
   try {
     const [total] = await IncidenciaModel.getNumAllIncidenciasByEmpleado(req.params.usuario_asignado);
     const pagina =
-      (req.params.pagina - 1) * parseInt(process.env.ELEMENTOS_POR_PAGINA);
+      (req.params.pagina - 1) * parseInt(process.env.ELEMENTOS_POR_PAGINA_INCIDENCIAS);
     const [incidencias] = await IncidenciaModel.getAllIncidenciasByEmpleado(
       req.params.usuario_asignado,
-      parseInt(process.env.ELEMENTOS_POR_PAGINA),
+      parseInt(process.env.ELEMENTOS_POR_PAGINA_INCIDENCIAS),
       pagina
     );
     let result = [];
@@ -63,7 +62,7 @@ const getAllIncidenciasByIdEmpleado = async (req, res) => {
       incidencia.usuario_asignado = empleadoAsignado[0];
       result.push(incidencia);
     }
-    res.json(addPaginado(req.params.pagina, total[0].total, result));
+    res.json(addPaginadoIncidencias(req.params.pagina, total[0].total, result));
   } catch (error) {
     res.json({ fatal: error.message });
   }
@@ -75,10 +74,10 @@ const getAllIncidenciasNoVistasByIdEmpleado = async (req, res) => {
     const [total] =
       await IncidenciaModel.getNumAllIncidenciasNoVistasByEmpleado(req.params.usuario_asignado,);
     const pagina =
-      (req.params.pagina - 1) * parseInt(process.env.ELEMENTOS_POR_PAGINA);
+      (req.params.pagina - 1) * parseInt(process.env.ELEMENTOS_POR_PAGINA_INCIDENCIAS);
     const [incidencias] = await IncidenciaModel.getAllIncidenciasNoVistasByEmpleado(
       req.params.usuario_asignado,
-      parseInt(process.env.ELEMENTOS_POR_PAGINA),
+      parseInt(process.env.ELEMENTOS_POR_PAGINA_INCIDENCIAS),
       pagina
     );
     let result = [];
@@ -87,7 +86,7 @@ const getAllIncidenciasNoVistasByIdEmpleado = async (req, res) => {
       incidencia.usuario_asignado = empleadoAsignado[0];
       result.push(incidencia);
     }
-    res.json(addPaginado(req.params.pagina, total[0].total, result));
+    res.json(addPaginadoIncidencias(req.params.pagina, total[0].total, result));
   } catch (error) {
     res.json({ fatal: error.message });
   }
