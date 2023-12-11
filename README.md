@@ -317,7 +317,7 @@ Inicia el servidor en el Back:
 ```bash
   npm run dev
 ```
-
+![image](https://github.com/SergioCelaya/TFM_Logistica_Back/assets/122805335/4cc9cdb8-72aa-47eb-846f-728617815585)
 
 ## ✍🏼 Autores ©️
 
