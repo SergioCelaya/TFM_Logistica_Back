@@ -70,6 +70,17 @@ const getIncidenciaByIdPedido = async (req, res) => {
   }
 };
 
+const getIncidenciaByNumPedido = async (req, res) => {
+  try {
+    const numPedido = req.params.numPedido;
+    const [result] = await IncidenciaModel.getIncidenciaByNumPedido(numPedido);
+    res.json(result);
+  } catch (error) {
+    res.json({ fatal: error.message });
+  }
+};
+
+
 const getAllIncidenciasByIdEmpleado = async (req, res) => {
   try {
     const [total] = await IncidenciaModel.getNumAllIncidenciasByEmpleado(req.params.usuario_asignado);
@@ -173,5 +184,6 @@ module.exports = {
   updateIncidencia,
   updateIncidenciaToVista,
   updateIncidenciaToNoVista,
-  getIncidenciaByIdPedido
+  getIncidenciaByIdPedido,
+  getIncidenciaByNumPedido
 };

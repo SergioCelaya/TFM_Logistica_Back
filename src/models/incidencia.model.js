@@ -14,6 +14,13 @@ const getIncidenciaByIdPedido=(idPedido)=>{
   );
 }
 
+const getIncidenciaByNumPedido=(numPedido)=>{
+  return db.query(
+    "SELECT incidencias.*FROM incidencias JOIN pedidos ON incidencias.idpedido_asociado = pedidos.idPedido WHERE pedidos.numero_pedido = ? AND incidencias.vista = 0 ORDER BY incidencias.idincidencia DESC; ",
+    [numPedido]
+  );
+}
+
 const getNumAllIncidencias = () => {
   return db.query("SELECT count(*) total FROM incidencias inc INNER JOIN pedidos ped ON inc.idpedido_asociado = ped.idPedido");
 };
@@ -133,5 +140,6 @@ module.exports = {
   updateIncidencia,
   updateIncidenciaToVista,
   updateIncidenciaToNoVista,
-  getIncidenciaByIdPedido
+  getIncidenciaByIdPedido,
+  getIncidenciaByNumPedido
 };
