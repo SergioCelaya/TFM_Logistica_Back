@@ -1,4 +1,5 @@
-CREATE DATABASE  IF NOT EXISTS `logistica_almacen_tfm`;
+DROP DATABASE  IF EXISTS `logistica_almacen_tfm`;
+CREATE DATABASE  IF NOT EXISTS `logistica_almacen_tfm` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
 USE `logistica_almacen_tfm`;
 -- MySQL dump 10.13  Distrib 8.0.34, for Win64 (x86_64)
 --
@@ -33,9 +34,8 @@ CREATE TABLE `almacenes` (
   `imagen_almacen` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`idalmacen`),
   UNIQUE KEY `idalmacen_UNIQUE` (`idalmacen`),
-  UNIQUE KEY `nombre_almacen_UNIQUE` (`nombre_almacen`),
-  UNIQUE KEY `imagen_almacen_UNIQUE` (`imagen_almacen`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  UNIQUE KEY `nombre_almacen_UNIQUE` (`nombre_almacen`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -44,7 +44,7 @@ CREATE TABLE `almacenes` (
 
 LOCK TABLES `almacenes` WRITE;
 /*!40000 ALTER TABLE `almacenes` DISABLE KEYS */;
-INSERT INTO `almacenes` VALUES (1,'Almacén Madrid','40.318699','3.757352',1,'FlujoEstadosPedido-1701015312642.png'),(2,'Almacén Barcelona','41.373655','2.087099',1,NULL),(3,'Almacén Bilbao','43.243100','-2.920621',0,NULL);
+INSERT INTO `almacenes` VALUES (1,'Almacén Madrid','-3.757352','40.318699',1,'Almacen1.jpg'),(2,'Almacén Barcelona','2.087099','41.373655',1,'Almacen2.jpg'),(3,'Almacén Bilbao','-2.920621','43.243100',1,'Almacen3.jpg'),(4,'Almac Sevill actualizado','-45421','54545',1,'Almacen4.jpg');
 /*!40000 ALTER TABLE `almacenes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -70,12 +70,11 @@ CREATE TABLE `empleados` (
   PRIMARY KEY (`idempleado`),
   UNIQUE KEY `idempleado_UNIQUE` (`idempleado`),
   UNIQUE KEY `email_UNIQUE` (`email`),
-  UNIQUE KEY `imagen_empleado_UNIQUE` (`imagen_empleado`),
   KEY `puesto` (`puesto`),
   KEY `id_almacen` (`idalmacen`),
   CONSTRAINT `id_almacen` FOREIGN KEY (`idalmacen`) REFERENCES `almacenes` (`idalmacen`),
   CONSTRAINT `puesto` FOREIGN KEY (`puesto`) REFERENCES `puestos_trabajo` (`idpuesto_trabajo`)
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -84,7 +83,7 @@ CREATE TABLE `empleados` (
 
 LOCK TABLES `empleados` WRITE;
 /*!40000 ALTER TABLE `empleados` DISABLE KEYS */;
-INSERT INTO `empleados` VALUES (1,'juan.perez@example.com','contrasena1','Juan','Perez',1,1,'#00001',1,'2018-05-23 10:30:00','FlujoEstadosPedido-1701014185222.png'),(2,'maria.gomez@example.com','contrasena2','Maria','Gomez',2,2,'#00002',1,'2019-07-12 09:45:00',NULL),(3,'carlos.lopez@example.com','contrasena3','Carlos','Lopez',3,1,'#00003',1,'2017-11-30 14:20:00',NULL),(4,'laura.martin@example.com','contrasena4','Laura','Martin',1,2,'#00004',1,'2020-02-15 11:05:00',NULL),(5,'sergio.fernandez@example.com','contrasena5','Sergio','Fernandez',2,1,'#00005',1,'2016-09-08 13:40:00',NULL),(6,'ana.rodriguez@example.com','contrasena6','Ana','Rodriguez',3,2,'#00006',1,'2018-12-03 10:15:00',NULL),(7,'pablo.sanchez@example.com','contrasena7','Pablo','Sanchez',1,1,'#00007',1,'2019-04-20 08:55:00',NULL),(8,'lucia.garcia@example.com','contrasena8','Lucia','Garcia',2,2,'#00008',1,'2021-01-05 16:30:00',NULL),(9,'javier.fernandez@example.com','contrasena9','Javier','Fernandez',3,1,'#00009',1,'2017-06-17 12:10:00',NULL),(10,'elena.martinez@example.com','contrasena10','Elena','Martinez',1,2,'#00010',1,'2022-09-28 07:45:00',NULL),(11,'luis.gutierrez@example.com','contrasena11','Luis','Gutierrez',2,3,'#00011',1,'2020-10-10 18:20:00',NULL),(14,'carmen.ris@example.com','ASD34fERT','Carmen','Rios',2,1,'#00656',0,'2020-10-10 16:20:00',NULL),(15,'calmen.rios@example.com','$2a$08$wLz1xoPqKQ4MNooquXgcI.0c38S1jbIeK/1AMEAp/vstxIdf0DPJ2','Carmen','Rios',2,1,'#00676',1,'2020-10-10 16:20:00',NULL),(17,'calmen.riostre@example.com','$2a$08$QG2sm9CBWkbDXIoJfWfm2uhsm6F.GeU/U771eG18Xqgdi/6srHQ6G','Carmen','Rios',1,2,'#00676',1,'2020-10-10 16:20:00',NULL),(18,'luciano.garcia@example.com','$2a$08$J1ULCG1LZPQ/NcMywwnXG.GUTu2qFlWhPfVbX6F6ofE20mTqGx4eu','luciano','Garcia',1,1,'#00687',1,'2020-10-10 16:20:00',NULL),(19,'Fermin.Lopez@example.com','$2a$08$hGOXVZmyc3m0cJBLB416K.AZb4hkDqiihGrcPOhSgWHpYnnjnujAS','Fermin','Lopez',2,1,'#00689',1,'2020-10-10 16:20:00',NULL),(20,'Leire.rins@example.com','$2a$08$YvWru4ayzm8W/BJ6RH4T7O0Waym3wtjCkphRCz4x5cEk/.x41dOaa','Leire','Rins',3,1,'#00690',1,'2020-10-10 16:20:00',NULL);
+INSERT INTO `empleados` VALUES (1,'juan.perez@example.com','$2a$08$J1ULCG1LZPQ/NcMywwnXG.GUTu2qFlWhPfVbX6F6ofE20mTqGx4eu','Juan','Perez',1,1,'#00001',1,'2018-05-23 10:30:00','Felix.png'),(2,'maria.gomez@example.com','$2a$08$J1ULCG1LZPQ/NcMywwnXG.GUTu2qFlWhPfVbX6F6ofE20mTqGx4eu','Maria','Gomez',2,2,'#00002',1,'2019-07-12 09:45:00','090059.jpg'),(3,'carlos.lopez@example.com','$2a$08$J1ULCG1LZPQ/NcMywwnXG.GUTu2qFlWhPfVbX6F6ofE20mTqGx4eu','Carlos','Lopez',2,1,'#00003',1,'2017-11-30 14:20:00','090066.jpg'),(4,'laura.martin@example.com','$2a$08$J1ULCG1LZPQ/NcMywwnXG.GUTu2qFlWhPfVbX6F6ofE20mTqGx4eu','Laura','Martin',1,2,'#00004',1,'2020-02-15 11:05:00','090061.jpg'),(5,'sergio.fernandez@example.com','$2a$08$J1ULCG1LZPQ/NcMywwnXG.GUTu2qFlWhPfVbX6F6ofE20mTqGx4eu','Sergio','Fernandez',2,1,'#00005',1,'2016-09-08 13:40:00','090072.jpg'),(6,'ana.rodriguez@example.com','$2a$08$J1ULCG1LZPQ/NcMywwnXG.GUTu2qFlWhPfVbX6F6ofE20mTqGx4eu','Ana','Rodriguez',3,2,'#00006',1,'2018-12-03 10:15:00','090068.jpg'),(7,'pablo.sanchez@example.com','$2a$08$J1ULCG1LZPQ/NcMywwnXG.GUTu2qFlWhPfVbX6F6ofE20mTqGx4eu','Pablo','Sanchez',1,1,'#00007',1,'2019-04-20 08:55:00','Empleado.png'),(8,'lucia.garcia@example.com','$2a$08$J1ULCG1LZPQ/NcMywwnXG.GUTu2qFlWhPfVbX6F6ofE20mTqGx4eu','Lucia','Garcia',2,2,'#00008',1,'2021-01-05 16:30:00','090071.jpg'),(9,'javier.fernandez@example.com','$2a$08$J1ULCG1LZPQ/NcMywwnXG.GUTu2qFlWhPfVbX6F6ofE20mTqGx4eu','Javier','Fernandez',3,1,'#00009',1,'2017-06-17 12:10:00','090078.jpg'),(10,'elena.martinez@example.com','$2a$08$J1ULCG1LZPQ/NcMywwnXG.GUTu2qFlWhPfVbX6F6ofE20mTqGx4eu','Elena','Martinez',1,2,'#00010',1,'2022-09-28 07:45:00','Empleado.png'),(11,'luis.gutierrez@example.com','$2a$08$J1ULCG1LZPQ/NcMywwnXG.GUTu2qFlWhPfVbX6F6ofE20mTqGx4eu','Luis','Gutierrez',2,3,'#00011',1,'2020-10-10 18:20:00','090093.jpg'),(14,'carmen.ris@example.com','$2a$08$J1ULCG1LZPQ/NcMywwnXG.GUTu2qFlWhPfVbX6F6ofE20mTqGx4eu','Carmen','Rios',2,1,'#00656',0,'2020-10-10 16:20:00','090075.jpg'),(15,'calmen.rios@example.com','$2a$08$J1ULCG1LZPQ/NcMywwnXG.GUTu2qFlWhPfVbX6F6ofE20mTqGx4eu','Carmen','Rios',2,3,'#00676',1,'2020-10-10 16:20:00','Mario.png'),(17,'calmen.riostre@example.com','$2a$08$J1ULCG1LZPQ/NcMywwnXG.GUTu2qFlWhPfVbX6F6ofE20mTqGx4eu','Carmen','Rios',1,2,'#00676',1,'2020-10-10 16:20:00','090081.jpg'),(18,'luciano.garcia@example.com','$2a$08$J1ULCG1LZPQ/NcMywwnXG.GUTu2qFlWhPfVbX6F6ofE20mTqGx4eu','luciano','Garcia',1,1,'#00687',1,'2020-10-10 16:20:00','090094.jpg'),(19,'Fermin.Lopez@example.com','$2a$08$J1ULCG1LZPQ/NcMywwnXG.GUTu2qFlWhPfVbX6F6ofE20mTqGx4eu','Fermin','Lopez',2,1,'#00689',1,'2020-10-10 16:20:00','Juanan.png'),(20,'Leire.rins@example.com','$2a$08$J1ULCG1LZPQ/NcMywwnXG.GUTu2qFlWhPfVbX6F6ofE20mTqGx4eu','Leire','Rins',3,1,'#00690',1,'2020-10-10 16:20:00','Sergio.png');
 /*!40000 ALTER TABLE `empleados` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -136,7 +135,7 @@ CREATE TABLE `incidencias` (
   UNIQUE KEY `idincidencia_UNIQUE` (`idincidencia`),
   KEY `tipo_incidencia` (`tipo_incidencia`),
   CONSTRAINT `tipo_incidencia` FOREIGN KEY (`tipo_incidencia`) REFERENCES `tipo_incidencia` (`idtipo_incidencia`)
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -145,7 +144,7 @@ CREATE TABLE `incidencias` (
 
 LOCK TABLES `incidencias` WRITE;
 /*!40000 ALTER TABLE `incidencias` DISABLE KEYS */;
-INSERT INTO `incidencias` VALUES (11,'Rectificación','Debes rectificar el pedido que va mal',2,1,0),(12,'Problema con la entrega','La entrega no se realizó según lo esperado',1,1,0),(13,'Error en el producto','El producto recibido está dañado',3,1,0),(14,'Solicitud de cambio','Se solicita un cambio en el pedido',4,1,0),(15,'Consulta sobre el pedido','Se necesita información adicional sobre el pedido',5,1,0),(16,'Problema con la factura','Hay un error en el monto de la factura',6,1,0),(17,'Reclamación de reembolso','Se solicita un reembolso para el pedido 7',7,1,0),(18,'Problema de calidad','El producto no cumple con las expectativas de calidad',8,1,0),(19,'Cambio de dirección de entrega','Se necesita cambiar la dirección de entrega del pedido 9',9,1,0),(20,'Consulta sobre disponibilidad','¿Hay disponibilidad para el producto X?',10,1,0),(21,'Faltan cosas','Al pedido X le faltan cosas',27,1,0);
+INSERT INTO `incidencias` VALUES (11,'Rectificación','Debes rectificar el pedido que va mal',2,1,0),(12,'Problema con la entrega','La entrega no se realizó según lo esperado. Se han recibido las cajas abiertas con marcas de haber sido mal tratadas.',1,1,1),(13,'Error en el producto','El producto recibido está dañado',6,1,0),(14,'Solicitud de cambio','Se solicita un cambio en el pedido',4,1,0),(15,'Consulta sobre el pedido','Se necesita información adicional sobre el pedido',5,1,0),(16,'Problema con la factura','Hay un error en el monto de la factura',19,1,0),(17,'Reclamación de reembolso','Se solicita un reembolso para el pedido 7',7,1,0),(18,'Problema de calidad','El producto no cumple con las expectativas de calidad',8,1,0),(19,'Cambio de dirección de entrega','Se necesita cambiar la dirección de entrega del pedido 9',9,1,1),(20,'Consulta sobre disponibilidad','¿Hay disponibilidad para el producto X?',1,1,0),(21,'Faltan cosas','Al pedido X le faltan cosas',1,1,0),(22,'Faltan cosas','Al pedido X le faltan cosas',27,1,1),(23,'El pedido pesa demasiado','Se debe de repartir la carga en varios camiones',9,1,1),(24,'Se ha hecho mal el reparto ','Por favor repartir bien el peso',9,1,0),(25,'Parece que hay hueco para más','Por favor, cargar el camión con otros pedidos',25,1,0),(26,'prueba','prueba',9,1,1),(27,'consultar','mirar si hay arce para cargar',9,1,0),(28,'hghg','ehety',9,1,1),(29,'Este pedido tiene mercancias peligrosas',', ¿como de peligrosas?',10,1,0),(30,'Algunos pedidos han sido derramados','Ha ocasionado daños en el camión.',30,1,0),(31,'Bateria para mi portatil','Esto sera una prueba de incidencia nueva',1,1,1),(32,'Prueba','Esto sera una prueba de incidencia nueva',2,1,0),(33,'Prueba','Esto sera una prueba de incidencia nueva',2,1,0),(34,'Faltan cosas','Al pedido X le faltan cosas',3,1,0);
 /*!40000 ALTER TABLE `incidencias` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -181,7 +180,7 @@ CREATE TABLE `pedidos` (
   CONSTRAINT `estado` FOREIGN KEY (`estado`) REFERENCES `tipo_estados` (`idestado`),
   CONSTRAINT `usuario_asignado` FOREIGN KEY (`usuario_asignado`) REFERENCES `empleados` (`idempleado`),
   CONSTRAINT `usuario_responsable` FOREIGN KEY (`usuario_responsable`) REFERENCES `empleados` (`idempleado`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -190,7 +189,7 @@ CREATE TABLE `pedidos` (
 
 LOCK TABLES `pedidos` WRITE;
 /*!40000 ALTER TABLE `pedidos` DISABLE KEYS */;
-INSERT INTO `pedidos` VALUES (1,'1234567890','2022-07-15 14:30:00',1,2,'2023-09-20 00:00:00',1,3,1,'ABC123',NULL),(2,'2346666661','2023-07-12 08:45:00',1,3,'2023-12-04 23:00:00',2,3,2,'XYZ780','250 palés de cereales, de 500 kg cada uno.'),(3,'3456789012','2022-11-25 11:20:00',3,1,'2023-08-12 00:00:00',3,5,1,'DEF456',NULL),(4,'4567890123','2023-04-03 16:15:00',1,3,'2023-10-18 00:00:00',4,1,1,'GHI789',NULL),(5,'5678901234','2023-09-08 08:00:00',2,1,'2023-11-30 00:00:00',5,2,1,'JKL012',NULL),(6,'6789012345','2022-12-20 13:50:00',3,2,'2023-07-05 00:00:00',1,3,1,'MNO345',NULL),(7,'7890123456','2023-06-14 10:05:00',1,2,'2023-10-10 00:00:00',2,4,1,'PQR678',NULL),(8,'8901234567','2023-03-01 15:40:00',2,3,'2023-12-15 00:00:00',3,5,1,'STU901',NULL),(9,'9012345678','2022-10-28 12:25:00',3,1,'2023-09-25 00:00:00',4,1,1,'VWX234',NULL),(10,'1234567891','2023-02-18 09:00:00',1,3,'2023-11-05 00:00:00',5,2,1,'YZA567',NULL),(11,'2345678902','2022-11-10 14:30:00',2,1,'2023-10-20 00:00:00',1,3,1,'ABC345',NULL),(13,'2346668901','2023-05-12 08:45:00',1,2,'2023-12-04 23:00:00',2,3,3,'XYZ788',NULL),(17,'2346669001','2023-05-12 08:45:00',1,2,'2023-12-04 23:00:00',2,3,3,'XYZ780','250 palés de cereales, de 500 kg cada uno.');
+INSERT INTO `pedidos` VALUES (1,'1234567890','2022-07-14 00:00:00',1,2,'2023-09-18 00:00:00',1,3,1,'ACD6666','Fuegos artificiales para las fallas 500 Kg'),(2,'2346666661','2023-07-12 00:00:00',1,3,'2023-12-04 00:00:00',2,3,3,'XYZ780','250 palés de cereales, de 500 kg cada uno.'),(3,'3456789012','2022-11-25 00:00:00',3,1,'2023-08-12 00:00:00',3,8,1,'DEF456','Árboles plataneros de Canarias'),(4,'4567890123','2023-04-03 00:00:00',1,3,'2023-10-18 00:00:00',4,11,1,'GHI789','Bobina de cobre con recubrimiento de poluretano'),(5,'5678901234','2023-09-08 00:00:00',2,1,'2023-11-30 00:00:00',5,2,1,'JKL012','Peces tropicales'),(6,'6789012345','2022-12-20 00:00:00',1,2,'2023-07-04 00:00:00',18,1,4,'MNO345','Platanos 2000Kg'),(7,'7890123456','2023-06-14 00:00:00',1,2,'2023-10-10 00:00:00',2,2,1,'PQR678','Material de ofivina Almacenes cerrados. 2500Kgs'),(8,'8901234567','2023-03-01 00:00:00',2,3,'2023-12-15 00:00:00',3,5,1,'STU901','Cajas de cafareles, 2000Kgs'),(9,'9012345678','2022-10-28 00:00:00',3,1,'2023-09-25 00:00:00',4,14,6,'VWX234',' Vino Inurrieta DO'),(10,'1234567891','2023-02-18 00:00:00',1,3,'2023-11-05 00:00:00',5,2,1,'YZA567','Comida para mascotas procedente de subasta'),(11,'2345678902','2022-11-10 00:00:00',1,3,'2023-10-20 00:00:00',1,14,5,'ABC345','Juguetes para tienda mportación'),(13,'2346668901','2023-05-12 00:00:00',1,2,'2023-12-04 00:00:00',2,15,3,'XYZ788','Mandarinas Valecnianas 1500Kgs'),(17,'2346669001','2023-05-12 00:00:00',1,2,'2023-12-04 00:00:00',2,14,3,'XYZ780','250 palés de cereales, de 500 kg cada uno.'),(19,'2342424345','2022-11-10 00:00:00',1,2,'2023-10-20 00:00:00',1,15,4,'ABC345','Ropa de cama peso aprox 800Kg'),(20,'6252235226','2022-11-10 00:00:00',1,3,'2023-10-20 00:00:00',1,19,2,'MNO345','Congelados carnicerías 2500Kg'),(21,'4726265477','2022-12-20 00:00:00',1,3,'2023-10-20 00:00:00',1,19,3,'RTE453','Telas varias 600Kg. Material de sastrería'),(22,'2346669005','2023-05-12 00:00:00',1,1,'2023-12-04 00:00:00',2,3,2,'XYZ780','250 palés de cereales, de 500 kg cada uno.'),(24,'236669005','2023-05-12 00:00:00',1,2,'2023-12-04 00:00:00',2,3,3,'XYZ780','250 palés de cereales, de 500 kg cada uno.'),(25,'2345678970','2023-12-06 00:00:00',2,3,'2023-12-30 00:00:00',1,5,2,'MNO345','Esto sería un pedido de la fábrica de tuercas Enrosca S.A. 1500kg de carga'),(26,'123456123','2023-12-09 00:00:00',2,3,'2023-12-21 00:00:00',1,19,1,'MNO345','Este pedido tiene cargamento peligroso'),(27,'5735683','2023-07-12 08:45:00',1,3,'2023-12-04 09:00:00',1,19,6,'XYZ780','250 palés de cereales, de 500 kg cada uno.'),(28,'34563543','2023-12-10 00:00:00',1,2,'2023-12-23 00:00:00',1,19,3,'ABC345','Libros de ediorial Planeta SL 2000Kgs'),(29,'3456789','2023-12-10 00:00:00',1,2,'2023-12-15 00:00:00',1,19,1,'ABC345','Pedido bajo secreto de empresa 2000Kg'),(30,'2345678966','2023-12-11 00:00:00',3,1,'2023-12-17 00:00:00',1,19,4,'RTE453','Sandías Murcianas, 1500Kg');
 /*!40000 ALTER TABLE `pedidos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -281,4 +280,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-11-30 20:42:41
+-- Dump completed on 2023-12-11 20:38:26
