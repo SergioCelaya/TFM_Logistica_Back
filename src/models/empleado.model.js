@@ -62,7 +62,7 @@ const createEmpleado = ({
   num_empleado,
   activo,
   fecha_contratacion,
-  imagen_empleado
+  imagen_empleado = 'Empleado.png'
 }) => {
   return db.query(
     "INSERT INTO empleados (email,pwd,nombre,apellidos,puesto,idalmacen,num_empleado,activo,fecha_contratacion,imagen_empleado) VALUES (?,?,?,?,?,?,?,?,?,?)",
