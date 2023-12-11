@@ -31,7 +31,7 @@ Manual aplicación: [Manual-TFM](Manual-TFM.pdf)
 ![mongodb](https://img.shields.io/badge/Mongodb-0F0F11?style=for-the-badge&logo=mongoDB) ![mysql](https://img.shields.io/badge/Mysql-0F0F11?style=for-the-badge&logo=mysql)
  
 - Backend la aplicación la realizaremos en  
-![nodejs](https://img.shields.io/badge/nodejs-0F0F11?style=for-the-badge&logo=node.js) ![express](https://img.shields.io/badge/express-0F0F11?style=for-the-badge&logo=express).
+![nodejs](https://img.shields.io/badge/nodejs-0F0F11?style=for-the-badge&logo=node.js) ![express](https://img.shields.io/badge/express-0F0F11?style=for-the-badge&logo=express)
 
 ## 🗄️ Estructura del Front:
 
