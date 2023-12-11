@@ -1,5 +1,5 @@
 
-# TFM - TOTAL FACILITY MANAGMENT 
+# 🚀  TFM - TOTAL FACILITY MANAGMENT 
 
 Este manual de software de gestión logística presenta una solución integral para optimizar y perfeccionar los procesos logísticos dentro de nuestra empresa. Diseñado con la premisa de mejorar la eficiencia operativa, aborda las complejidades de la cadena de suministro, proporcionando herramientas avanzadas y soluciones tecnológicas.
 
@@ -24,11 +24,14 @@ Manual aplicación: [Manual-TFM](Manual-TFM.pdf)
 
 ## 🛠️ Requisitos técnicos
 
-- Framework de FrontEnd: ![angular](https://img.shields.io/badge/Angular-0F0F11?style=for-the-badge&logo=angular)
+- Framework de FrontEnd:  
+![angular](https://img.shields.io/badge/Angular-0F0F11?style=for-the-badge&logo=angular)
  
-- Base de datos, dependiendo las necesidades del proyecto, podrá ser elegida entre ![mongodb](https://img.shields.io/badge/Mongodb-0F0F11?style=for-the-badge&logo=mongoDB) ![mysql](https://img.shields.io/badge/Mysql-0F0F11?style=for-the-badge&logo=mysql).
+- Base de datos, dependiendo las necesidades del proyecto, podrá ser elegida entre  
+![mongodb](https://img.shields.io/badge/Mongodb-0F0F11?style=for-the-badge&logo=mongoDB) ![mysql](https://img.shields.io/badge/Mysql-0F0F11?style=for-the-badge&logo=mysql)
  
-- Backend la aplicación la realizaremos en ![nodejs](https://img.shields.io/badge/nodejs-0F0F11?style=for-the-badge&logo=node.js) ![express](https://img.shields.io/badge/express-0F0F11?style=for-the-badge&logo=express).
+- Backend la aplicación la realizaremos en  
+![nodejs](https://img.shields.io/badge/nodejs-0F0F11?style=for-the-badge&logo=node.js) ![express](https://img.shields.io/badge/express-0F0F11?style=for-the-badge&logo=express).
 
 ## 🗄️ Estructura del Front:
 
