@@ -26,9 +26,13 @@ const getNumAllIncidencias = () => {
 };
 
 const getIncidenciaById = (idIncidencia) => {
-  return db.query("SELECT * FROM incidencias WHERE idincidencia = ? ", [
-    idIncidencia,
-  ]);
+  return db.query(
+    "SELECT incidencias.*, pedidos.numero_pedido " +
+    "FROM incidencias " +
+    "JOIN pedidos ON incidencias.idpedido_asociado = pedidos.idPedido " +
+    "WHERE incidencias.idincidencia = ?",
+    [idIncidencia]
+  );
 };
 
 const getAllIncidenciasByEmpleado = (usuario_asignado,numElementos, pagina) => {
