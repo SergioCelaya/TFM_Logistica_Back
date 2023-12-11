@@ -12,7 +12,6 @@ const getEstadosPedido = async (req, res) => {
 const insertEstadoPedido = async (idPedido, fechaCambio) => {
   try {
     await EstadosModel.insertEstadoPedido(idPedido, fechaCambio);
-    console.log("Registro insertado correctamente en estados_pedidos");
   } catch (error) {
     console.error("Error al insertar el registro en estados_pedidos:", error.message);
   }
